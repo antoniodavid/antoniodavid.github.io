@@ -1,7 +1,14 @@
 ---
+import "@fontsource-variable/sora";
+import "@fontsource-variable/dm-sans";
+import "@fontsource-variable/jetbrains-mono";
+import soraFont from "@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url";
+import dmSansFont from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
+import monoFont from "@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url";
+
 const title = "Antonio David | Odoo, AI, and OWL engineer";
 const description =
-  "Antonio David builds AI-assisted Odoo delivery tools, Odoo modules and migrations, OWL frontends, and reviewed OCA contributions. Public work and verified counts.";
+  "Antonio David designs Odoo, AI, and OWL systems: modules and migrations, AI-assisted delivery with ODF, OWL frontends, and reviewed OCA contributions.";
 ---
 
 <!doctype html>
@@ -10,8 +17,11 @@ const description =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#fff8e8" />
+    <meta name="theme-color" content="#fffdf7" />
     <title>{title}</title>
+    <link rel="preload" href={soraFont} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={dmSansFont} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={monoFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
@@ -19,28 +29,23 @@ const description =
 
     <header class="site-header">
       <div class="header-inner container">
-        <a class="brand" href="#top" aria-label="AD Antonio David, home">
-          <span class="brand-mark">AD</span>{" "}
-          <span class="brand-text">Antonio David</span>
-        </a>
-        <nav aria-label="Primary navigation">
-          <ul class="nav-list">
-            <li><a href="#focus">Focus</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#proof">Proof</a></li>
-            <li><a href="#oca">OCA</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+        <div class="brand-wrap">
+          <a class="brand" href="#top" aria-label="AD Antonio David, home">
+            <span class="brand-mark">AD</span>{" "}
+            <span class="brand-text">Antonio David</span>
+          </a>
+          <span class="brand-tagline" aria-hidden="true">Odoo · AI · OWL</span>
+        </div>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="#focus">Focus</a>
+          <a href="#work">Work</a>
+          <a href="#oca">OCA</a>
+          <a href="#method">Approach</a>
+          <a href="#contact">Contact</a>
         </nav>
-        <a class="header-cta" href="mailto:antoniodavid8@gmail.com">Let's talk</a>
-      </div>
-      <div class="header-stats">
-        <div class="header-stats-inner container">
-          <span class="header-stat header-stat-blue"><strong>290</strong> merged PRs</span>
-          <span class="header-stat header-stat-coral"><strong>10</strong> OCA merges</span>
-          <span class="header-stat header-stat-green"><strong>78</strong> reviews</span>
-          <span class="header-stat header-stat-yellow"><strong>1,477</strong> tests</span>
-          <span class="header-stat header-stat-plum"><strong>8→19</strong> Odoo</span>
+        <div class="header-actions">
+          <a class="availability" href="#contact"><span class="status-dot" aria-hidden="true"></span> Open to projects</a>
+          <a class="header-cta" href="mailto:antoniodavid8@gmail.com">Let's talk <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </header>
@@ -49,9 +54,13 @@ const description =
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>Antonio David Ruban Espinal</p>
-        <p>Static page. No trackers. No remote assets.</p>
-        <p>Last updated October 2026.</p>
+        <p>Antonio David — Odoo · AI · OWL · OCA</p>
+        <nav aria-label="Footer navigation">
+          <a href="#top">Back to top ↑</a>
+          <a href="https://github.com/antoniodavid">GitHub</a>
+          <a href="mailto:antoniodavid8@gmail.com">Email</a>
+        </nav>
+        <p>© 2026 · Static Astro page</p>
       </div>
     </footer>
   </body>

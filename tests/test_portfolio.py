@@ -100,26 +100,22 @@ class PortfolioTests(unittest.TestCase):
 
     def test_hero_states_the_verified_public_achievements(self):
         for claim in (
-            "290 merged pull requests",
-            "Ten are in OCA",
-            "365",
-            "79%",
+            "290",
+            "10",
             "78",
             "1,477",
+            "79%",
+            "OCA upstream",
         ):
             with self.subTest(claim=claim):
                 self.assertIn(claim.casefold(), self.lowered_text)
 
-        wall = re.search(r'<g class="oca-tiles".*?</g>', self.page, re.DOTALL)
-        self.assertIsNotNone(wall, "the merge wall needs a highlighted OCA group")
-        self.assertEqual(wall.group(0).count("<rect"), 10)
-
     def test_focus_pillars_cover_ai_odoo_owl_and_oca(self):
         for pillar in (
-            "AI delivery",
-            "Odoo engineering",
+            "Odoo core",
+            "AI & agents",
             "OWL frontend",
-            "OCA collaboration",
+            "Architecture & review",
         ):
             with self.subTest(pillar=pillar):
                 self.assertIn(pillar.casefold(), self.lowered_text)
@@ -201,17 +197,18 @@ class PortfolioTests(unittest.TestCase):
 
     def test_bright_palette_keeps_text_contrast(self):
         pairs = (
-            ("ink", "cream"),
-            ("ink", "cream-2"),
+            ("ink", "bg"),
+            ("ink", "surface"),
             ("ink", "white"),
             ("ink", "yellow"),
-            ("ink", "coral"),
-            ("ink", "green"),
-            ("ink", "lilac"),
+            ("ink", "green-soft"),
+            ("ink", "coral-soft"),
+            ("ink", "blue-soft"),
+            ("ink", "purple-soft"),
             ("white", "blue"),
             ("white", "blue-deep"),
-            ("white", "plum"),
-            ("white", "plum-deep"),
+            ("bg", "ink"),
+            ("contact-soft", "ink"),
         )
         for foreground, background in pairs:
             with self.subTest(foreground=foreground, background=background):
@@ -223,23 +220,21 @@ class PortfolioTests(unittest.TestCase):
                     4.5,
                 )
 
-        for accent in ("blue-deep", "coral-deep", "green-deep"):
-            with self.subTest(accent=accent):
+        for foreground, background in (
+            ("blue-deep", "blue-soft"),
+            ("green-deep", "green-soft"),
+            ("coral-deep", "coral-soft"),
+            ("purple", "purple-soft"),
+            ("ink-2", "bg"),
+        ):
+            with self.subTest(foreground=foreground, background=background):
                 self.assertGreaterEqual(
                     contrast_ratio(
-                        css_color(self.styles, accent),
-                        css_color(self.styles, "cream"),
+                        css_color(self.styles, foreground),
+                        css_color(self.styles, background),
                     ),
                     4.5,
                 )
-
-        self.assertGreaterEqual(
-            contrast_ratio(
-                css_color(self.styles, "contact-soft"),
-                css_color(self.styles, "blue"),
-            ),
-            4.5,
-        )
 
     def test_audited_accessibility_fixes_hold(self):
         brand = next(
@@ -263,20 +258,19 @@ class PortfolioTests(unittest.TestCase):
 
         self.assertIsNotNone(
             re.search(
-                r"\.project-featured\s*\{[^}]*background:\s*var\(--blue\)",
+                r"\.flagship\s*\{[^}]*border:\s*2px solid var\(--ink\)",
                 self.styles,
                 re.DOTALL,
             ),
-            "the featured project should use the blue proof surface",
+            "the flagship project should carry the ink monograph border",
         )
         self.assertIsNotNone(
             re.search(
-                r"\.project-featured \.project-stats dt,\s*"
-                r"\.project-featured \.project-stats dd \{\s*color:\s*#fff;",
+                r"\.terminal\s*\{[^}]*background:\s*var\(--terminal\)",
                 self.styles,
                 re.DOTALL,
             ),
-            "featured project stat labels need white text",
+            "the proof terminal should use the dark terminal surface",
         )
 
     def test_styles_support_responsive_keyboard_and_reduced_motion_use(self):
