@@ -41,7 +41,7 @@ collaboration at the center.
 - Lighthouse on the built page: mobile and desktop 100 accessibility / 100 best practices / 100 SEO / 100 agentic browsing, 54 audits passed, 0 failed.
 - Verified at 390×844 and 1440×1000: no horizontal overflow, no JavaScript, no remote assets, and the mobile header keeps four wins visible.
 - The OCA grid shows all ten merged PRs plus the open `l10n-usa#166` with whole-card targets; the merge wall keeps 290 tiles and 10 OCA highlights.
-- The work is committed on `feat/astro-migration` and updates PR #1; it is not merged.
+- The work is committed on `feat/vivid-proof-dashboard` and opened as PR #2; it is not merged.
 
 ## Log
 
