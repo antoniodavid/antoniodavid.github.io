@@ -1,0 +1,52 @@
+---
+const title = "Antonio David | Odoo engineer and toolmaker";
+const description =
+  "Antonio David builds Odoo software, developer tools, and open-source integrations. Public work, verified counts, and an OCA contribution ledger.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#13201b" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="header-inner container">
+        <a class="brand" href="#top" aria-label="AD Antonio David, home">
+          <span class="brand-mark">AD</span>{" "}
+          <span class="brand-text">Antonio David</span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <ul class="nav-list">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#oca">OCA</a></li>
+            <li><a href="#numbers">Numbers</a></li>
+            <li><a href="#method">Method</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a class="status-pill" href="mailto:antoniodavid8@gmail.com">
+          <span class="status-dot" aria-hidden="true"></span>
+          Open to collaborate
+        </a>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Antonio David Ruban Espinal</p>
+        <p>Static page. No trackers. No remote assets.</p>
+        <p>Last updated October 2026.</p>
+      </div>
+    </footer>
+  </body>
+</html>
