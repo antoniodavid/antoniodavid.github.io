@@ -105,6 +105,7 @@ class PortfolioTests(unittest.TestCase):
             "365",
             "79%",
             "78",
+            "1,477",
         ):
             with self.subTest(claim=claim):
                 self.assertIn(claim.casefold(), self.lowered_text)
@@ -112,6 +113,29 @@ class PortfolioTests(unittest.TestCase):
         wall = re.search(r'<g class="oca-tiles".*?</g>', self.page, re.DOTALL)
         self.assertIsNotNone(wall, "the merge wall needs a highlighted OCA group")
         self.assertEqual(wall.group(0).count("<rect"), 10)
+
+    def test_focus_pillars_cover_ai_odoo_owl_and_oca(self):
+        for pillar in (
+            "AI delivery",
+            "Odoo engineering",
+            "OWL frontend",
+            "OCA collaboration",
+        ):
+            with self.subTest(pillar=pillar):
+                self.assertIn(pillar.casefold(), self.lowered_text)
+
+        hrefs = [
+            attributes.get("href", "")
+            for tag, attributes in self.parser.elements
+            if tag == "a"
+        ]
+        for href in (
+            "https://github.com/antoniodavid/odf-agent-team",
+            "https://github.com/antoniodavid/hacking-owl",
+            "https://github.com/antoniodavid/osem",
+        ):
+            with self.subTest(href=href):
+                self.assertIn(href, hrefs)
 
     def test_featured_projects_match_the_verified_public_stack(self):
         for name in (
@@ -175,16 +199,47 @@ class PortfolioTests(unittest.TestCase):
             with self.subTest(claim=claim):
                 self.assertIn(claim.casefold(), self.lowered_text)
 
-    def test_deep_accent_text_meets_normal_text_contrast_on_both_papers(self):
-        accent = css_color(self.styles, "signal-deep")
-        for paper_token in ("paper", "paper-2"):
-            with self.subTest(background=paper_token):
-                paper = css_color(self.styles, paper_token)
-                self.assertGreaterEqual(contrast_ratio(accent, paper), 4.5)
+    def test_bright_palette_keeps_text_contrast(self):
+        pairs = (
+            ("ink", "cream"),
+            ("ink", "cream-2"),
+            ("ink", "white"),
+            ("ink", "yellow"),
+            ("ink", "coral"),
+            ("ink", "green"),
+            ("ink", "lilac"),
+            ("white", "blue"),
+            ("white", "blue-deep"),
+            ("white", "plum"),
+            ("white", "plum-deep"),
+        )
+        for foreground, background in pairs:
+            with self.subTest(foreground=foreground, background=background):
+                self.assertGreaterEqual(
+                    contrast_ratio(
+                        css_color(self.styles, foreground),
+                        css_color(self.styles, background),
+                    ),
+                    4.5,
+                )
 
-        ink = css_color(self.styles, "ink")
-        lime = css_color(self.styles, "lime")
-        self.assertGreaterEqual(contrast_ratio(lime, ink), 7)
+        for accent in ("blue-deep", "coral-deep", "green-deep"):
+            with self.subTest(accent=accent):
+                self.assertGreaterEqual(
+                    contrast_ratio(
+                        css_color(self.styles, accent),
+                        css_color(self.styles, "cream"),
+                    ),
+                    4.5,
+                )
+
+        self.assertGreaterEqual(
+            contrast_ratio(
+                css_color(self.styles, "contact-soft"),
+                css_color(self.styles, "blue"),
+            ),
+            4.5,
+        )
 
     def test_audited_accessibility_fixes_hold(self):
         brand = next(
@@ -206,20 +261,23 @@ class PortfolioTests(unittest.TestCase):
             "keep a space between the brand mark and the brand text",
         )
 
-        featured_label = re.search(
-            r"\.project-featured \.project-stats dt \{\s*color:\s*"
-            r"rgba\(243, 237, 223, ([0-9.]+)\);",
-            self.styles,
+        self.assertIsNotNone(
+            re.search(
+                r"\.project-featured\s*\{[^}]*background:\s*var\(--blue\)",
+                self.styles,
+                re.DOTALL,
+            ),
+            "the featured project should use the blue proof surface",
         )
-        self.assertIsNotNone(featured_label, "featured stat labels need a color")
-        alpha = float(featured_label.group(1))
-        paper = css_color(self.styles, "paper")
-        background = css_color(self.styles, "plum-deep")
-        composite = tuple(
-            round(alpha * foreground + (1 - alpha) * base)
-            for foreground, base in zip(paper, background)
+        self.assertIsNotNone(
+            re.search(
+                r"\.project-featured \.project-stats dt,\s*"
+                r"\.project-featured \.project-stats dd \{\s*color:\s*#fff;",
+                self.styles,
+                re.DOTALL,
+            ),
+            "featured project stat labels need white text",
         )
-        self.assertGreaterEqual(contrast_ratio(composite, background), 4.5)
 
     def test_styles_support_responsive_keyboard_and_reduced_motion_use(self):
         self.assertTrue(self.styles.strip(), "The site stylesheet should exist.")
