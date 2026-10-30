@@ -105,17 +105,33 @@ class PortfolioTests(unittest.TestCase):
             "78",
             "1,477",
             "79%",
-            "OCA upstream",
+            "OCA contributor",
         ):
             with self.subTest(claim=claim):
                 self.assertIn(claim.casefold(), self.lowered_text)
 
+    def test_first_section_introduces_antonio_with_the_github_avatar(self):
+        avatars = [
+            attributes
+            for tag, attributes in self.parser.elements
+            if tag == "img" and attributes.get("class") == "profile-avatar"
+        ]
+        self.assertEqual(len(avatars), 1)
+        avatar = avatars[0]
+        self.assertEqual(avatar.get("src"), "/avatar.webp")
+        self.assertEqual(avatar.get("alt"), "Antonio David")
+        self.assertTrue(avatar.get("width"))
+        self.assertTrue(avatar.get("height"))
+        self.assertTrue((DIST / "avatar.webp").exists())
+        self.assertIn("odoo developer", self.lowered_text)
+        self.assertIn("Cuba", self.text)
+
     def test_focus_pillars_cover_ai_odoo_owl_and_oca(self):
         for pillar in (
-            "Odoo core",
-            "AI & agents",
-            "OWL frontend",
-            "Architecture & review",
+            "Odoo modules & migrations",
+            "AI delivery",
+            "OWL interfaces",
+            "OCA & review",
         ):
             with self.subTest(pillar=pillar):
                 self.assertIn(pillar.casefold(), self.lowered_text)
