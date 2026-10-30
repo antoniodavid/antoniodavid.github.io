@@ -58,7 +58,7 @@ OWL, and OCA collaboration in the foreground.
 - `npm ci` and `npm run build` pass; `python -m unittest discover -s tests` passes 11 tests.
 - Lighthouse on the built page: mobile and desktop 100 accessibility / 100 best practices / 100 SEO / 100 agentic browsing, 0 failures. Fonts are preloaded to avoid layout shift.
 - Verified at 390×844 and 1440×1000: no horizontal overflow, no JavaScript, no remote assets.
-- The work is on `feat/minimalist-monograph` and PR #4; it is not merged.
+- The work is on `feat/avatar-copy` and PR #5; it is not merged.
 
 ## Log
 
