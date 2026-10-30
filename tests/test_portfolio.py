@@ -5,6 +5,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DIST = ROOT / "dist"
 
 
 def css_color(styles, token):
@@ -70,8 +71,12 @@ class PortfolioMarkup(HTMLParser):
 class PortfolioTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.page = (ROOT / "index.html").read_text(encoding="utf-8")
-        cls.styles = (ROOT / "styles.css").read_text(encoding="utf-8")
+        page_path = DIST / "index.html"
+        styles_path = DIST / "styles.css"
+        if not page_path.exists() or not styles_path.exists():
+            raise AssertionError("Build the site first: npm run build")
+        cls.page = page_path.read_text(encoding="utf-8")
+        cls.styles = styles_path.read_text(encoding="utf-8")
         cls.parser = PortfolioMarkup()
         cls.parser.feed(cls.page)
         cls.text = " ".join(cls.parser.text)
@@ -82,7 +87,7 @@ class PortfolioTests(unittest.TestCase):
         self.assertRegex(self.page, r'<html\b[^>]*\blang=["\']en["\']')
         self.assertIn('name="viewport"', self.page)
         self.assertIn("<title>", self.page)
-        self.assertIn('href="./styles.css"', self.page)
+        self.assertIn('href="/styles.css"', self.page)
 
         tags = [tag for tag, _ in self.parser.elements]
         self.assertIn("nav", tags)
@@ -192,6 +197,14 @@ class PortfolioTests(unittest.TestCase):
         )
         self.assertIsNotNone(brand)
         self.assertIn("AD Antonio David", brand.get("aria-label", ""))
+
+        brand_markup = re.search(r'<a class="brand".*?</a>', self.page, re.DOTALL)
+        self.assertIsNotNone(brand_markup)
+        self.assertRegex(
+            brand_markup.group(0),
+            r"AD</span>\s+<span",
+            "keep a space between the brand mark and the brand text",
+        )
 
         featured_label = re.search(
             r"\.project-featured \.project-stats dt \{\s*color:\s*"
