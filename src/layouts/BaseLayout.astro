@@ -1,7 +1,7 @@
 ---
-const title = "Antonio David | Odoo engineer and toolmaker";
+const title = "Antonio David | Odoo, AI, and OWL engineer";
 const description =
-  "Antonio David builds Odoo software, developer tools, and open-source integrations. Public work, verified counts, and an OCA contribution ledger.";
+  "Antonio David builds AI-assisted Odoo delivery tools, Odoo modules and migrations, OWL frontends, and reviewed OCA contributions. Public work and verified counts.";
 ---
 
 <!doctype html>
@@ -10,7 +10,7 @@ const description =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#13201b" />
+    <meta name="theme-color" content="#fff8e8" />
     <title>{title}</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
@@ -25,17 +25,23 @@ const description =
         </a>
         <nav aria-label="Primary navigation">
           <ul class="nav-list">
+            <li><a href="#focus">Focus</a></li>
             <li><a href="#work">Work</a></li>
+            <li><a href="#proof">Proof</a></li>
             <li><a href="#oca">OCA</a></li>
-            <li><a href="#numbers">Numbers</a></li>
-            <li><a href="#method">Method</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <a class="status-pill" href="mailto:antoniodavid8@gmail.com">
-          <span class="status-dot" aria-hidden="true"></span>
-          Open to collaborate
-        </a>
+        <a class="header-cta" href="mailto:antoniodavid8@gmail.com">Let's talk</a>
+      </div>
+      <div class="header-stats">
+        <div class="header-stats-inner container">
+          <span class="header-stat header-stat-blue"><strong>290</strong> merged PRs</span>
+          <span class="header-stat header-stat-coral"><strong>10</strong> OCA merges</span>
+          <span class="header-stat header-stat-green"><strong>78</strong> reviews</span>
+          <span class="header-stat header-stat-yellow"><strong>1,477</strong> tests</span>
+          <span class="header-stat header-stat-plum"><strong>8→19</strong> Odoo</span>
+        </div>
       </div>
     </header>
 
