@@ -5,29 +5,34 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout>
   <main id="main-content">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="container hero-inner">
-        <div class="hero-badge-row">
-          <span class="hero-pill">Antonio David</span>
-          <span class="hero-role">// Odoo engineer · AI toolmaker · OCA contributor</span>
-          <span class="hero-verified"><span class="status-dot" aria-hidden="true"></span> OCA upstream</span>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">I ship <mark>Odoo modules</mark> and the tools around them.</h1>
+          <p class="hero-lede">I'm Antonio David. I work on Odoo 8–19: modules, migrations, integrations, and developer tooling. Ten of my OCA changes are merged, and I've reviewed 78 pull requests.</p>
+
+          <p class="hero-proof"><strong>290</strong> merged PRs <span aria-hidden="true">·</span> <strong>79%</strong> merge rate <span aria-hidden="true">·</span> <strong>10</strong> OCA merges <span aria-hidden="true">·</span> <strong>78</strong> reviews <span aria-hidden="true">·</span> <strong>1,477</strong> ODF tests</p>
+          <p class="hero-note">Public GitHub <span aria-hidden="true">·</span> Verified 30 Oct 2026</p>
+
+          <div class="hero-actions">
+            <a class="button button-dark" href="#work">See the work <span aria-hidden="true">↓</span></a>
+            <a class="button button-light" href="#oca">Read the OCA ledger <span aria-hidden="true">→</span></a>
+          </div>
         </div>
 
-        <h1 id="hero-title">I design solid <mark>Odoo, AI, and OWL</mark> architectures that solve complex problems without friction.</h1>
-        <p class="hero-lede">High-performance engineering for enterprise systems: Odoo modules and migrations, AI-assisted delivery with ODF, and OWL interfaces. Eight years of technical rigor, open source, and no unnecessary dogma.</p>
-
-        <p class="hero-proof"><strong>290</strong> merged PRs <span aria-hidden="true">·</span> <strong>10</strong> OCA merges <span aria-hidden="true">·</span> <strong>78</strong> reviews <span aria-hidden="true">·</span> <strong>1,477</strong> ODF tests</p>
-        <p class="hero-note">Public GitHub <span aria-hidden="true">·</span> Verified 30 Oct 2026 <span aria-hidden="true">·</span> Cuba / Remote</p>
-
-        <div class="hero-channels">
-          <a class="chip" href="mailto:antoniodavid8@gmail.com"><span aria-hidden="true">✉</span> antoniodavid8@gmail.com</a>
-          <a class="chip" href="https://github.com/antoniodavid"><span aria-hidden="true">⌘</span> GitHub</a>
-          <a class="chip" href="https://linkedin.com/in/antonio-david-ruban-espinal-921804b9"><span aria-hidden="true">↗</span> LinkedIn</a>
-        </div>
-
-        <div class="hero-actions">
-          <a class="button button-dark" href="#contact">Let's talk / Hire me <span aria-hidden="true">→</span></a>
-          <a class="button button-light" href="#work">See selected projects <span aria-hidden="true">↓</span></a>
-        </div>
+        <aside class="profile-card" aria-label="About Antonio David">
+          <img class="profile-avatar" src="/avatar.webp" alt="Antonio David" width="440" height="440" loading="eager" decoding="async" />
+          <div class="profile-body">
+            <p class="profile-name">Antonio David</p>
+            <p class="profile-role">Odoo developer · OCA contributor</p>
+            <p class="profile-location">Cuba · working remote</p>
+            <p class="profile-note">Odoo 8–19 · AI delivery · OWL</p>
+            <div class="profile-links">
+              <a href="https://github.com/antoniodavid">GitHub <span aria-hidden="true">↗</span></a>
+              <a href="mailto:antoniodavid8@gmail.com">Email</a>
+              <a href="https://linkedin.com/in/antonio-david-ruban-espinal-921804b9">LinkedIn <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -35,22 +40,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="container">
         <header class="section-head">
           <div class="section-heading">
-            <p class="section-label">// Specialties</p>
-            <h2 id="focus-title">What I do</h2>
+            <p class="section-label">// Focus</p>
+            <h2 id="focus-title">What I work on</h2>
           </div>
-          <p class="section-intro">Four work pillars centered on performance, data robustness, and technical simplicity.</p>
+          <p class="section-intro">Four areas where I have public work: Odoo, AI delivery, OWL, and OCA review.</p>
         </header>
 
         <div class="specialty-grid">
           <article class="specialty-card">
             <div class="specialty-top">
-              <span class="specialty-tag tag-blue">01 // ERP_BACKEND</span>
+              <span class="specialty-tag tag-blue">ODOO</span>
               <span class="specialty-icon icon-blue" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
               </span>
             </div>
-            <h3>Odoo Core</h3>
-            <p>Modules and migrations from 8 to 19, data models, and integrations that survive real upgrades.</p>
+            <h3>Odoo modules &amp; migrations</h3>
+            <p>Modules and migrations for Odoo 8–19. I work on delivery carriers, bank imports, POS, reporting, website, and localization.</p>
             <ul class="card-tags">
               <li>Odoo 8–19</li>
               <li>Migrations</li>
@@ -60,13 +65,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
           <article class="specialty-card">
             <div class="specialty-top">
-              <span class="specialty-tag tag-purple">02 // AGENTIC_SYSTEMS</span>
+              <span class="specialty-tag tag-purple">AI DELIVERY</span>
               <span class="specialty-icon icon-purple" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"></path><path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14z"></path></svg>
               </span>
             </div>
-            <h3>AI &amp; Agents</h3>
-            <p>ODF Agent Team: eleven specialist agents, fifty-one skills, policy gates, and 1,477 tests for reviewable AI delivery.</p>
+            <h3>AI delivery</h3>
+            <p>ODF Agent Team is an OpenCode agent team for Odoo changes: 11 agents, 51 skills, policy gates, and 1,477 unit tests.</p>
             <ul class="card-tags">
               <li>OpenCode</li>
               <li>11 agents</li>
@@ -76,13 +81,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
           <article class="specialty-card">
             <div class="specialty-top">
-              <span class="specialty-tag tag-coral">03 // MODERN_FRONTEND</span>
+              <span class="specialty-tag tag-coral">OWL</span>
               <span class="specialty-icon icon-coral" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>
               </span>
             </div>
-            <h3>OWL Frontend</h3>
-            <p>Hacking OWL: a custom web client and reusable components built on Odoo's OWL framework.</p>
+            <h3>OWL interfaces</h3>
+            <p>Hacking OWL is a custom OWL web client and a set of reusable components. It has 9 stars and an Apache-2.0 license.</p>
             <ul class="card-tags">
               <li>OWL</li>
               <li>Python</li>
@@ -92,17 +97,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
           <article class="specialty-card">
             <div class="specialty-top">
-              <span class="specialty-tag tag-green">04 // RELIABILITY</span>
+              <span class="specialty-tag tag-green">OCA</span>
               <span class="specialty-icon icon-green" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
               </span>
             </div>
-            <h3>Architecture &amp; Review</h3>
-            <p>OCA collaboration: 10 merged changes across 8 repositories and 53 reviews across 26 repositories and 22 authors.</p>
+            <h3>OCA &amp; review</h3>
+            <p>I submitted 37 PRs to OCA, merged 10 across 8 repositories, and reviewed 53 PRs across 26 repositories.</p>
             <ul class="card-tags">
-              <li>Code review</li>
-              <li>OCA</li>
-              <li>10 merges</li>
+              <li>10 merged</li>
+              <li>53 reviews</li>
+              <li>8 repos</li>
             </ul>
           </article>
         </div>
@@ -113,25 +118,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="container">
         <header class="section-head">
           <div class="section-heading">
-            <p class="section-label">// Selected work</p>
-            <h2 id="work-title">Selected projects</h2>
+            <p class="section-label">// Projects</p>
+            <h2 id="work-title">Projects I ship</h2>
           </div>
-          <a class="section-link" href="https://github.com/antoniodavid">View all on GitHub <span aria-hidden="true">↗</span></a>
+          <a class="section-link" href="https://github.com/antoniodavid">All repositories on GitHub <span aria-hidden="true">↗</span></a>
         </header>
 
         <article class="flagship">
           <div class="flagship-copy">
             <div class="flagship-top">
-              <span class="flag">Flagship</span>
-              <span class="badge badge-yellow">1,477 tests passed</span>
+              <span class="flag">Main project</span>
+              <span class="badge badge-yellow">1,477 unit tests</span>
             </div>
-            <h3>ODF Agent Team — Code orchestrator</h3>
-            <p>Multi-agent delivery on OpenCode. Eleven specialist agents, fifty-one skills, policy gates, and 1,477 unit tests, so the work is found instead of invented.</p>
+            <h3>ODF Agent Team</h3>
+            <p>An OpenCode agent team for Odoo delivery. It plans a route, writes the change, runs 1,477 unit tests, and checks policy gates before a PR.</p>
             <ul class="card-tags">
               <li>TypeScript</li>
               <li>OpenCode</li>
               <li>11 agents</li>
-              <li>1,477 tests</li>
+              <li>51 skills</li>
             </ul>
             <a class="button button-blue" href="https://github.com/antoniodavid/odf-agent-team">Explore repository <span aria-hidden="true">↗</span></a>
           </div>
@@ -147,17 +152,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 TESTS     1,477 unit · 331 yaml · 18 harness
 RELEASES  10 tagged releases
 REVIEW    policy gates + evidence
-STATUS    mergeable
-
-290 merged PRs · 79% merge rate</code></pre>
+STATUS    verified</code></pre>
           </div>
         </article>
 
         <div class="project-grid">
           <article class="project-card project-owl">
-            <p class="card-category">OWL / Research</p>
+            <p class="card-category">OWL / open source</p>
             <h3>Hacking OWL</h3>
-            <p>A custom OWL web client and reusable components for people who want to see how the framework fits together.</p>
+            <p>A custom OWL web client and reusable components. Built by shipping, not by reading the docs.</p>
             <ul class="card-tags">
               <li>9 stars</li>
               <li>Apache-2.0</li>
@@ -166,9 +169,9 @@ STATUS    mergeable
           </article>
 
           <article class="project-card project-oca">
-            <p class="card-category">OCA / Upstream</p>
+            <p class="card-category">OCA / merged</p>
             <h3>OCA modules</h3>
-            <p>Ten merged changes across delivery, banking, POS, reporting, website, and localization repositories.</p>
+            <p>10 merged changes in delivery, bank imports, POS, reporting, website, and localization.</p>
             <ul class="card-tags">
               <li>10 merged</li>
               <li>8 repos</li>
@@ -177,9 +180,9 @@ STATUS    mergeable
           </article>
 
           <article class="project-card project-odoo">
-            <p class="card-category">Odoo / Developer tools</p>
+            <p class="card-category">Odoo / Neovim</p>
             <h3>odoo.nvim</h3>
-            <p>A zero-config Neovim IDE for Odoo 8.0 through 19.0. LSP stubs, Doodba support, and XML→Python navigation.</p>
+            <p>A Neovim setup for Odoo 8–19. LSP stubs, Doodba support, and XML→Python navigation.</p>
             <ul class="card-tags">
               <li>Lua</li>
               <li>Neovim</li>
@@ -189,9 +192,9 @@ STATUS    mergeable
           </article>
 
           <article class="project-card project-ai">
-            <p class="card-category">AI / Terminal</p>
+            <p class="card-category">AI / CLI</p>
             <h3>OSEM</h3>
-            <p>A session manager for OpenCode. SQLite queries 520× faster than parsing the CLI, with fuzzy search and tmux windows.</p>
+            <p>An OpenCode session manager. It reads SQLite instead of parsing the CLI: 520× faster, with fuzzy search and tmux windows.</p>
             <ul class="card-tags">
               <li>Go</li>
               <li>520× faster</li>
@@ -201,7 +204,7 @@ STATUS    mergeable
           </article>
 
           <article class="project-card project-oca">
-            <p class="card-category">Connectivity / Cuba</p>
+            <p class="card-category">Connectivity / CLI</p>
             <h3>Conecta</h3>
             <p>One CLI for ETECSA portal login, WiFi hotspot sharing, WireGuard VPN, and speed tests.</p>
             <ul class="card-tags">
@@ -213,9 +216,9 @@ STATUS    mergeable
           </article>
 
           <article class="project-card project-ai">
-            <p class="card-category">AI / Omarchy</p>
+            <p class="card-category">AI / QML</p>
             <h3>Omarchy Agents</h3>
-            <p>A bar panel that watches every AI subscription on the machine and turns usage records into limits and reset times.</p>
+            <p>A QML bar panel that reads AI subscription usage and shows limits, balances, and reset times.</p>
             <ul class="card-tags">
               <li>QML</li>
               <li>File watcher</li>
@@ -241,10 +244,10 @@ STATUS    mergeable
       <div class="container">
         <header class="section-head">
           <div class="section-heading">
-            <p class="section-label">// Open source</p>
-            <h2 id="oca-title">OCA contributions</h2>
+            <p class="section-label">// OCA</p>
+            <h2 id="oca-title">Merged in OCA</h2>
           </div>
-          <p class="section-intro"><strong>37</strong> submitted <span aria-hidden="true">·</span> <strong>19</strong> repositories <span aria-hidden="true">·</span> <strong>10</strong> merged <span aria-hidden="true">·</span> <strong>53</strong> reviews. The changes that survived OCA review.</p>
+          <p class="section-intro"><strong>37</strong> submitted <span aria-hidden="true">·</span> <strong>19</strong> repositories <span aria-hidden="true">·</span> <strong>10</strong> merged <span aria-hidden="true">·</span> <strong>53</strong> reviews. These are the PRs that got merged.</p>
         </header>
 
         <ul class="oca-ledger" aria-label="Selected OCA pull requests">
@@ -339,7 +342,7 @@ STATUS    mergeable
         </ul>
 
         <div class="oca-note">
-          <p><strong>Teamwork, in public.</strong> 78 pull requests reviewed across 34 repositories and 28 authors. 53 of those reviews are in OCA, across 26 repositories and 22 authors.</p>
+          <p><strong>Reviews.</strong> I reviewed 78 PRs across 34 repositories and 28 authors. 53 of those reviews were in OCA, across 26 repositories and 22 authors.</p>
           <p class="source-line">Verified from public GitHub search on 30 October 2026.</p>
         </div>
       </div>
@@ -349,35 +352,35 @@ STATUS    mergeable
       <div class="container">
         <header class="section-head">
           <div class="section-heading">
-            <p class="section-label">// Approach</p>
-            <h2 id="method-title">How I approach each project</h2>
+            <p class="section-label">// How I work</p>
+            <h2 id="method-title">How I work</h2>
           </div>
-          <p class="section-intro">The interesting question is not whether the code compiles. It is whether the next person can trust it, change it, and ship it on a Friday.</p>
+          <p class="section-intro">The same four steps on every project. The details change; the order does not.</p>
         </header>
 
         <div class="approach-grid">
           <article class="approach-card method-blue">
             <span class="approach-index">01</span>
-            <h3>Specification</h3>
-            <p>ODF starts with a route, a context manifest, and a gate. The goal is the right change, not the first change.</p>
+            <h3>Write the spec</h3>
+            <p>ODF starts with a route, a context manifest, and a gate. I decide what changes before I write code.</p>
             <p class="approach-evidence">11 agents · 51 skills · policy gates</p>
           </article>
           <article class="approach-card method-green">
             <span class="approach-index">02</span>
-            <h3>Testing</h3>
-            <p>1,477 unit tests, 331 YAML tests, and 18 harness tests in ODF. This page ships with its own regression suite.</p>
+            <h3>Test the behavior</h3>
+            <p>ODF has 1,477 unit tests, 331 YAML tests, and 18 harness tests. This page has 10 tests.</p>
             <p class="approach-evidence">TDD · 10 tagged releases</p>
           </article>
           <article class="approach-card method-coral">
             <span class="approach-index">03</span>
-            <h3>Review</h3>
-            <p>78 pull requests reviewed across 34 repositories and 28 authors. 53 of those reviews are in OCA, across 26 repositories.</p>
+            <h3>Review in public</h3>
+            <p>I reviewed 78 PRs across 34 repositories and 28 authors. 53 were in OCA, across 26 repositories.</p>
             <p class="approach-evidence">53 OCA reviews</p>
           </article>
           <article class="approach-card method-purple">
             <span class="approach-index">04</span>
-            <h3>Delivery</h3>
-            <p>Small, reviewable changes, Conventional Commits, tagged releases, and docs that tell the next person where the seams are.</p>
+            <h3>Ship small</h3>
+            <p>Small commits, Conventional Commits, tagged releases, and docs. The next person should not need me.</p>
             <p class="approach-evidence">MIT · changelog · docs</p>
           </article>
         </div>
@@ -387,9 +390,9 @@ STATUS    mergeable
     <section class="section contact-section" id="contact" aria-labelledby="contact-title">
       <div class="container">
         <div class="contact-card">
-          <p class="contact-badge"><span class="status-dot" aria-hidden="true"></span> Open to contracts &amp; technical consulting</p>
-          <h2 id="contact-title">Have a complex Odoo, AI, or architecture problem?</h2>
-          <p class="contact-copy">Available for development sprints, architecture consulting, performance audits, and custom enterprise modules. If the problem spans modules, versions, or teams, that is the interesting part.</p>
+          <p class="contact-badge"><span class="status-dot" aria-hidden="true"></span> Open to Odoo work</p>
+          <h2 id="contact-title">Need an Odoo module, migration, or tool?</h2>
+          <p class="contact-copy">I take on Odoo modules, migrations, integrations, and developer tooling. Tell me the Odoo version and what needs to change.</p>
           <div class="contact-actions">
             <a class="chip chip-dark" href="mailto:antoniodavid8@gmail.com"><span aria-hidden="true">✉</span> antoniodavid8@gmail.com</a>
             <a class="chip chip-dark" href="https://github.com/antoniodavid"><span aria-hidden="true">⌘</span> GitHub</a>

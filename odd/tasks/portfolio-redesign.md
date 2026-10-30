@@ -12,8 +12,8 @@ OWL, and OCA collaboration in the foreground.
   purple) with AA contrast for every text/background pair used.
 - S2: The first viewport shows the headline and a compact proof line:
   290 merged PRs, 10 OCA merges, 78 reviews, and 1,477 ODF tests.
-- S3: Four visible specialty pillars: Odoo Core, AI & Agents, OWL Frontend, and
-  Architecture & Review. Each links to public evidence.
+- S3: Four visible specialty pillars: Odoo modules & migrations, AI delivery,
+  OWL interfaces, and OCA & review. Each states the public work behind it.
 - S4: Keep all 10 merged OCA pull requests and the open `l10n-usa#166` in a
   compact ledger, with the 37 submitted / 19 repositories / 10 merged /
   53 reviews summary and the 26-repository, 22-author review note.
@@ -28,6 +28,10 @@ OWL, and OCA collaboration in the foreground.
   as the visual reference.
 - S10: Replace every invented project, PR, email, metric, or title in the
   Stitch mock with verified public evidence.
+- S11: The first section introduces Antonio with his GitHub avatar, name, role,
+  location, and direct links.
+- S12: Use first-person, concrete copy focused on shipped work. Remove generic
+  marketing phrases and unverified claims.
 
 ## Tasks
 
@@ -42,16 +46,19 @@ OWL, and OCA collaboration in the foreground.
 - [x] T9 — Reviewed the latest Stitch screen, "Antonio David — Minimalist Engineering Monograph", via the Stitch MCP.
 - [x] T10 — Implemented the minimalist monograph: header, hero, specialty cards, selected projects, OCA ledger, approach, contact, and footer.
 - [x] T11 — Self-hosted and preloaded Sora / DM Sans / JetBrains Mono, updated the tests, and re-verified Lighthouse.
+- [x] T12 — Added the GitHub avatar and a profile card to the first section, with name, role, location, and links.
+- [x] T13 — Rewrote the hero and section copy around shipped work, removed generic marketing lines, and added a regression test for the avatar.
 
 ## Progress
 
 - Latest Stitch screen reviewed: `projects/13861423383984747592/screens/b30685f432894b5d8d9f78a5616fdaf2`, 2560×7826, desktop.
 - The Stitch mock used Spanish copy and invented several claims: "Senior Engineer & Tech Lead", `hello@antoniodavid.dev`, LangGraph, OWL 2.0, Pytest/Mocks, and fictional project descriptions. None were copied.
 - The implementation keeps the verified record and the established English copy for the international OCA audience: 290 merged PRs, 10 OCA merges across 8 repos, 37 OCA PRs across 19 repos, 78 reviews, 53 OCA reviews, 1,477 ODF tests, and the six real projects.
-- `npm ci` and `npm run build` pass; `python -m unittest discover -s tests` passes 10 tests.
+- The GitHub avatar is stored locally as `public/avatar.webp` (440×440, 27 KB), with explicit dimensions to avoid layout shift.
+- `npm ci` and `npm run build` pass; `python -m unittest discover -s tests` passes 11 tests.
 - Lighthouse on the built page: mobile and desktop 100 accessibility / 100 best practices / 100 SEO / 100 agentic browsing, 0 failures. Fonts are preloaded to avoid layout shift.
 - Verified at 390×844 and 1440×1000: no horizontal overflow, no JavaScript, no remote assets.
-- The work is on `feat/vivid-proof-dashboard` and PR #2; it is not merged.
+- The work is on `feat/minimalist-monograph` and PR #4; it is not merged.
 
 ## Log
 
@@ -61,3 +68,5 @@ OWL, and OCA collaboration in the foreground.
 - L4: Generated the Stitch "Atelier Ink & Logic" concept and implemented its editorial direction.
 - L5 (2026-10-30, user request, verbatim): "Revisar en stitch el ultimo design llamado Antonio David — Minimalist Engineering Monograph implementarlo"
 - L6: Reviewed the latest Monograph screen through the Stitch MCP, implemented its minimal layout with verified content, preloaded the fonts, and re-verified build, tests, responsive layout, and Lighthouse.
+- L7 (2026-10-30, user request, verbatim): "En la primera seccion no agregaste el avatar que tengo en el perfil de github, es una seccion para darme a conocer, tambien me gustaria que le quitaras todos los AI slop usando los skills y generaras una buena pagina enfocada en lo que antonio ha realizado"
+- L8: Added the GitHub avatar and profile card, rewrote the hero and section copy around shipped work, removed generic marketing lines, and re-verified 11 tests plus Lighthouse on mobile and desktop.
