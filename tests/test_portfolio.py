@@ -212,6 +212,7 @@ class PortfolioTests(unittest.TestCase):
             ("white", "blue-deep"),
             ("white", "plum"),
             ("white", "plum-deep"),
+            ("cream", "terminal"),
         )
         for foreground, background in pairs:
             with self.subTest(foreground=foreground, background=background):
@@ -263,20 +264,19 @@ class PortfolioTests(unittest.TestCase):
 
         self.assertIsNotNone(
             re.search(
-                r"\.project-featured\s*\{[^}]*background:\s*var\(--blue\)",
+                r"\.project-featured\s*\{[^}]*border-top:\s*10px solid var\(--blue\)",
                 self.styles,
                 re.DOTALL,
             ),
-            "the featured project should use the blue proof surface",
+            "the featured project should carry the blue proof border",
         )
         self.assertIsNotNone(
             re.search(
-                r"\.project-featured \.project-stats dt,\s*"
-                r"\.project-featured \.project-stats dd \{\s*color:\s*#fff;",
+                r"\.terminal\s*\{[^}]*background:\s*var\(--terminal\)",
                 self.styles,
                 re.DOTALL,
             ),
-            "featured project stat labels need white text",
+            "the proof terminal should use the dark terminal surface",
         )
 
     def test_styles_support_responsive_keyboard_and_reduced_motion_use(self):

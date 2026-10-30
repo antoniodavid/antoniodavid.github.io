@@ -25,43 +25,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <a class="button button-primary" href="#proof">See the proof</a>
             <a class="button button-secondary" href="#oca">Explore the OCA wins</a>
           </div>
-          <p class="hero-meta">Based in Cuba <span aria-hidden="true">·</span> Working worldwide <span aria-hidden="true">·</span> English / Español</p>
-          <ul class="hero-chips" aria-label="Core stack">
-            <li>AI agents</li>
-            <li>Odoo 8→19</li>
-            <li>OWL</li>
-            <li>OCA</li>
-            <li>Python</li>
-            <li>TypeScript</li>
-            <li>Go</li>
-            <li>Lua</li>
-          </ul>
+          <p class="hero-meta">Public GitHub <span aria-hidden="true">·</span> Verified 30 Oct 2026 <span aria-hidden="true">·</span> Cuba / Remote</p>
         </div>
 
-        <aside class="scoreboard" aria-label="Verified public results">
-          <div class="scoreboard-head">
-            <span>Public proof</span>
-            <span>2022—2026</span>
+        <aside class="telemetry" aria-label="Verified public results">
+          <div class="telemetry-head">
+            <span>Public GitHub</span>
+            <span>Verified 30 Oct 2026</span>
           </div>
-          <dl class="score-grid">
-            <div class="score score-blue">
-              <dt>Merged PRs</dt>
-              <dd>290</dd>
-            </div>
-            <div class="score score-coral">
-              <dt>OCA merges</dt>
-              <dd>10</dd>
-            </div>
-            <div class="score score-green">
-              <dt>Reviews</dt>
-              <dd>78</dd>
-            </div>
-            <div class="score score-yellow">
-              <dt>ODF tests</dt>
-              <dd>1,477</dd>
-            </div>
-          </dl>
+          <ul class="telemetry-grid">
+            <li class="telemetry-tile tile-blue">
+              <span class="tile-label">Merged PRs</span>
+              <strong>290</strong>
+              <span class="tile-note">Lifetime public</span>
+            </li>
+            <li class="telemetry-tile tile-coral">
+              <span class="tile-label">OCA merges</span>
+              <strong>10</strong>
+              <span class="tile-note">Across 8 repos</span>
+            </li>
+            <li class="telemetry-tile tile-green">
+              <span class="tile-label">Reviews</span>
+              <strong>78</strong>
+              <span class="tile-note">34 repos · 28 authors</span>
+            </li>
+            <li class="telemetry-tile tile-yellow">
+              <span class="tile-label">ODF tests</span>
+              <strong>1,477</strong>
+              <span class="tile-note">Unit tests</span>
+            </li>
+          </ul>
           <figure class="merge-card">
+            <div class="merge-head">
+              <span>290-tile merge matrix</span>
+              <span>10 OCA</span>
+            </div>
             <svg class="merge-wall" viewBox="0 0 290 100" role="img" aria-labelledby="wall-title wall-desc">
               <title id="wall-title">290 merged pull requests</title>
               <desc id="wall-desc">A wall of 290 tiles, one for every merged pull request. Ten tiles are highlighted in coral to represent the ten merged contributions to the Odoo Community Association.</desc>
@@ -101,29 +99,37 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="section focus-section" id="focus" aria-labelledby="focus-title">
       <div class="container">
         <header class="section-head">
-          <p class="section-label">01 / Focus</p>
-          <h2 id="focus-title">Four things I keep making better.</h2>
-          <p class="section-intro">AI delivery, Odoo engineering, OWL frontends, and OCA collaboration. Each one has public receipts, not a slide deck.</p>
+          <p class="section-label">01 — Focus</p>
+          <div class="section-title-row">
+            <h2 id="focus-title">Four things I keep making better.</h2>
+            <p class="section-intro">AI delivery, Odoo engineering, OWL frontends, and OCA collaboration. Each one has public receipts, not a slide deck.</p>
+          </div>
         </header>
 
         <div class="focus-grid">
           <article class="focus-card focus-ai">
-            <span class="focus-number">01</span>
-            <p class="focus-kicker">AI delivery</p>
-            <h3>ODF Agent Team</h3>
+            <div class="focus-top">
+              <span class="focus-index">01 // AI_TEAM</span>
+              <span class="focus-icon" aria-hidden="true">✦</span>
+            </div>
+            <h3>AI Delivery</h3>
+            <p class="focus-sub">ODF Agent Team</p>
             <p>Spec-driven Odoo delivery on OpenCode. Eleven specialist agents, fifty-one skills, and policy gates that make AI work reviewable instead of magical.</p>
             <ul class="focus-stats">
               <li><strong>11</strong> agents</li>
               <li><strong>51</strong> skills</li>
               <li><strong>1,477</strong> tests</li>
             </ul>
-            <a class="focus-link" href="https://github.com/antoniodavid/odf-agent-team">View repository <span aria-hidden="true">↗</span></a>
+            <a class="focus-link" href="https://github.com/antoniodavid/odf-agent-team">Inspect repository <span aria-hidden="true">↗</span></a>
           </article>
 
           <article class="focus-card focus-odoo">
-            <span class="focus-number">02</span>
-            <p class="focus-kicker">Odoo engineering</p>
-            <h3>Modules and migrations, 8 to 19.</h3>
+            <div class="focus-top">
+              <span class="focus-index">02 // ERP_CORE</span>
+              <span class="focus-icon" aria-hidden="true">⌘</span>
+            </div>
+            <h3>Odoo Engineering</h3>
+            <p class="focus-sub">Modules and migrations, 8→19</p>
             <p>EasyPost, Plaid, POS, reporting, website, and localization changes. The kind of work that has to survive an OCA review and a real upgrade.</p>
             <ul class="focus-stats">
               <li><strong>8→19</strong> Odoo</li>
@@ -134,22 +140,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </article>
 
           <article class="focus-card focus-owl">
-            <span class="focus-number">03</span>
-            <p class="focus-kicker">OWL frontend</p>
-            <h3>Hacking OWL</h3>
+            <div class="focus-top">
+              <span class="focus-index">03 // REACTIVE_UI</span>
+              <span class="focus-icon" aria-hidden="true">◎</span>
+            </div>
+            <h3>OWL Frontend</h3>
+            <p class="focus-sub">Hacking OWL</p>
             <p>A custom OWL web client and reusable components, built to understand the framework from the inside instead of treating it as a black box.</p>
             <ul class="focus-stats">
               <li><strong>9★</strong> GitHub</li>
               <li><strong>Apache-2.0</strong></li>
               <li><strong>OWL</strong></li>
             </ul>
-            <a class="focus-link" href="https://github.com/antoniodavid/hacking-owl">View repository <span aria-hidden="true">↗</span></a>
+            <a class="focus-link" href="https://github.com/antoniodavid/hacking-owl">Inspect repository <span aria-hidden="true">↗</span></a>
           </article>
 
           <article class="focus-card focus-oca">
-            <span class="focus-number">04</span>
-            <p class="focus-kicker">OCA collaboration</p>
-            <h3>Ten merged changes. Eight repositories.</h3>
+            <div class="focus-top">
+              <span class="focus-index">04 // OPEN_STANDARDS</span>
+              <span class="focus-icon" aria-hidden="true">✓</span>
+            </div>
+            <h3>OCA Collaboration</h3>
+            <p class="focus-sub">10 merged · 8 repositories</p>
             <p>37 pull requests submitted, 10 merged, and 53 reviews across 26 repositories and 22 authors. Teamwork, in public.</p>
             <ul class="focus-stats">
               <li><strong>10</strong> merged</li>
@@ -162,23 +174,65 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
     </section>
 
-    <section class="section wins-section" id="proof" aria-labelledby="proof-title">
+    <section class="section proof-section" id="proof" aria-labelledby="proof-title">
       <div class="container">
         <header class="section-head">
-          <p class="section-label">02 / Proof</p>
-          <h2 id="proof-title">The wins, without the scavenger hunt.</h2>
-          <p class="section-intro">Eight public numbers that explain the work before the first scroll. No private repositories, no inflated line counts, no borrowed stars.</p>
+          <p class="section-label">02 — Proof</p>
+          <div class="section-title-row">
+            <h2 id="proof-title">Hard numbers. No scavenger hunt.</h2>
+            <p class="section-intro">Eight public numbers that explain the work before the first scroll. No private repositories, no inflated line counts, no borrowed stars.</p>
+          </div>
         </header>
 
-        <ul class="wins-grid" aria-label="Verified wins">
-          <li class="win win-blue"><strong>290</strong><span>merged pull requests</span></li>
-          <li class="win win-coral"><strong>79%</strong><span>merge rate</span></li>
-          <li class="win win-green"><strong>10</strong><span>OCA merges</span></li>
-          <li class="win win-yellow"><strong>53</strong><span>OCA reviews</span></li>
-          <li class="win win-plum"><strong>1,477</strong><span>ODF unit tests</span></li>
-          <li class="win win-blue"><strong>520×</strong><span>faster OSEM</span></li>
-          <li class="win win-coral"><strong>8→19</strong><span>Odoo versions</span></li>
-          <li class="win win-green"><strong>9★</strong><span>Hacking OWL</span></li>
+        <ul class="metrics-grid" aria-label="Verified wins">
+          <li class="metric metric-blue">
+            <span class="metric-index">01 / Merged</span>
+            <strong>290</strong>
+            <span class="metric-label">Merged pull requests</span>
+            <p>Lifetime public PRs across client ERPs and open source.</p>
+          </li>
+          <li class="metric metric-coral">
+            <span class="metric-index">02 / Merge rate</span>
+            <strong>79%</strong>
+            <span class="metric-label">Merge rate</span>
+            <p>Merged-to-authored ratio from the public GitHub graph.</p>
+          </li>
+          <li class="metric metric-green">
+            <span class="metric-index">03 / OCA</span>
+            <strong>10</strong>
+            <span class="metric-label">OCA merges</span>
+            <p>Merged changes across 8 OCA repositories.</p>
+          </li>
+          <li class="metric metric-gold">
+            <span class="metric-index">04 / Reviews</span>
+            <strong>53</strong>
+            <span class="metric-label">OCA reviews</span>
+            <p>Across 26 repositories and 22 authors.</p>
+          </li>
+          <li class="metric metric-plum">
+            <span class="metric-index">05 / Tests</span>
+            <strong>1,477</strong>
+            <span class="metric-label">ODF unit tests</span>
+            <p>Plus 331 YAML tests and 18 harness tests.</p>
+          </li>
+          <li class="metric metric-blue">
+            <span class="metric-index">06 / Speed</span>
+            <strong>520×</strong>
+            <span class="metric-label">OSEM speedup</span>
+            <p>SQLite queries versus parsing the CLI.</p>
+          </li>
+          <li class="metric metric-coral">
+            <span class="metric-index">07 / Versions</span>
+            <strong>8→19</strong>
+            <span class="metric-label">Odoo versions</span>
+            <p>Modules and migrations from 8.0 to 19.0.</p>
+          </li>
+          <li class="metric metric-green">
+            <span class="metric-index">08 / OWL</span>
+            <strong>9★</strong>
+            <span class="metric-label">Hacking OWL</span>
+            <p>Stars on the OWL research repository.</p>
+          </li>
         </ul>
       </div>
     </section>
@@ -186,13 +240,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="section work-section" id="work" aria-labelledby="work-title">
       <div class="container">
         <header class="section-head">
-          <p class="section-label">03 / Selected work</p>
-          <h2 id="work-title">Tools that remove the guesswork.</h2>
-          <p class="section-intro">Six public projects across five languages. Each one started with a repeated annoyance and ended with something other people can use.</p>
+          <p class="section-label">03 — Selected work</p>
+          <div class="section-title-row">
+            <h2 id="work-title">Tools that remove the guesswork.</h2>
+            <p class="section-intro">Six public projects across five languages. Each one started with a repeated annoyance and ended with something other people can use.</p>
+          </div>
         </header>
 
-        <div class="project-grid">
-          <article class="project project-featured project-ai">
+        <article class="project-featured project-ai">
+          <div class="project-featured-copy">
             <div class="project-topline">
               <p class="project-kind">Flagship <span aria-hidden="true">/</span> AI + TypeScript</p>
               <p class="project-badge">1,477 tests</p>
@@ -208,8 +264,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <div><dt>Stars / forks</dt><dd>14 / 7</dd></div>
             </dl>
             <a class="project-link" href="https://github.com/antoniodavid/odf-agent-team">View repository <span aria-hidden="true">↗</span></a>
-          </article>
+          </div>
 
+          <div class="terminal" aria-label="ODF proof summary">
+            <div class="terminal-bar">
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span class="terminal-title">odf://proof-summary</span>
+            </div>
+            <pre class="terminal-body"><code>SPEC      route + context manifest
+TESTS     1,477 unit · 331 yaml · 18 harness
+RELEASES  10 tagged releases
+REVIEW    policy gates + evidence
+STATUS    mergeable
+
+290 merged PRs · 79% merge rate</code></pre>
+          </div>
+        </article>
+
+        <div class="project-grid">
           <article class="project project-odoo">
             <p class="project-kind">Odoo <span aria-hidden="true">/</span> Lua + Neovim</p>
             <h3>odoo.nvim</h3>
@@ -244,7 +318,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </article>
 
           <article class="project project-owl">
-            <p class="project-kind">OWL <span aria-hidden="true">/</span> QML + Omarchy</p>
+            <p class="project-kind">AI <span aria-hidden="true">/</span> QML + Omarchy</p>
             <h3>Omarchy Agents</h3>
             <p class="project-copy">A bar panel that watches every AI subscription on the machine and turns usage records into limits, balances, and reset times.</p>
             <dl class="project-stats">
@@ -282,9 +356,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="section oca-section" id="oca" aria-labelledby="oca-title">
       <div class="container">
         <header class="section-head">
-          <p class="section-label">04 / OCA wins</p>
-          <h2 id="oca-title">Ten merged changes. Eight repositories.</h2>
-          <p class="section-intro">The Odoo Community Association runs on review. These are the changes that survived it, plus the one still open on purpose.</p>
+          <p class="section-label">04 — OCA wins</p>
+          <div class="section-title-row">
+            <h2 id="oca-title">Ten merged changes. Eight repositories.</h2>
+            <p class="section-intro">The Odoo Community Association runs on review. These are the changes that survived it, plus the one still open on purpose.</p>
+          </div>
         </header>
 
         <dl class="oca-summary">
@@ -296,93 +372,82 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <ul class="oca-grid" aria-label="Selected OCA pull requests">
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/delivery-carrier/pull/1079">
-                <span class="oca-year">2026</span>
-                <span class="oca-repo">delivery-carrier</span>
-                <span class="oca-title">EasyPost carrier integration for Odoo 17</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/delivery-carrier/pull/1079">
+              <span class="oca-card-top"><span class="oca-repo">OCA / delivery-carrier</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">EasyPost carrier integration for Odoo 17</span>
+              <span class="oca-meta">2026 <span aria-hidden="true">·</span> Odoo 17</span>
+            </a>
+          </li>
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/delivery-carrier/pull/1082">
-                <span class="oca-year">2026</span>
-                <span class="oca-repo">delivery-carrier</span>
-                <span class="oca-title">EasyPost migration to Odoo 18</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/delivery-carrier/pull/1082">
+              <span class="oca-card-top"><span class="oca-repo">OCA / delivery-carrier</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">EasyPost migration to Odoo 18</span>
+              <span class="oca-meta">2026 <span aria-hidden="true">·</span> Odoo 18</span>
+            </a>
+          </li>
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/bank-statement-import/pull/864">
-                <span class="oca-year">2025</span>
-                <span class="oca-repo">bank-statement-import</span>
-                <span class="oca-title">Plaid statement import migration to 18.0</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/bank-statement-import/pull/864">
+              <span class="oca-card-top"><span class="oca-repo">OCA / bank-statement-import</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">Plaid statement import migration to 18.0</span>
+              <span class="oca-meta">2025 <span aria-hidden="true">·</span> Odoo 18</span>
+            </a>
+          </li>
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/reporting-engine/pull/969">
-                <span class="oca-year">2025</span>
-                <span class="oca-repo">reporting-engine</span>
-                <span class="oca-title">Spreadsheet dashboard migration for bi_view_editor</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/reporting-engine/pull/969">
+              <span class="oca-card-top"><span class="oca-repo">OCA / reporting-engine</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">Spreadsheet dashboard migration for bi_view_editor</span>
+              <span class="oca-meta">2025 <span aria-hidden="true">·</span> Odoo 17</span>
+            </a>
+          </li>
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/reporting-engine/pull/968">
-                <span class="oca-year">2025</span>
-                <span class="oca-repo">reporting-engine</span>
-                <span class="oca-title">bi_view_editor migration to 17.0</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/reporting-engine/pull/968">
+              <span class="oca-card-top"><span class="oca-repo">OCA / reporting-engine</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">bi_view_editor migration to 17.0</span>
+              <span class="oca-meta">2025 <span aria-hidden="true">·</span> Odoo 17</span>
+            </a>
+          </li>
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/stock-logistics-reporting/pull/404">
-                <span class="oca-year">2025</span>
-                <span class="oca-repo">stock-logistics-reporting</span>
-                <span class="oca-title">Valued picking report configuration</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/stock-logistics-reporting/pull/404">
+              <span class="oca-card-top"><span class="oca-repo">OCA / stock-logistics-reporting</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">Valued picking report configuration</span>
+              <span class="oca-meta">2025 <span aria-hidden="true">·</span> Odoo 17</span>
+            </a>
+          </li>
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/pos/pull/1309">
-                <span class="oca-year">2025</span>
-                <span class="oca-repo">pos</span>
-                <span class="oca-title">pos_margin migration to 17.0</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/pos/pull/1309">
+              <span class="oca-card-top"><span class="oca-repo">OCA / pos</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">pos_margin migration to 17.0</span>
+              <span class="oca-meta">2025 <span aria-hidden="true">·</span> Odoo 17</span>
+            </a>
+          </li>
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/website/pull/1095">
-                <span class="oca-year">2025</span>
-                <span class="oca-repo">website</span>
-                <span class="oca-title">website_local_font migration to 17.0</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/website/pull/1095">
+              <span class="oca-card-top"><span class="oca-repo">OCA / website</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">website_local_font migration to 17.0</span>
+              <span class="oca-meta">2025 <span aria-hidden="true">·</span> Odoo 17</span>
+            </a>
+          </li>
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/l10n-spain/pull/4083">
-                <span class="oca-year">2025</span>
-                <span class="oca-repo">l10n-spain</span>
-                <span class="oca-title">IGIC accounts 112 and 113</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/l10n-spain/pull/4083">
+              <span class="oca-card-top"><span class="oca-repo">OCA / l10n-spain</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">IGIC accounts 112 and 113</span>
+              <span class="oca-meta">2025 <span aria-hidden="true">·</span> Odoo 17</span>
+            </a>
+          </li>
           <li class="oca-card">
-              <a class="oca-card-link" href="https://github.com/OCA/partner-contact/pull/1728">
-                <span class="oca-year">2024</span>
-                <span class="oca-repo">partner-contact</span>
-                <span class="oca-title">partner_country_lang migration to 14.0</span>
-                <span class="badge badge-merged">Merged</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/partner-contact/pull/1728">
+              <span class="oca-card-top"><span class="oca-repo">OCA / partner-contact</span><span class="badge badge-merged">Merged</span></span>
+              <span class="oca-title">partner_country_lang migration to 14.0</span>
+              <span class="oca-meta">2024 <span aria-hidden="true">·</span> Odoo 14</span>
+            </a>
+          </li>
           <li class="oca-card oca-card-open">
-              <a class="oca-card-link" href="https://github.com/OCA/l10n-usa/pull/166">
-                <span class="oca-year">Open</span>
-                <span class="oca-repo">l10n-usa</span>
-                <span class="oca-title">Bill.com two-way integration</span>
-                <span class="badge badge-open">Open for review</span>
-              </a>
-            </li>
+            <a class="oca-card-link" href="https://github.com/OCA/l10n-usa/pull/166">
+              <span class="oca-card-top"><span class="oca-repo">OCA / l10n-usa</span><span class="badge badge-open">Open for review</span></span>
+              <span class="oca-title">Bill.com two-way integration</span>
+              <span class="oca-meta">Open <span aria-hidden="true">·</span> Odoo 17</span>
+            </a>
+          </li>
         </ul>
 
         <div class="oca-note">
@@ -395,36 +460,34 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="section method-section" id="method" aria-labelledby="method-title">
       <div class="container">
         <header class="section-head">
-          <p class="section-label">05 / Method</p>
-          <h2 id="method-title">The part that does not fit in a screenshot.</h2>
-          <p class="section-intro">The interesting question is not whether the code compiles. It is whether the next person can trust it, change it, and ship it on a Friday.</p>
+          <p class="section-label">05 — Method</p>
+          <div class="section-title-row">
+            <h2 id="method-title">The part that does not fit in a screenshot.</h2>
+            <p class="section-intro">The interesting question is not whether the code compiles. It is whether the next person can trust it, change it, and ship it on a Friday.</p>
+          </div>
         </header>
 
         <div class="method-grid">
-          <article class="method-card">
-            <span class="method-number">01</span>
-            <p class="method-tag">Spec</p>
+          <article class="method-card method-blue">
+            <span class="method-index">01 / SPEC</span>
             <h3>Spec before code.</h3>
             <p>ODF starts with a route, a context manifest, and a gate. The goal is the right change, not the first change.</p>
             <p class="method-evidence">11 agents · 51 skills · policy gates</p>
           </article>
-          <article class="method-card">
-            <span class="method-number">02</span>
-            <p class="method-tag">Test</p>
+          <article class="method-card method-green">
+            <span class="method-index">02 / TEST</span>
             <h3>Test the contract.</h3>
             <p>1,477 unit tests, 331 YAML tests, and 18 harness tests in ODF. This page ships with its own regression suite.</p>
             <p class="method-evidence">TDD · 10 tagged releases</p>
           </article>
-          <article class="method-card">
-            <span class="method-number">03</span>
-            <p class="method-tag">Review</p>
+          <article class="method-card method-coral">
+            <span class="method-index">03 / REVIEW</span>
             <h3>Review as a teammate.</h3>
             <p>78 pull requests reviewed across 34 repositories and 28 authors. 53 of those reviews are in OCA, across 26 repositories.</p>
             <p class="method-evidence">53 OCA reviews</p>
           </article>
-          <article class="method-card">
-            <span class="method-number">04</span>
-            <p class="method-tag">Ship</p>
+          <article class="method-card method-gold">
+            <span class="method-index">04 / SHIP</span>
             <h3>Ship with evidence.</h3>
             <p>Small, reviewable changes, Conventional Commits, tagged releases, and docs that tell the next person where the seams are.</p>
             <p class="method-evidence">MIT · changelog · docs</p>
@@ -433,81 +496,97 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
     </section>
 
-    <section class="section timeline-section" id="timeline" aria-labelledby="timeline-title">
+    <section class="section trajectory-section" id="timeline" aria-labelledby="timeline-title">
       <div class="container">
         <header class="section-head">
-          <p class="section-label">06 / Trajectory</p>
-          <h2 id="timeline-title">From a first Odoo module to a public toolchain.</h2>
-          <p class="section-intro">Learn the framework, learn the community, then build the tools that make both easier for the next person.</p>
+          <p class="section-label">06 — Trajectory</p>
+          <div class="section-title-row">
+            <h2 id="timeline-title">From a first Odoo module to a public toolchain.</h2>
+            <p class="section-intro">Learn the framework, learn the community, then build the tools that make both easier for the next person.</p>
+          </div>
         </header>
 
-        <ol class="timeline">
+        <ol class="trajectory">
           <li>
-            <time datetime="2018">2018</time>
-            <h3>First public build</h3>
-            <p>SaldoACuba, a PHP service for Cuban mobile balances. The start of shipping in public.</p>
+            <span class="era">2018—2020</span>
+            <h3>ERP fundamentals</h3>
+            <p>SaldoACuba, a PHP service for Cuban mobile balances, and Odoo 12 in production with the GeniusCentral addon.</p>
           </li>
           <li>
-            <time datetime="2019">2019</time>
-            <h3>Odoo 12 in production</h3>
-            <p>GeniusCentral addon: connecting Odoo to a retail catalog.</p>
-          </li>
-          <li>
-            <time datetime="2022">2022</time>
+            <span class="era">2021—2022</span>
             <h3>Python backend</h3>
-            <p>FastAPI, services, scripts, and glue. Python becomes the default tool.</p>
+            <p>FastAPI, services, scripts, and glue. Python becomes the default tool for the backend work.</p>
           </li>
           <li>
-            <time datetime="2023">2023</time>
-            <h3>OWL experiments</h3>
-            <p>A custom OWL web client and app prototypes. Nine stars on hacking-owl.</p>
+            <span class="era">2023—2024</span>
+            <h3>OWL + first OCA merge</h3>
+            <p>Hacking OWL reaches nine stars. partner_country_lang to 14.0 becomes the first merged OCA change.</p>
           </li>
           <li>
-            <time datetime="2024">2024</time>
-            <h3>First OCA merge</h3>
-            <p>partner_country_lang to 14.0 in partner-contact survives review.</p>
-          </li>
-          <li>
-            <time datetime="2025">2025</time>
-            <h3>OCA breadth</h3>
-            <p>Delivery, banking, POS, reporting, website, and localization. 53 reviews so far.</p>
-          </li>
-          <li>
-            <time datetime="2026">2026</time>
-            <h3>Toolchain year</h3>
-            <p>ODF, odoo.nvim, OSEM, and Conecta. 290 merged pull requests in total.</p>
+            <span class="era">2025—2026</span>
+            <h3>Toolchain + OCA breadth</h3>
+            <p>Ten OCA merges, 53 reviews, and the toolchain year: ODF, odoo.nvim, OSEM, and Conecta. 290 merged PRs in total.</p>
           </li>
         </ol>
       </div>
     </section>
 
     <section class="toolbox-section" aria-labelledby="toolbox-title">
-      <div class="container toolbox-inner">
-        <h2 id="toolbox-title">Toolbox</h2>
-        <ul class="chips">
-          <li>Python</li>
-          <li>Odoo 8–19</li>
-          <li>TypeScript</li>
-          <li>Go</li>
-          <li>Lua</li>
-          <li>QML</li>
-          <li>PostgreSQL</li>
-          <li>SQLite</li>
-          <li>Docker</li>
-          <li>Neovim</li>
-          <li>OpenCode</li>
-          <li>OWL</li>
-          <li>FastAPI</li>
-          <li>PHP</li>
-          <li>Linux</li>
-          <li>Git</li>
-        </ul>
+      <div class="container">
+        <div class="toolbox-card">
+          <div class="toolbox-head">
+            <p class="section-label">07 — Toolbox</p>
+            <h2 id="toolbox-title">The engineering toolbox.</h2>
+          </div>
+          <div class="toolbox-grid">
+            <div>
+              <h3>Backend &amp; ERP</h3>
+              <ul class="chips">
+                <li>Python</li>
+                <li>Odoo 8–19</li>
+                <li>PostgreSQL</li>
+                <li>SQLite</li>
+                <li>FastAPI</li>
+                <li>PHP</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Frontend &amp; UI</h3>
+              <ul class="chips">
+                <li>OWL</li>
+                <li>QML</li>
+                <li>TypeScript</li>
+                <li>HTML/CSS</li>
+              </ul>
+            </div>
+            <div>
+              <h3>AI &amp; Agents</h3>
+              <ul class="chips">
+                <li>OpenCode</li>
+                <li>MCP</li>
+                <li>AI agents</li>
+                <li>Policy gates</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Tooling &amp; DevOps</h3>
+              <ul class="chips">
+                <li>Git</li>
+                <li>Docker</li>
+                <li>Neovim</li>
+                <li>Linux</li>
+                <li>GitHub Actions</li>
+                <li>unittest</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="contact-section" id="contact" aria-labelledby="contact-title">
       <div class="container contact-inner">
-        <p class="section-label">07 / Contact</p>
+        <p class="contact-badge"><span class="status-dot" aria-hidden="true"></span> Open to collaborate</p>
         <div class="contact-grid">
           <div>
             <h2 id="contact-title">Have a hard Odoo, AI, or OWL problem?</h2>
