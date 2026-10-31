@@ -336,23 +336,4 @@ const iconClass: Record<string, string> = {
       </div>
     </div>
   </section>
-
-  <section class="section contact-section" id="contact" aria-labelledby="contact-title">
-    <div class="container">
-      <span class="line-no" aria-hidden="true">07</span>
-      <div class="contact-card">
-        <p class="contact-badge"><span class="status-dot" aria-hidden="true"></span> {t.contact.badge}</p>
-        <h2 id="contact-title">{t.contact.title}</h2>
-        <p class="contact-copy">{t.contact.copy}</p>
-        <div class="contact-actions">
-          {t.contact.links.map((link) => (
-            <a class="chip chip-dark" href={link.href}>
-              <span aria-hidden="true">{link.icon}</span> {link.label}
-            </a>
-          ))}
-        </div>
-        <p class="contact-meta">{t.contact.meta}</p>
-      </div>
-    </div>
-  </section>
 </main>
