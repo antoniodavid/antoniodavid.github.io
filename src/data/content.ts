@@ -351,17 +351,15 @@ export const content = {
       title: "The stack behind the commits",
       intro:
         "An itemized list of the tools I open every day — and the opinions I have configured around them.",
-      receiptLabel: "Daily drivers receipt",
+      sponsor: "Sponsored by nobody",
+      disclaimer: "No sponsorships · no affiliate links",
+      receiptLabel: "Daily drivers",
       receipt: {
-        brand: "Antonio David",
-        subtitle: "Daily drivers · itemized",
-        disclaimer: "No sponsorships · no affiliate links",
-        itemPrice: "$0.00",
         items: [
           {
             name: "ODF Agent Team",
-            href: "https://github.com/antoniodavid/odf-agent-team",
-            linkLabel: "antoniodavid/odf-agent-team",
+            href: "https://antoniodavid.github.io/odf-agent-team/",
+            linkLabel: "antoniodavid.github.io/odf-agent-team",
             role: "Harness",
             note: "11 agents, 51 skills, and 1,477 tests between me and a bad idea.",
             house: true,
@@ -893,17 +891,15 @@ export const content = {
       title: "El stack detrás de los commits",
       intro:
         "Una lista detallada de las herramientas que abro todos los días — y las opiniones que configuré alrededor.",
-      receiptLabel: "Recibo de herramientas diarias",
+      sponsor: "Patrocinado por nadie",
+      disclaimer: "Sin patrocinios · sin links de afiliado",
+      receiptLabel: "Herramientas diarias",
       receipt: {
-        brand: "Antonio David",
-        subtitle: "Herramientas diarias · itemizado",
-        disclaimer: "Sin patrocinios · sin links de afiliado",
-        itemPrice: "$0.00",
         items: [
           {
             name: "ODF Agent Team",
-            href: "https://github.com/antoniodavid/odf-agent-team",
-            linkLabel: "antoniodavid/odf-agent-team",
+            href: "https://antoniodavid.github.io/odf-agent-team/",
+            linkLabel: "antoniodavid.github.io/odf-agent-team",
             role: "Harness",
             note: "11 agentes, 51 skills y 1,477 tests entre mí y una mala idea.",
             house: true,
