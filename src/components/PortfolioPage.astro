@@ -246,9 +246,91 @@ const iconClass: Record<string, string> = {
     </div>
   </section>
 
-  <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+  <section class="section" id="stack" aria-labelledby="stack-title">
     <div class="container">
       <span class="line-no" aria-hidden="true">06</span>
+      <header class="section-head">
+        <div class="section-heading">
+          <p class="section-label">{t.stack.label}</p>
+          <h2 id="stack-title">{t.stack.title}</h2>
+        </div>
+        <p class="section-intro">{t.stack.intro}</p>
+      </header>
+
+      <article class="stack-receipt">
+        <header class="receipt-head">
+          <p class="receipt-brand">{t.stack.receipt.brand}</p>
+          <p class="receipt-subtitle">{t.stack.receipt.subtitle}</p>
+          <p class="receipt-disclaimer">{t.stack.receipt.disclaimer}</p>
+        </header>
+
+        <ol class="receipt-items" aria-label={t.stack.receiptLabel}>
+          {t.stack.receipt.items.map((item, index) => (
+            <li class="receipt-item">
+              <a
+                class="receipt-row"
+                href={item.href}
+                aria-label={`${item.name} — ${item.linkLabel}`}
+              >
+                <span class="receipt-index">{String(index + 1).padStart(2, "0")}</span>
+                <span class="receipt-name">
+                  {item.name}
+                  {item.house && <sup class="receipt-house" aria-hidden="true">*</sup>}
+                </span>
+                <span class="receipt-dots" aria-hidden="true"></span>
+                <span class="receipt-price">{t.stack.receipt.itemPrice}</span>
+              </a>
+              <p class="receipt-note">
+                <span class="receipt-role">{item.role}</span>
+                <span>{item.note}</span>
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <section class="receipt-addons" aria-labelledby="stack-addons-title">
+          <h3 class="receipt-section-label" id="stack-addons-title">
+            {t.stack.receipt.addonsLabel}
+          </h3>
+          <ul>
+            {t.stack.receipt.addons.map((item) => (
+              <li>
+                <a href={item.href} aria-label={`${item.name} — ${item.linkLabel}`}>
+                  <strong>{item.name}</strong>
+                  <span>{item.note}</span>
+                  <span class="receipt-arrow" aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <dl class="receipt-totals">
+          {t.stack.receipt.totals.map((row) => (
+            <div class:list={{ "receipt-muted": row.muted }}>
+              <dt>{row.label}</dt>
+              <dd>{row.value}</dd>
+            </div>
+          ))}
+          <div class="receipt-total">
+            <dt>{t.stack.receipt.totalLabel}</dt>
+            <dd>{t.stack.receipt.totalValue}</dd>
+          </div>
+        </dl>
+
+        <p class="receipt-footer">{t.stack.receipt.footer}</p>
+        <p class="receipt-thanks">{t.stack.receipt.thanks}</p>
+        <p class="receipt-house-note">* {t.stack.receipt.houseNote}</p>
+        <div class="receipt-barcode" aria-hidden="true"></div>
+      </article>
+
+      <p class="stack-arch">{t.stack.archNote}</p>
+    </div>
+  </section>
+
+  <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <span class="line-no" aria-hidden="true">07</span>
       <div class="contact-card">
         <p class="contact-badge"><span class="status-dot" aria-hidden="true"></span> {t.contact.badge}</p>
         <h2 id="contact-title">{t.contact.title}</h2>
