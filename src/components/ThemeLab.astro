@@ -1,0 +1,96 @@
+---
+import { paletteContrast, themes } from "../data/themes";
+
+const { t, locale } = Astro.props;
+const copy = t.themeLab;
+const backHref = locale === "es" ? "/es/" : "/";
+---
+
+<main id="main-content" class="theme-page">
+  <section class="section theme-section">
+    <div class="container">
+      <header class="theme-hero">
+        <p class="section-label">{copy.kicker}</p>
+        <h1>{copy.heading}</h1>
+        <p class="theme-lede">{copy.lede}</p>
+        <p class="theme-note">{copy.note}</p>
+        <a class="theme-back" href={backHref}>← {copy.back}</a>
+      </header>
+
+      <div class="theme-grid">
+        {themes.map((theme) => {
+          const ratios = paletteContrast(theme);
+          return (
+            <article class="theme-card" data-theme={theme.id}>
+              <header class="theme-card-head">
+                <div>
+                  <p class="theme-kind">{theme.kind === "dark" ? copy.dark : copy.light}</p>
+                  <h2>{theme.label}</h2>
+                </div>
+                <ul class="theme-swatches" aria-label={`${theme.label} ${copy.swatches}`}>
+                  {["bg", "card", "ink", "blue", "green", "yellow"].map((token) => (
+                    <li style={`background:${theme.colors[token]}`} aria-hidden="true"></li>
+                  ))}
+                </ul>
+              </header>
+              <p class="theme-card-note">{theme.note[locale]}</p>
+
+              <div class="theme-preview" aria-hidden="true">
+                <p class="tp-eyebrow">{copy.preview.eyebrow}</p>
+                <p class="tp-title">
+                  {copy.preview.title} <mark>{copy.preview.mark}</mark>{copy.preview.after}
+                </p>
+                <p class="tp-copy">{copy.preview.copy}</p>
+                <div class="tp-actions">
+                  <span class="tp-button tp-button-primary">{copy.preview.primary}</span>
+                  <span class="tp-button">{copy.preview.secondary}</span>
+                </div>
+                <div class="tp-card">
+                  <span class="tp-tag">{copy.preview.cardTag}</span>
+                  <strong>{copy.preview.cardTitle}</strong>
+                  <span class="tp-meta">{copy.preview.cardMeta}</span>
+                </div>
+                <div class="tp-row">
+                  <span class="tp-dot" aria-hidden="true"></span>
+                  <span class="tp-repo">{copy.preview.ledgerRepo}</span>
+                  <span class="tp-status">{copy.preview.ledgerStatus}</span>
+                </div>
+                <div class="tp-term">
+                  <span>{copy.preview.termKey}</span>
+                  <span class="tp-term-value">{copy.preview.termValue}</span>
+                </div>
+              </div>
+
+              <dl class="theme-contrast">
+                <div><dt>{copy.contrast.text}</dt><dd>{ratios.text.toFixed(1)}:1</dd></div>
+                <div><dt>{copy.contrast.accent}</dt><dd>{ratios.accent.toFixed(1)}:1</dd></div>
+                <div><dt>{copy.contrast.action}</dt><dd>{ratios.action.toFixed(1)}:1</dd></div>
+              </dl>
+
+              <label class="theme-apply">
+                <input
+                  type="radio"
+                  name="theme-lab"
+                  value={theme.id}
+                  data-theme-choice
+                  aria-label={`${copy.use}: ${theme.label}`}
+                />
+                <span>{copy.use}</span>
+              </label>
+            </article>
+          );
+        })}
+      </div>
+
+      <label class="theme-system">
+        <input type="radio" name="theme-lab" value="system" data-theme-choice />
+        <span class="theme-system-copy">
+          <strong>{copy.system}</strong> {copy.systemNote}
+        </span>
+      </label>
+
+      <p class="theme-status" role="status" aria-live="polite" data-theme-status></p>
+      <noscript><p class="theme-noscript">{copy.noscript}</p></noscript>
+    </div>
+  </section>
+</main>

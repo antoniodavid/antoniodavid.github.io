@@ -16,6 +16,22 @@ def css_color(styles, token):
     return tuple(int(value[index : index + 2], 16) for index in (0, 2, 4))
 
 
+def theme_css_block(page):
+    match = re.search(r'<style id="theme-tokens"[^>]*>(.*?)</style>', page, re.DOTALL)
+    if match is None:
+        raise AssertionError("Missing the generated theme token block")
+    return match.group(1)
+
+
+def theme_tokens(theme_css, theme_id):
+    match = re.search(
+        rf'\[data-theme="{theme_id}"\]\s*\{{(.*?)\}}', theme_css, re.DOTALL
+    )
+    if match is None:
+        raise AssertionError(f"Missing theme tokens for {theme_id}")
+    return match.group(1)
+
+
 def relative_luminance(color):
     channels = []
     for channel in color:
@@ -77,6 +93,11 @@ class PortfolioTests(unittest.TestCase):
             raise AssertionError("Build the site first: npm run build")
         cls.page = page_path.read_text(encoding="utf-8")
         cls.styles = styles_path.read_text(encoding="utf-8")
+        cls.theme_css = theme_css_block(cls.page)
+        cls.tokens = {
+            theme: theme_tokens(cls.theme_css, theme)
+            for theme in ("paper", "sumi", "tokyo", "gruvbox")
+        }
         cls.parser = PortfolioMarkup()
         cls.parser.feed(cls.page)
         cls.text = " ".join(cls.parser.text)
@@ -212,26 +233,27 @@ class PortfolioTests(unittest.TestCase):
                 self.assertIn(claim.casefold(), self.lowered_text)
 
     def test_bright_palette_keeps_text_contrast(self):
+        paper = self.tokens["paper"]
         pairs = (
             ("ink", "bg"),
             ("ink", "surface"),
-            ("ink", "white"),
+            ("ink", "card"),
             ("ink", "yellow"),
             ("ink", "green-soft"),
             ("ink", "coral-soft"),
             ("ink", "blue-soft"),
             ("ink", "purple-soft"),
-            ("white", "blue"),
-            ("white", "blue-deep"),
+            ("on-blue", "blue"),
+            ("on-blue", "blue-deep"),
             ("bg", "ink"),
-            ("contact-soft", "ink"),
+            ("contact-muted", "contact-bg"),
         )
         for foreground, background in pairs:
             with self.subTest(foreground=foreground, background=background):
                 self.assertGreaterEqual(
                     contrast_ratio(
-                        css_color(self.styles, foreground),
-                        css_color(self.styles, background),
+                        css_color(paper, foreground),
+                        css_color(paper, background),
                     ),
                     4.5,
                 )
@@ -246,8 +268,8 @@ class PortfolioTests(unittest.TestCase):
             with self.subTest(foreground=foreground, background=background):
                 self.assertGreaterEqual(
                     contrast_ratio(
-                        css_color(self.styles, foreground),
-                        css_color(self.styles, background),
+                        css_color(paper, foreground),
+                        css_color(paper, background),
                     ),
                     4.5,
                 )
@@ -274,11 +296,11 @@ class PortfolioTests(unittest.TestCase):
 
         self.assertIsNotNone(
             re.search(
-                r"\.flagship\s*\{[^}]*border:\s*2px solid var\(--ink\)",
+                r"\.flagship\s*\{[^}]*border:\s*var\(--bw\)\s+solid\s+var\(--line\)",
                 self.styles,
                 re.DOTALL,
             ),
-            "the flagship project should carry the ink monograph border",
+            "the flagship project should use the theme border tokens",
         )
         self.assertIsNotNone(
             re.search(
@@ -296,37 +318,132 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn("@media", self.styles)
         self.assertNotIn("transition: all", self.styles.lower())
 
-    def test_dark_theme_keeps_text_contrast(self):
-        match = re.search(r'\[data-theme="dark"\]\s*\{(.*?)\}', self.styles, re.DOTALL)
-        self.assertIsNotNone(match, "the dark theme tokens should exist")
-        dark = match.group(1)
+    def test_dark_themes_keep_text_contrast(self):
         pairs = (
             ("ink", "bg"),
-            ("ink", "surface"),
-            ("ink", "white"),
+            ("ink", "card"),
+            ("ink-2", "bg"),
             ("blue-text", "bg"),
-            ("blue-text", "white"),
+            ("blue-text", "card"),
             ("on-blue", "blue"),
+            ("btn-fg", "btn-bg"),
             ("green-deep", "green-soft"),
             ("coral-deep", "coral-soft"),
             ("purple", "purple-soft"),
-            ("contact-soft", "ink"),
+            ("blue-deep", "blue-soft"),
+            ("contact-muted", "contact-bg"),
+            ("contact-fg", "contact-bg"),
             ("terminal-text", "terminal"),
-            ("ink-2", "bg"),
+            ("terminal-muted", "terminal"),
         )
-        for foreground, background in pairs:
-            with self.subTest(foreground=foreground, background=background):
+        for theme in ("sumi", "tokyo", "gruvbox"):
+            tokens = self.tokens[theme]
+            for foreground, background in pairs:
+                with self.subTest(theme=theme, foreground=foreground, background=background):
+                    self.assertGreaterEqual(
+                        contrast_ratio(
+                            css_color(tokens, foreground),
+                            css_color(tokens, background),
+                        ),
+                        4.5,
+                    )
+
+            for badge in ("yellow", "green", "coral"):
+                with self.subTest(theme=theme, badge=badge):
+                    self.assertGreaterEqual(
+                        contrast_ratio(
+                            css_color(tokens, "badge-ink"),
+                            css_color(tokens, badge),
+                        ),
+                        4.5,
+                    )
+
+    def test_dark_themes_separate_surfaces_and_borders(self):
+        for theme in ("sumi", "tokyo", "gruvbox"):
+            tokens = self.tokens[theme]
+            with self.subTest(theme=theme):
                 self.assertGreaterEqual(
-                    contrast_ratio(css_color(dark, foreground), css_color(dark, background)),
-                    4.5,
+                    contrast_ratio(css_color(tokens, "card"), css_color(tokens, "bg")),
+                    1.15,
+                    "cards must read as a distinct surface",
+                )
+                self.assertGreaterEqual(
+                    contrast_ratio(css_color(tokens, "line"), css_color(tokens, "card")),
+                    1.3,
+                    "borders must stay visible against cards",
+                )
+                self.assertGreaterEqual(
+                    contrast_ratio(css_color(tokens, "line"), css_color(tokens, "bg")),
+                    1.5,
+                    "borders must stay visible against the page",
                 )
 
-        for background in ("yellow", "green", "coral"):
-            with self.subTest(badge=background):
-                self.assertGreaterEqual(
-                    contrast_ratio(css_color(dark, "badge-ink"), css_color(dark, background)),
-                    4.5,
-                )
+    def test_header_offers_the_four_palettes_and_the_lab(self):
+        self.assertIn('popovertarget="theme-menu"', self.page)
+        self.assertIn('id="theme-menu"', self.page)
+        self.assertEqual(self.page.count('name="theme-menu"'), 5)
+        for theme in ("paper", "sumi", "tokyo", "gruvbox"):
+            with self.subTest(theme=theme):
+                self.assertIn(f'data-theme="{theme}"', self.page)
+                self.assertIn(f'value="{theme}"', self.page)
+        self.assertIn('href="/theme/"', self.page)
+        self.assertIn('legacy = { light: "paper", dark: "sumi" }', self.page)
+        self.assertIn('localStorage.setItem("theme"', self.page)
+
+    def test_theme_lab_previews_every_palette(self):
+        page = (DIST / "theme" / "index.html").read_text(encoding="utf-8")
+        parser = PortfolioMarkup()
+        parser.feed(page)
+        text = " ".join(parser.text).casefold()
+
+        self.assertRegex(page, r'<html\b[^>]*\blang=["\']en["\']')
+        self.assertEqual(page.count('class="theme-card"'), 4)
+        self.assertEqual(page.count('class="theme-preview"'), 4)
+        self.assertEqual(page.count('class="theme-apply"'), 4)
+        self.assertEqual(page.count('name="theme-lab"'), 5)
+        self.assertIn("data-theme-status", page)
+        self.assertRegex(page, r"<dd>\d+\.\d:1</dd>")
+
+        for theme, name in (
+            ("paper", "Paper"),
+            ("sumi", "Sumi"),
+            ("tokyo", "Tokyo Night"),
+            ("gruvbox", "Gruvbox"),
+        ):
+            with self.subTest(theme=theme):
+                self.assertIn(f'data-theme="{theme}"', page)
+                self.assertIn(name.casefold(), text)
+
+        self.assertIn('href="/es/theme/"', page)
+        self.assertIn('href="/"', page)
+
+    def test_spanish_theme_lab_is_translated(self):
+        page = (DIST / "es" / "theme" / "index.html").read_text(encoding="utf-8")
+        self.assertRegex(page, r'<html\b[^>]*\blang=["\']es["\']')
+        for claim in (
+            "Cuatro paletas",
+            "Usar este tema",
+            "Seguir al sistema",
+            "Se guarda en este navegador",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIn(claim.casefold(), page.casefold())
+        self.assertIn('href="/es/"', page)
+        self.assertIn("https://antoniodavid.github.io/es/theme/", page)
+        self.assertIn("https://antoniodavid.github.io/theme/", page)
+
+    def test_theme_tokens_are_present_on_every_page(self):
+        for relative in (
+            "index.html",
+            "es/index.html",
+            "theme/index.html",
+            "es/theme/index.html",
+        ):
+            page = (DIST / relative).read_text(encoding="utf-8")
+            block = theme_css_block(page)
+            with self.subTest(page=relative):
+                for theme in ("paper", "sumi", "tokyo", "gruvbox"):
+                    self.assertIn(f'[data-theme="{theme}"]', block)
 
     def test_spanish_page_is_translated_and_linked(self):
         page = (DIST / "es" / "index.html").read_text(encoding="utf-8")

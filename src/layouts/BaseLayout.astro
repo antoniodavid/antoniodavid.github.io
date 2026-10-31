@@ -5,35 +5,53 @@ import "@fontsource-variable/jetbrains-mono";
 import soraFont from "@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url";
 import dmSansFont from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
 import monoFont from "@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url";
+import {
+  themeBackgrounds,
+  themeCss,
+  themeLabels,
+  themes,
+} from "../data/themes";
 
-const { locale = "en", title, description, t } = Astro.props;
-const canonical =
-  locale === "es" ? "https://antoniodavid.github.io/es/" : "https://antoniodavid.github.io/";
+const { locale = "en", title, description, t, path } = Astro.props;
+const currentPath = path ?? (locale === "es" ? "/es/" : "/");
+const canonical = `https://antoniodavid.github.io${currentPath}`;
+const enPath =
+  locale === "es" ? currentPath.replace(/^\/es/, "") || "/" : currentPath;
+const esPath =
+  locale === "es" ? currentPath : currentPath === "/" ? "/es/" : `/es${currentPath}`;
+const themeHref = locale === "es" ? "/es/theme/" : "/theme/";
 ---
 
 <!doctype html>
-<html lang={locale}>
+<html lang={locale} data-theme="paper" data-theme-choice="system">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#fffdf7" />
+    <meta name="theme-color" content={themeBackgrounds.paper} />
     <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href="https://antoniodavid.github.io/" />
-    <link rel="alternate" hreflang="es" href="https://antoniodavid.github.io/es/" />
+    <link rel="alternate" hreflang="en" href={`https://antoniodavid.github.io${enPath}`} />
+    <link rel="alternate" hreflang="es" href={`https://antoniodavid.github.io${esPath}`} />
     <title>{title}</title>
+    <style id="theme-tokens" is:inline set:html={themeCss}></style>
     <script is:inline>
       (() => {
+        const root = document.documentElement;
+        const legacy = { light: "paper", dark: "sumi" };
+        const valid = ["paper", "sumi", "tokyo", "gruvbox", "system"];
+        let choice = "system";
         try {
           const saved = localStorage.getItem("theme");
-          const dark = saved
-            ? saved === "dark"
-            : window.matchMedia("(prefers-color-scheme: dark)").matches;
-          document.documentElement.dataset.theme = dark ? "dark" : "light";
+          if (saved) choice = legacy[saved] || saved;
         } catch (_) {
-          document.documentElement.dataset.theme = "light";
+          /* Storage can be unavailable; the system preference still works. */
         }
+        if (!valid.includes(choice)) choice = "system";
+        const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        root.dataset.themeChoice = choice;
+        root.dataset.theme = choice === "system" ? (dark ? "sumi" : "paper") : choice;
       })();
     </script>
     <link rel="preload" href={soraFont} as="font" type="font/woff2" crossorigin="anonymous" />
@@ -42,13 +60,13 @@ const canonical =
     <link rel="stylesheet" href="/styles.css" />
     <noscript><style>.theme-toggle { display: none; }</style></noscript>
   </head>
-  <body>
+  <body data-theme-applied={t.themeLab?.applied ?? ""}>
     <a class="skip-link" href="#main-content">{t.skip}</a>
 
     <header class="site-header">
       <div class="header-inner container">
         <div class="brand-wrap">
-          <a class="brand" href="#top" aria-label={t.header.brandLabel}>
+          <a class="brand" href={locale === "es" ? "/es/" : "/"} aria-label={t.header.brandLabel}>
             <span class="brand-mark">AD</span>{" "}
             <span class="brand-text">Antonio David</span>
           </a>
@@ -68,14 +86,14 @@ const canonical =
           </a>
           <div class="language-switcher" role="group" aria-label={t.header.languageLabel}>
             <a
-              href="/"
+              href={enPath}
               hreflang="en"
               lang="en"
               class:list={["lang-link", { active: locale === "en" }]}
               aria-current={locale === "en" ? "page" : undefined}
             >EN</a>
             <a
-              href="/es/"
+              href={esPath}
               hreflang="es"
               lang="es"
               class:list={["lang-link", { active: locale === "es" }]}
@@ -85,13 +103,36 @@ const canonical =
           <button
             class="theme-toggle"
             type="button"
-            aria-label={t.header.themeDark}
-            aria-pressed="false"
-            data-dark-label={t.header.themeDark}
-            data-light-label={t.header.themeLight}
+            popovertarget="theme-menu"
+            aria-label={t.header.themeMenu}
+            aria-haspopup="true"
+            data-theme-label={t.header.themeMenu}
+            title={t.header.themeMenu}
           >
             <span class="theme-icon" aria-hidden="true">◐</span>
           </button>
+          <div id="theme-menu" class="theme-menu" popover="auto">
+            <p class="theme-menu-title">{t.header.themeMenu}</p>
+            {themes.map((theme) => (
+              <label class="theme-option">
+                <input type="radio" name="theme-menu" value={theme.id} data-theme-choice />
+                <span
+                  class="theme-swatch"
+                  style={`background:${theme.colors.bg};border-color:${theme.colors.ink}`}
+                  aria-hidden="true"
+                ></span>
+                <span>{theme.label}</span>
+              </label>
+            ))}
+            <label class="theme-option">
+              <input type="radio" name="theme-menu" value="system" data-theme-choice />
+              <span class="theme-swatch theme-swatch-system" aria-hidden="true">◐</span>
+              <span>{t.header.themeSystem}</span>
+            </label>
+            <a class="theme-menu-link" href={themeHref}>
+              {t.header.themeLab} <span aria-hidden="true">→</span>
+            </a>
+          </div>
           <a class="header-cta" href="mailto:antoniodavid8@gmail.com">
             {t.header.cta} <span aria-hidden="true">→</span>
           </a>
@@ -108,38 +149,64 @@ const canonical =
           {t.footer.nav.map((item) => (
             <a href={item.href}>{item.label}</a>
           ))}
+          <a href={themeHref}>{t.footer.themes}</a>
         </nav>
         <p>{t.footer.meta}</p>
       </div>
     </footer>
 
-    <script is:inline>
+    <script is:inline define:vars={{ THEME_BG: themeBackgrounds, THEME_NAMES: themeLabels }}>
       (() => {
         const root = document.documentElement;
-        const button = document.querySelector(".theme-toggle");
-        const apply = (dark) => {
-          root.dataset.theme = dark ? "dark" : "light";
-          if (!button) return;
-          button.setAttribute("aria-pressed", String(dark));
-          button.setAttribute(
-            "aria-label",
-            dark ? button.dataset.lightLabel : button.dataset.darkLabel
-          );
-          const icon = button.querySelector(".theme-icon");
-          if (icon) icon.textContent = dark ? "☀" : "◐";
-        };
-        apply(root.dataset.theme === "dark");
-        if (button) {
-          button.addEventListener("click", () => {
-            const dark = root.dataset.theme !== "dark";
-            try {
-              localStorage.setItem("theme", dark ? "dark" : "light");
-            } catch (_) {
-              /* Theme still applies for this page view. */
-            }
-            apply(dark);
+        const media = window.matchMedia("(prefers-color-scheme: dark)");
+        const meta = document.querySelector('meta[name="theme-color"]');
+        const status = document.querySelector("[data-theme-status]");
+        const template = document.body.dataset.themeApplied || "";
+        const toggle = document.querySelector(".theme-toggle");
+        const resolve = (choice) =>
+          choice === "system" ? (media.matches ? "sumi" : "paper") : choice;
+
+        const sync = (choice) => {
+          const theme = resolve(choice);
+          root.dataset.theme = theme;
+          root.dataset.themeChoice = choice;
+          root.style.colorScheme = theme === "paper" ? "light" : "dark";
+          if (meta) meta.setAttribute("content", THEME_BG[theme] || "#fffdf7");
+          document.querySelectorAll("input[data-theme-choice]").forEach((input) => {
+            input.checked = input.value === choice;
           });
-        }
+          if (toggle) {
+            toggle.setAttribute(
+              "aria-label",
+              `${toggle.dataset.themeLabel}: ${THEME_NAMES[theme]}`,
+            );
+          }
+          if (status && template) {
+            status.textContent = template.replace("{name}", THEME_NAMES[theme]);
+          }
+        };
+
+        const apply = (choice, persist) => {
+          sync(choice);
+          if (!persist) return;
+          try {
+            localStorage.setItem("theme", choice);
+          } catch (_) {
+            /* The theme still applies for this page view. */
+          }
+        };
+
+        document.addEventListener("change", (event) => {
+          const input = event.target.closest("input[data-theme-choice]");
+          if (!input || !input.checked) return;
+          apply(input.value, true);
+        });
+
+        media.addEventListener("change", () => {
+          if ((root.dataset.themeChoice || "system") === "system") sync("system");
+        });
+
+        sync(root.dataset.themeChoice || "system");
       })();
     </script>
   </body>

@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ThemeLab from "../../../components/ThemeLab.astro";
+import { content } from "../../../data/content";
+
+const t = content.es;
+---
+
+<BaseLayout
+  locale="es"
+  path="/es/theme/"
+  title={t.themeLab.pageTitle}
+  description={t.themeLab.description}
+  t={t}
+>
+  <ThemeLab t={t} locale="es" />
+</BaseLayout>
