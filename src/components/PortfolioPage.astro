@@ -20,8 +20,10 @@ const iconClass: Record<string, string> = {
         <p class="hero-proof">
           {t.hero.proof.map((item, index) => (
             <Fragment>
-              {index > 0 && <span class="proof-sep" aria-hidden="true">·</span>}
-              <strong>{item.value}</strong>{" "}{item.label}
+              <span class="proof-unit">
+                {index > 0 && <span class="proof-sep" aria-hidden="true">·</span>}
+                <strong>{item.value}</strong>{" "}{item.label}
+              </span>{" "}
             </Fragment>
           ))}
         </p>

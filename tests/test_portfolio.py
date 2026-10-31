@@ -318,6 +318,46 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn("@media", self.styles)
         self.assertNotIn("transition: all", self.styles.lower())
 
+        self.assertNotRegex(
+            self.styles,
+            r"\.profile-card\s*\{[^}]*order:\s*-1",
+            "the hero copy must stay before the profile card on narrow screens",
+        )
+        self.assertNotRegex(
+            self.styles,
+            r"h1 mark\s*\{[^}]*white-space:\s*nowrap",
+            "the highlighted headline must be allowed to wrap on small phones",
+        )
+        self.assertRegex(
+            self.styles,
+            r"h1\s*\{\s*font-size:\s*clamp\(1\.8rem, 9vw, 2\.9rem\)",
+            "the narrow-screen headline must fit a 320px viewport",
+        )
+        self.assertRegex(
+            self.styles,
+            r"\.hero-proof\s*\{[^}]*display:\s*flex",
+            "proof stats must wrap between complete value/label pairs",
+        )
+        self.assertRegex(
+            self.styles,
+            r"\.hero-proof \.proof-unit\s*\{[^}]*white-space:\s*nowrap",
+        )
+        self.assertRegex(
+            self.styles,
+            r"\.site-nav\s*\{[^}]*justify-content:\s*flex-start",
+            "tablet navigation must stay grouped instead of stretching full width",
+        )
+        self.assertRegex(
+            self.styles,
+            r"@media \(min-width: 60\.0625rem\) and \(max-width: 65rem\)\s*\{\s*\.brand-tagline\s*\{\s*display:\s*none",
+            "the header tagline must yield before the navigation wraps near 1024px",
+        )
+        self.assertRegex(
+            self.styles,
+            r"\.site-nav\s*\{[^}]*gap:\s*0\.4rem",
+            "the five navigation labels must stay on one row at 320px",
+        )
+
     def test_dark_themes_keep_text_contrast(self):
         pairs = (
             ("ink", "bg"),
@@ -389,6 +429,20 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('href="/theme/"', self.page)
         self.assertIn('legacy = { light: "paper", dark: "sumi" }', self.page)
         self.assertIn('localStorage.setItem("theme"', self.page)
+        self.assertNotIn(
+            "◐",
+            self.page,
+            "the theme control must not rely on a font glyph with no fallback",
+        )
+        self.assertRegex(self.page, r'class="theme-icon"[^>]*>\s*<svg')
+        self.assertRegex(
+            self.page,
+            r'class="theme-swatch theme-swatch-system"[^>]*>\s*</span>',
+        )
+        self.assertRegex(
+            self.styles,
+            r"\.theme-swatch-system\s*\{[^}]*border-radius:\s*50%",
+        )
 
     def test_theme_lab_previews_every_palette(self):
         page = (DIST / "theme" / "index.html").read_text(encoding="utf-8")

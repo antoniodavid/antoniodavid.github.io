@@ -86,7 +86,7 @@ OWL, and OCA collaboration in the foreground.
 - The theme defaults to the system preference and persists in `localStorage` under `theme`; the header popover and the theme lab share one radio state, legacy `light`/`dark` values migrate to `paper`/`sumi`, and the language switcher keeps the equivalent route under `/` and `/es/`.
 - The dark palettes were measured against their own tokens: text, accent, action, badges, terminal, and contact pairs pass 4.5:1; cards and borders use separate surface tokens instead of cream hairlines.
 - Editor chrome: the gutter numbers appear only at 78rem and wider, the footer statusline is decorative (`aria-hidden`) and keeps the live theme name, the ledger dots count 10 merged plus 1 open, and the terminal types once in view with a single block cursor. With `prefers-reduced-motion: reduce` the full text and a static cursor render immediately.
-- The work is stacked as `feat/avatar-copy` (PR #5), `feat/theme-lab` (PR #6), and `feat/editor-chrome` (PR #7); none are merged.
+- The work was stacked as `feat/avatar-copy` (PR #5), `feat/theme-lab` (PR #6), and `feat/editor-chrome` (PR #7), then merged into `main`; the responsive follow-up builds on that base.
 
 ## Log
 
@@ -103,3 +103,4 @@ OWL, and OCA collaboration in the foreground.
 - L11 (2026-10-30, user request): Replace the weak dark mode with an editor-grade system: three dark palettes (Sumi/Kanagawa, Tokyo Night, Gruvbox), a `/theme` lab to preview and apply them, and IDE-style chrome.
 - L12: Verified the old dark theme failed perceptually (card/background 1.11:1, 24 cream borders at ~16:1, invisible black shadows); replaced it with generated palette tokens, 1 px hairlines, tinted surfaces, soft shadows, and an accent CTA; added the theme lab, popover menu, legacy migration, and 18 tests.
 - L13 (2026-10-30, continuation of L11): Added the editor chrome — gutter line numbers, statusline, OCA diagnostics, and the typed terminal — with reduced-motion and no-JS fallbacks; raised the inline-script budget to three and the suite to 20 tests.
+- L14 (2026-10-30, user request, verbatim): "https://antoniodavid.github.io/, revisar esta pagina que se ve mal" — Fixed the visible responsive defects: replaced the font-dependent `◐` theme glyph with an inline SVG, moved the hero copy before the profile card on narrow screens so the CTA is above the fold, wrapped proof stats as complete value/label units, made the highlighted headline fit a 320px viewport, grouped the tablet navigation, let the header tagline yield before the nav wraps near 1024px, and kept the 320px Spanish nav on one row. Re-verified 20 tests, no horizontal overflow at 320/360/390/768/1024/1440, and Lighthouse 100 in all five categories for Paper and Sumi on desktop and mobile.
