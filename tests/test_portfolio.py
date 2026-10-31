@@ -195,6 +195,7 @@ class PortfolioTests(unittest.TestCase):
         ]
         for href in (
             "https://github.com/antoniodavid/odf-agent-team",
+            "https://antoniodavid.github.io/odf-agent-team/",
             "https://opencode.ai/",
             "https://pi.dev/",
             "https://github.com/openai/codex",
@@ -213,9 +214,12 @@ class PortfolioTests(unittest.TestCase):
             with self.subTest(tool_link=href):
                 self.assertIn(href, hrefs)
 
+        self.assertEqual(self.page.count('class="stack-tool"'), 9)
+        self.assertEqual(self.page.count('class="stack-tool-icon"'), 9)
+
         for claim in (
             "The stack behind the commits",
-            "Daily drivers · itemized",
+            "Sponsored by nobody",
             "Paid in config files.",
             "House harness. Still not an affiliate link.",
         ):
@@ -281,6 +285,8 @@ class PortfolioTests(unittest.TestCase):
             ("on-blue", "blue-deep"),
             ("bg", "ink"),
             ("contact-muted", "contact-bg"),
+            ("yellow", "contact-bg"),
+            ("badge-ink", "yellow"),
         )
         for foreground, background in pairs:
             with self.subTest(foreground=foreground, background=background):
@@ -401,13 +407,12 @@ class PortfolioTests(unittest.TestCase):
             r"\.site-nav a\s*\{[^}]*font-size:\s*clamp\(0\.6rem, 2\.6vw, 0\.66rem\)",
             "the mobile navigation must scale its type to fit six labels",
         )
-        self.assertIn(".stack-receipt", self.styles)
-        self.assertIn(".receipt-items", self.styles)
-        self.assertRegex(
-            self.styles,
-            r"@media \(min-width: 48rem\)\s*\{\s*\.stack-receipt",
-            "the receipt should get its paper-like tilt only on wider screens",
-        )
+        self.assertIn(".stack-band", self.styles)
+        self.assertIn(".stack-grid", self.styles)
+        self.assertIn(".stack-tool", self.styles)
+        self.assertIn(".stack-marquee-track", self.styles)
+        self.assertIn("@keyframes stack-hop", self.styles)
+        self.assertIn("@keyframes stack-marquee", self.styles)
 
     def test_dark_themes_keep_text_contrast(self):
         pairs = (
@@ -424,6 +429,8 @@ class PortfolioTests(unittest.TestCase):
             ("blue-deep", "blue-soft"),
             ("contact-muted", "contact-bg"),
             ("contact-fg", "contact-bg"),
+            ("yellow", "contact-bg"),
+            ("badge-ink", "yellow"),
             ("terminal-text", "terminal"),
             ("terminal-muted", "terminal"),
         )
@@ -602,7 +609,7 @@ class PortfolioTests(unittest.TestCase):
             "Mergeado en OCA",
             "Cómo trabajo",
             "El stack detrás de los commits",
-            "Herramientas diarias · itemizado",
+            "Patrocinado por nadie",
             "Pagado en configs.",
             "Harness de la casa",
             "necesitas un módulo",
@@ -616,6 +623,7 @@ class PortfolioTests(unittest.TestCase):
             "https://github.com/OCA/reporting-engine/pull/968",
             "https://github.com/OCA/l10n-usa/pull/166",
             "https://github.com/antoniodavid/odf-agent-team",
+            "https://antoniodavid.github.io/odf-agent-team/",
             "https://opencode.ai/",
             "https://omarchy.org/",
         ):
