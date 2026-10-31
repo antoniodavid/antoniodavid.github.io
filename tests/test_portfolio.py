@@ -170,7 +170,7 @@ class PortfolioTests(unittest.TestCase):
             with self.subTest(href=href):
                 self.assertIn(href, hrefs)
 
-    def test_featured_projects_match_the_verified_public_stack(self):
+    def test_featured_projects_and_daily_stack_match_the_verified_public_stack(self):
         for name in (
             "ODF Agent Team",
             "odoo.nvim",
@@ -187,6 +187,40 @@ class PortfolioTests(unittest.TestCase):
                 self.assertIn(language.casefold(), self.lowered_text)
 
         self.assertNotIn("odoo language server", self.lowered_text)
+
+        hrefs = [
+            attributes.get("href", "")
+            for tag, attributes in self.parser.elements
+            if tag == "a"
+        ]
+        for href in (
+            "https://github.com/antoniodavid/odf-agent-team",
+            "https://opencode.ai/",
+            "https://pi.dev/",
+            "https://github.com/openai/codex",
+            "https://herdr.dev/",
+            "https://neovim.io/",
+            "https://github.com/jesseduffield/lazygit",
+            "https://github.com/Tecnativa/doodba",
+            "https://omarchy.org/",
+            "https://github.com/tmux/tmux",
+            "https://github.com/BurntSushi/ripgrep",
+            "https://github.com/junegunn/fzf",
+            "https://github.com/sharkdp/bat",
+            "https://mise.jdx.dev/",
+            "https://cli.github.com/",
+        ):
+            with self.subTest(tool_link=href):
+                self.assertIn(href, hrefs)
+
+        for claim in (
+            "The stack behind the commits",
+            "Daily drivers · itemized",
+            "Paid in config files.",
+            "House harness. Still not an affiliate link.",
+        ):
+            with self.subTest(stack_claim=claim):
+                self.assertIn(claim.casefold(), self.lowered_text)
 
     def test_oca_ledger_links_every_merged_change_and_the_open_review(self):
         expected = {
@@ -349,13 +383,30 @@ class PortfolioTests(unittest.TestCase):
         )
         self.assertRegex(
             self.styles,
-            r"@media \(min-width: 60\.0625rem\) and \(max-width: 65rem\)\s*\{\s*\.brand-tagline\s*\{\s*display:\s*none",
-            "the header tagline must yield before the navigation wraps near 1024px",
+            r"@media \(min-width: 60\.0625rem\) and \(max-width: 70rem\)\s*\{\s*\.brand-tagline\s*\{\s*display:\s*none",
+            "the header tagline must yield before the six navigation labels wrap",
         )
         self.assertRegex(
             self.styles,
-            r"\.site-nav\s*\{[^}]*gap:\s*0\.4rem",
-            "the five navigation labels must stay on one row at 320px",
+            r"@media \(min-width: 60\.0625rem\) and \(max-width: 75rem\)\s*\{\s*\.site-nav\s*\{\s*gap:\s*0\.4rem",
+            "the tablet and small-laptop navigation must tighten to fit six labels",
+        )
+        self.assertRegex(
+            self.styles,
+            r"\.site-nav\s*\{[^}]*gap:\s*0\.2rem",
+            "the six navigation labels must stay on one row at 320px",
+        )
+        self.assertRegex(
+            self.styles,
+            r"\.site-nav a\s*\{[^}]*font-size:\s*clamp\(0\.6rem, 2\.6vw, 0\.66rem\)",
+            "the mobile navigation must scale its type to fit six labels",
+        )
+        self.assertIn(".stack-receipt", self.styles)
+        self.assertIn(".receipt-items", self.styles)
+        self.assertRegex(
+            self.styles,
+            r"@media \(min-width: 48rem\)\s*\{\s*\.stack-receipt",
+            "the receipt should get its paper-like tilt only on wider screens",
         )
 
     def test_dark_themes_keep_text_contrast(self):
@@ -487,8 +538,8 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn("https://antoniodavid.github.io/theme/", page)
 
     def test_editor_chrome_adds_a_gutter_statusline_and_diagnostics(self):
-        self.assertEqual(self.page.count('class="line-no"'), 6)
-        for number in ("01", "02", "03", "04", "05", "06"):
+        self.assertEqual(self.page.count('class="line-no"'), 7)
+        for number in ("01", "02", "03", "04", "05", "06", "07"):
             with self.subTest(line=number):
                 self.assertIn(
                     f'class="line-no" aria-hidden="true">{number}</span>',
@@ -550,6 +601,10 @@ class PortfolioTests(unittest.TestCase):
             "Proyectos que mantengo",
             "Mergeado en OCA",
             "Cómo trabajo",
+            "El stack detrás de los commits",
+            "Herramientas diarias · itemizado",
+            "Pagado en configs.",
+            "Harness de la casa",
             "necesitas un módulo",
             "antoniodavid8@gmail.com",
         ):
@@ -560,6 +615,9 @@ class PortfolioTests(unittest.TestCase):
             "https://github.com/OCA/delivery-carrier/pull/1079",
             "https://github.com/OCA/reporting-engine/pull/968",
             "https://github.com/OCA/l10n-usa/pull/166",
+            "https://github.com/antoniodavid/odf-agent-team",
+            "https://opencode.ai/",
+            "https://omarchy.org/",
         ):
             with self.subTest(href=href):
                 self.assertIn(href, page)
