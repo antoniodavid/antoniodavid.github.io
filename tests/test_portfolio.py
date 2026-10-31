@@ -296,10 +296,80 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn("@media", self.styles)
         self.assertNotIn("transition: all", self.styles.lower())
 
-    def test_static_page_has_no_remote_assets_or_unneeded_script(self):
+    def test_dark_theme_keeps_text_contrast(self):
+        match = re.search(r'\[data-theme="dark"\]\s*\{(.*?)\}', self.styles, re.DOTALL)
+        self.assertIsNotNone(match, "the dark theme tokens should exist")
+        dark = match.group(1)
+        pairs = (
+            ("ink", "bg"),
+            ("ink", "surface"),
+            ("ink", "white"),
+            ("blue-text", "bg"),
+            ("blue-text", "white"),
+            ("on-blue", "blue"),
+            ("green-deep", "green-soft"),
+            ("coral-deep", "coral-soft"),
+            ("purple", "purple-soft"),
+            ("contact-soft", "ink"),
+            ("terminal-text", "terminal"),
+            ("ink-2", "bg"),
+        )
+        for foreground, background in pairs:
+            with self.subTest(foreground=foreground, background=background):
+                self.assertGreaterEqual(
+                    contrast_ratio(css_color(dark, foreground), css_color(dark, background)),
+                    4.5,
+                )
+
+        for background in ("yellow", "green", "coral"):
+            with self.subTest(badge=background):
+                self.assertGreaterEqual(
+                    contrast_ratio(css_color(dark, "badge-ink"), css_color(dark, background)),
+                    4.5,
+                )
+
+    def test_spanish_page_is_translated_and_linked(self):
+        page = (DIST / "es" / "index.html").read_text(encoding="utf-8")
+        parser = PortfolioMarkup()
+        parser.feed(page)
+        text = " ".join(parser.text)
+        lowered = text.casefold()
+
+        self.assertRegex(page, r'<html\b[^>]*\blang=["\']es["\']')
+        for claim in (
+            "Diseño arquitecturas sólidas",
+            "Odoo, AI y OWL",
+            "En qué trabajo",
+            "Proyectos que mantengo",
+            "Mergeado en OCA",
+            "Cómo trabajo",
+            "necesitas un módulo",
+            "antoniodavid8@gmail.com",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIn(claim.casefold(), lowered)
+
+        for href in (
+            "https://github.com/OCA/delivery-carrier/pull/1079",
+            "https://github.com/OCA/reporting-engine/pull/968",
+            "https://github.com/OCA/l10n-usa/pull/166",
+        ):
+            with self.subTest(href=href):
+                self.assertIn(href, page)
+
+        self.assertIn("mergeado", lowered)
+        self.assertIn("abierto para review", lowered)
+        self.assertIn('hreflang="en"', page)
+        self.assertIn('hreflang="es"', page)
+        self.assertIn("avatar.webp", page)
+        self.assertIn("profile-avatar", page)
+
+    def test_static_page_has_no_remote_scripts_or_remote_styles(self):
         tags = [tag for tag, _ in self.parser.elements]
-        self.assertNotIn("script", tags)
-        self.assertNotIn("<script", self.page.lower())
+        self.assertLessEqual(tags.count("script"), 2)
+        self.assertNotRegex(self.page, r"<script[^>]+src=")
+        es_page = (DIST / "es" / "index.html").read_text(encoding="utf-8")
+        self.assertNotRegex(es_page, r"<script[^>]+src=")
         self.assertNotRegex(self.styles.lower(), r"@import\s+url\s*\(")
         self.assertNotRegex(self.styles.lower(), r"url\s*\(\s*[\"']?https?://")
 

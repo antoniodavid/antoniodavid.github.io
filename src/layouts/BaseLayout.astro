@@ -6,46 +6,95 @@ import soraFont from "@fontsource-variable/sora/files/sora-latin-wght-normal.wof
 import dmSansFont from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
 import monoFont from "@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url";
 
-const title = "Antonio David | Odoo, AI, and OWL engineer";
-const description =
-  "Antonio David designs Odoo, AI, and OWL systems: modules and migrations, AI-assisted delivery with ODF, OWL frontends, and reviewed OCA contributions.";
+const { locale = "en", title, description, t } = Astro.props;
+const canonical =
+  locale === "es" ? "https://antoniodavid.github.io/es/" : "https://antoniodavid.github.io/";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#fffdf7" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href="https://antoniodavid.github.io/" />
+    <link rel="alternate" hreflang="es" href="https://antoniodavid.github.io/es/" />
     <title>{title}</title>
+    <script is:inline>
+      (() => {
+        try {
+          const saved = localStorage.getItem("theme");
+          const dark = saved
+            ? saved === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.dataset.theme = dark ? "dark" : "light";
+        } catch (_) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
     <link rel="preload" href={soraFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href={dmSansFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href={monoFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="stylesheet" href="/styles.css" />
+    <noscript><style>.theme-toggle { display: none; }</style></noscript>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <a class="skip-link" href="#main-content">{t.skip}</a>
 
     <header class="site-header">
       <div class="header-inner container">
         <div class="brand-wrap">
-          <a class="brand" href="#top" aria-label="AD Antonio David, home">
+          <a class="brand" href="#top" aria-label={t.header.brandLabel}>
             <span class="brand-mark">AD</span>{" "}
             <span class="brand-text">Antonio David</span>
           </a>
-          <span class="brand-tagline" aria-hidden="true">Odoo · AI · OWL</span>
+          <span class="brand-tagline" aria-hidden="true">{t.header.tagline}</span>
         </div>
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="#focus">Focus</a>
-          <a href="#work">Work</a>
-          <a href="#oca">OCA</a>
-          <a href="#method">Approach</a>
-          <a href="#contact">Contact</a>
+
+        <nav class="site-nav" aria-label={t.header.navLabel}>
+          {t.header.nav.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
         </nav>
+
         <div class="header-actions">
-          <a class="availability" href="#contact"><span class="status-dot" aria-hidden="true"></span> Open to Odoo work</a>
-          <a class="header-cta" href="mailto:antoniodavid8@gmail.com">Let's talk <span aria-hidden="true">→</span></a>
+          <a class="availability" href="#contact">
+            <span class="status-dot" aria-hidden="true"></span>
+            {t.header.availability}
+          </a>
+          <div class="language-switcher" role="group" aria-label={t.header.languageLabel}>
+            <a
+              href="/"
+              hreflang="en"
+              lang="en"
+              class:list={["lang-link", { active: locale === "en" }]}
+              aria-current={locale === "en" ? "page" : undefined}
+            >EN</a>
+            <a
+              href="/es/"
+              hreflang="es"
+              lang="es"
+              class:list={["lang-link", { active: locale === "es" }]}
+              aria-current={locale === "es" ? "page" : undefined}
+            >ES</a>
+          </div>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label={t.header.themeDark}
+            aria-pressed="false"
+            data-dark-label={t.header.themeDark}
+            data-light-label={t.header.themeLight}
+          >
+            <span class="theme-icon" aria-hidden="true">◐</span>
+          </button>
+          <a class="header-cta" href="mailto:antoniodavid8@gmail.com">
+            {t.header.cta} <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </header>
@@ -54,14 +103,40 @@ const description =
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>Antonio David — Odoo developer · OCA contributor</p>
-        <nav aria-label="Footer navigation">
-          <a href="#top">Back to top ↑</a>
-          <a href="https://github.com/antoniodavid">GitHub</a>
-          <a href="mailto:antoniodavid8@gmail.com">Email</a>
+        <p>{t.footer.brand}</p>
+        <nav aria-label={t.footer.navLabel}>
+          {t.footer.nav.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
         </nav>
-        <p>© 2026 · Static Astro page</p>
+        <p>{t.footer.meta}</p>
       </div>
     </footer>
+
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const button = document.querySelector(".theme-toggle");
+        const apply = (dark) => {
+          root.dataset.theme = dark ? "dark" : "light";
+          if (!button) return;
+          button.setAttribute("aria-pressed", String(dark));
+          button.setAttribute(
+            "aria-label",
+            dark ? button.dataset.lightLabel : button.dataset.darkLabel
+          );
+          const icon = button.querySelector(".theme-icon");
+          if (icon) icon.textContent = dark ? "☀" : "◐";
+        };
+        apply(root.dataset.theme === "dark");
+        if (button) {
+          button.addEventListener("click", () => {
+            const dark = root.dataset.theme !== "dark";
+            localStorage.setItem("theme", dark ? "dark" : "light");
+            apply(dark);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

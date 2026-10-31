@@ -1,0 +1,253 @@
+---
+const { t } = Astro.props;
+
+const iconClass: Record<string, string> = {
+  odoo: "icon-blue",
+  ai: "icon-purple",
+  owl: "icon-coral",
+  oca: "icon-green",
+};
+---
+
+<main id="main-content">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1 id="hero-title">{t.hero.before}<mark>{t.hero.mark}</mark>{t.hero.after}</h1>
+        <p class="hero-lede">{t.hero.lede}</p>
+
+        <p class="hero-proof">
+          {t.hero.proof.map((item, index) => (
+            <Fragment>
+              {index > 0 && <span class="proof-sep" aria-hidden="true">·</span>}
+              <strong>{item.value}</strong>{" "}{item.label}
+            </Fragment>
+          ))}
+        </p>
+        <p class="hero-note">{t.hero.note}</p>
+
+        <div class="hero-actions">
+          {t.hero.actions.map((action, index) => (
+            <a
+              class:list={["button", index === 0 ? "button-dark" : "button-light"]}
+              href={action.href}
+            >
+              {action.label} <span aria-hidden="true">{action.icon}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <aside class="profile-card" aria-label={t.hero.profile.name}>
+        <img
+          class="profile-avatar"
+          src="/avatar.webp"
+          alt={t.hero.profile.name}
+          width="440"
+          height="440"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="profile-body">
+          <p class="profile-name">{t.hero.profile.name}</p>
+          <p class="profile-role">{t.hero.profile.role}</p>
+          <p class="profile-location">{t.hero.profile.location}</p>
+          <p class="profile-note">{t.hero.profile.note}</p>
+          <div class="profile-links">
+            {t.hero.profile.links.map((link) => (
+              <a href={link.href}>
+                {link.label}{link.icon && <span aria-hidden="true"> {link.icon}</span>}
+              </a>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="focus" aria-labelledby="focus-title">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-heading">
+          <p class="section-label">{t.focus.label}</p>
+          <h2 id="focus-title">{t.focus.title}</h2>
+        </div>
+        <p class="section-intro">{t.focus.intro}</p>
+      </header>
+
+      <div class="specialty-grid">
+        {t.focus.cards.map((card) => (
+          <article class="specialty-card">
+            <div class="specialty-top">
+              <span class:list={["specialty-tag", card.tagClass]}>{card.tag}</span>
+              <span class:list={["specialty-icon", iconClass[card.icon]]} aria-hidden="true">
+                {card.icon === "odoo" && (
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+                )}
+                {card.icon === "ai" && (
+                  <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"></path><path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14z"></path></svg>
+                )}
+                {card.icon === "owl" && (
+                  <svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>
+                )}
+                {card.icon === "oca" && (
+                  <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                )}
+              </span>
+            </div>
+            <h3>{card.title}</h3>
+            <p>{card.copy}</p>
+            <ul class="card-tags">
+              {card.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-heading">
+          <p class="section-label">{t.projects.label}</p>
+          <h2 id="work-title">{t.projects.title}</h2>
+        </div>
+        <a class="section-link" href={t.projects.link.href}>
+          {t.projects.link.label} <span aria-hidden="true">↗</span>
+        </a>
+      </header>
+
+      <article class="flagship">
+        <div class="flagship-copy">
+          <div class="flagship-top">
+            <span class="flag">{t.projects.flagship.flag}</span>
+            <span class="badge badge-yellow">{t.projects.flagship.badge}</span>
+          </div>
+          <h3>{t.projects.flagship.title}</h3>
+          <p>{t.projects.flagship.copy}</p>
+          <ul class="card-tags">
+            {t.projects.flagship.tags.map((tag) => <li>{tag}</li>)}
+          </ul>
+          <a class="button button-blue" href={t.projects.flagship.href}>
+            {t.projects.flagship.linkLabel} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="terminal" aria-label={t.projects.terminalLabel}>
+          <div class="terminal-bar">
+            <span class="terminal-dot" aria-hidden="true"></span>
+            <span class="terminal-dot" aria-hidden="true"></span>
+            <span class="terminal-dot" aria-hidden="true"></span>
+            <span class="terminal-title">odf://proof-summary</span>
+          </div>
+          <pre class="terminal-body"><code>{t.projects.terminal.join("\n")}</code></pre>
+        </div>
+      </article>
+
+      <div class="project-grid">
+        {t.projects.cards.map((card) => (
+          <article class:list={["project-card", card.className]}>
+            <p class="card-category">{card.category}</p>
+            <h3>{card.title}</h3>
+            <p>{card.copy}</p>
+            <ul class="card-tags">
+              {card.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+            <a class="card-link" href={card.href}>
+              {card.linkLabel} <span aria-hidden="true">{card.icon ? card.icon : "↗"}</span>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <details class="more-projects">
+        <summary>{t.projects.more.summary} <span>{t.projects.more.count}</span></summary>
+        <ul>
+          {t.projects.more.items.map((item) => (
+            <li><a href={item.href}>{item.label}</a> — {item.copy}</li>
+          ))}
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" id="oca" aria-labelledby="oca-title">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-heading">
+          <p class="section-label">{t.oca.label}</p>
+          <h2 id="oca-title">{t.oca.title}</h2>
+        </div>
+        <p class="section-intro">{t.oca.intro}</p>
+      </header>
+
+      <dl class="oca-summary">
+        {t.oca.summary.map((item) => (
+          <div><dt>{item.label}</dt><dd>{item.value}</dd></div>
+        ))}
+      </dl>
+
+      <ul class="oca-ledger" aria-label={t.oca.title}>
+        {t.oca.ledger.map((entry) => (
+          <li class:list={{ "ledger-open": entry.open }}>
+            <a href={entry.href}>
+              <span class="ledger-repo">{entry.repo}</span>
+              <span class="ledger-title">{entry.title}</span>
+              <span class="ledger-year">{entry.year}</span>
+              <span class:list={["badge", entry.open ? "badge-open" : "badge-merged"]}>
+                {entry.status}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="oca-note">
+        <p>{t.oca.note}</p>
+        <p class="source-line">{t.oca.source}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="method" aria-labelledby="method-title">
+    <div class="container">
+      <header class="section-head">
+        <div class="section-heading">
+          <p class="section-label">{t.approach.label}</p>
+          <h2 id="method-title">{t.approach.title}</h2>
+        </div>
+        <p class="section-intro">{t.approach.intro}</p>
+      </header>
+
+      <div class="approach-grid">
+        {t.approach.cards.map((card) => (
+          <article class:list={["approach-card", card.className]}>
+            <span class="approach-index">{card.index}</span>
+            <h3>{card.title}</h3>
+            <p>{card.copy}</p>
+            <p class="approach-evidence">{card.evidence}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact-card">
+        <p class="contact-badge"><span class="status-dot" aria-hidden="true"></span> {t.contact.badge}</p>
+        <h2 id="contact-title">{t.contact.title}</h2>
+        <p class="contact-copy">{t.contact.copy}</p>
+        <div class="contact-actions">
+          {t.contact.links.map((link) => (
+            <a class="chip chip-dark" href={link.href}>
+              <span aria-hidden="true">{link.icon}</span> {link.label}
+            </a>
+          ))}
+        </div>
+        <p class="contact-meta">{t.contact.meta}</p>
+      </div>
+    </div>
+  </section>
+</main>
