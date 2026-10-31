@@ -118,6 +118,7 @@ class PortfolioTests(unittest.TestCase):
         self.assertEqual(tags.count("h1"), 1)
         self.assertIn('id="main-content"', self.page)
         self.assertIn('href="#main-content"', self.page)
+        self.assertNotIn('id="contact"', self.page)
 
     def test_hero_states_the_verified_public_achievements(self):
         for claim in (
@@ -390,22 +391,22 @@ class PortfolioTests(unittest.TestCase):
         self.assertRegex(
             self.styles,
             r"@media \(min-width: 60\.0625rem\) and \(max-width: 70rem\)\s*\{\s*\.brand-tagline\s*\{\s*display:\s*none",
-            "the header tagline must yield before the six navigation labels wrap",
+            "the header tagline must yield before the five navigation labels wrap",
         )
         self.assertRegex(
             self.styles,
             r"@media \(min-width: 60\.0625rem\) and \(max-width: 75rem\)\s*\{\s*\.site-nav\s*\{\s*gap:\s*0\.4rem",
-            "the tablet and small-laptop navigation must tighten to fit six labels",
+            "the tablet and small-laptop navigation must tighten to fit five labels",
         )
         self.assertRegex(
             self.styles,
             r"\.site-nav\s*\{[^}]*gap:\s*0\.2rem",
-            "the six navigation labels must stay on one row at 320px",
+            "the five navigation labels must stay on one row at 320px",
         )
         self.assertRegex(
             self.styles,
             r"\.site-nav a\s*\{[^}]*font-size:\s*clamp\(0\.6rem, 2\.6vw, 0\.66rem\)",
-            "the mobile navigation must scale its type to fit six labels",
+            "the mobile navigation must scale its type to fit five labels",
         )
         self.assertIn(".stack-band", self.styles)
         self.assertIn(".stack-grid", self.styles)
@@ -545,8 +546,8 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn("https://antoniodavid.github.io/theme/", page)
 
     def test_editor_chrome_adds_a_gutter_statusline_and_diagnostics(self):
-        self.assertEqual(self.page.count('class="line-no"'), 7)
-        for number in ("01", "02", "03", "04", "05", "06", "07"):
+        self.assertEqual(self.page.count('class="line-no"'), 6)
+        for number in ("01", "02", "03", "04", "05", "06"):
             with self.subTest(line=number):
                 self.assertIn(
                     f'class="line-no" aria-hidden="true">{number}</span>',
@@ -612,8 +613,6 @@ class PortfolioTests(unittest.TestCase):
             "Patrocinado por nadie",
             "Pagado en configs.",
             "Harness de la casa",
-            "necesitas un módulo",
-            "antoniodavid8@gmail.com",
         ):
             with self.subTest(claim=claim):
                 self.assertIn(claim.casefold(), lowered)
@@ -626,6 +625,7 @@ class PortfolioTests(unittest.TestCase):
             "https://antoniodavid.github.io/odf-agent-team/",
             "https://opencode.ai/",
             "https://omarchy.org/",
+            "mailto:antoniodavid8@gmail.com",
         ):
             with self.subTest(href=href):
                 self.assertIn(href, page)
