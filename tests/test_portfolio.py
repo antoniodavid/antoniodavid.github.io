@@ -432,6 +432,42 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn("https://antoniodavid.github.io/es/theme/", page)
         self.assertIn("https://antoniodavid.github.io/theme/", page)
 
+    def test_editor_chrome_adds_a_gutter_statusline_and_diagnostics(self):
+        self.assertEqual(self.page.count('class="line-no"'), 6)
+        for number in ("01", "02", "03", "04", "05", "06"):
+            with self.subTest(line=number):
+                self.assertIn(
+                    f'class="line-no" aria-hidden="true">{number}</span>',
+                    self.page,
+                )
+
+        self.assertEqual(self.page.count('class="diag diag-merged"'), 10)
+        self.assertEqual(self.page.count('class="diag diag-open"'), 1)
+        self.assertIn('class="statusline" aria-hidden="true"', self.page)
+        self.assertIn('class="status-mode">NORMAL</span>', self.page)
+        self.assertIn("data-status-theme", self.page)
+
+        for selector in (".line-no", ".statusline", ".diag-merged", ".diag-open"):
+            with self.subTest(selector=selector):
+                self.assertIn(selector, self.styles)
+
+        self.assertIn("@media (min-width: 78rem)", self.styles)
+
+    def test_terminal_types_with_a_reduced_motion_fallback(self):
+        self.assertEqual(self.page.count('class="terminal-line"'), 5)
+        self.assertEqual(self.page.count('class="terminal-cursor"'), 5)
+        self.assertIn("IntersectionObserver", self.page)
+        self.assertIn('prefers-reduced-motion: reduce', self.page)
+        self.assertIn('terminal.classList.add("is-typing")', self.page)
+
+        self.assertIn(".terminal-cursor", self.styles)
+        self.assertIn("animation: terminal-blink", self.styles)
+        self.assertIn(".terminal-line.is-typing .terminal-cursor", self.styles)
+        self.assertRegex(
+            self.styles,
+            r"\.terminal-cursor\s*\{\s*animation:\s*none !important;",
+        )
+
     def test_theme_tokens_are_present_on_every_page(self):
         for relative in (
             "index.html",
@@ -483,7 +519,7 @@ class PortfolioTests(unittest.TestCase):
 
     def test_static_page_has_no_remote_scripts_or_remote_styles(self):
         tags = [tag for tag, _ in self.parser.elements]
-        self.assertLessEqual(tags.count("script"), 2)
+        self.assertLessEqual(tags.count("script"), 3)
         self.assertNotRegex(self.page, r"<script[^>]+src=")
         es_page = (DIST / "es" / "index.html").read_text(encoding="utf-8")
         self.assertNotRegex(es_page, r"<script[^>]+src=")
