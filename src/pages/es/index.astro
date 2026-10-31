@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PortfolioPage from "../../components/PortfolioPage.astro";
+import { content } from "../../data/content";
+
+const t = content.es;
+---
+
+<BaseLayout locale="es" title={t.title} description={t.description} t={t}>
+  <PortfolioPage t={t} />
+</BaseLayout>

@@ -18,6 +18,14 @@ python -m unittest discover -s tests
 
 The tests read the generated `dist/` output, so build before running them.
 
+## Routes and themes
+
+- `/` — English
+- `/es/` — Spanish
+
+Both routes include a light/dark theme toggle. The choice is stored in
+`localStorage` and defaults to the system preference.
+
 ## Deploy
 
 Pushes to `main` run `.github/workflows/deploy.yml`, build the site, and publish
