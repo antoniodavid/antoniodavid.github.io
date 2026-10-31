@@ -109,7 +109,12 @@ const themeHref = locale === "es" ? "/es/theme/" : "/theme/";
             data-theme-label={t.header.themeMenu}
             title={t.header.themeMenu}
           >
-            <span class="theme-icon" aria-hidden="true">◐</span>
+            <span class="theme-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+                <path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor"></path>
+              </svg>
+            </span>
           </button>
           <div id="theme-menu" class="theme-menu" popover="auto">
             <p class="theme-menu-title">{t.header.themeMenu}</p>
@@ -126,7 +131,7 @@ const themeHref = locale === "es" ? "/es/theme/" : "/theme/";
             ))}
             <label class="theme-option">
               <input type="radio" name="theme-menu" value="system" data-theme-choice />
-              <span class="theme-swatch theme-swatch-system" aria-hidden="true">◐</span>
+              <span class="theme-swatch theme-swatch-system" aria-hidden="true"></span>
               <span>{t.header.themeSystem}</span>
             </label>
             <a class="theme-menu-link" href={themeHref}>

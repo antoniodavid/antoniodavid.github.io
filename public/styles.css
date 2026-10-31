@@ -285,6 +285,14 @@ summary:focus-visible {
 
 .theme-icon {
   display: block;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.theme-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .theme-menu {
@@ -340,12 +348,10 @@ summary:focus-visible {
 }
 
 .theme-swatch-system {
-  display: grid;
-  place-items: center;
+  display: block;
   border-color: var(--line-strong);
-  background: var(--surface);
-  color: var(--ink-2);
-  font-size: 0.6rem;
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--ink) 0 50%, var(--surface) 50% 100%);
 }
 
 .theme-menu-link {
@@ -399,12 +405,12 @@ h1 {
 
 h1 mark {
   display: inline-block;
+  max-width: 100%;
   padding: 0 0.12em;
   border: var(--bw) solid var(--mark-border);
   border-radius: 6px;
   background: var(--mark-bg);
   color: var(--mark-fg);
-  white-space: nowrap;
 }
 
 h3 {
@@ -503,6 +509,10 @@ p {
 }
 
 .hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.35rem;
   margin-top: 1.6rem;
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -515,8 +525,12 @@ p {
   font-weight: 700;
 }
 
-.hero-proof span {
-  margin-inline: 0.3rem;
+.hero-proof .proof-unit {
+  white-space: nowrap;
+}
+
+.hero-proof .proof-sep {
+  margin-right: 0.35rem;
   color: var(--ink-2);
 }
 
@@ -1745,8 +1759,19 @@ p {
   .site-nav {
     order: 3;
     width: 100%;
-    justify-content: space-between;
-    gap: 0.6rem;
+    justify-content: flex-start;
+    gap: clamp(0.9rem, 3.5vw, 2rem);
+  }
+
+  .site-nav a {
+    display: inline-flex;
+    min-height: 1.5rem;
+    align-items: center;
+    padding-inline: 0.15rem;
+  }
+
+  .header-actions {
+    margin-left: auto;
   }
 
   .availability {
@@ -1758,7 +1783,6 @@ p {
   }
 
   .profile-card {
-    order: -1;
     display: grid;
     grid-template-columns: 96px minmax(0, 1fr);
     gap: 0.9rem;
@@ -1874,7 +1898,7 @@ p {
 
 @media (max-width: 36rem) {
   h1 {
-    font-size: clamp(2.2rem, 9.5vw, 2.9rem);
+    font-size: clamp(1.8rem, 9vw, 2.9rem);
   }
 
   .hero-actions {
@@ -1924,6 +1948,22 @@ p {
 
   .theme-contrast {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 60.0625rem) and (max-width: 65rem) {
+  .brand-tagline {
+    display: none;
+  }
+}
+
+@media (max-width: 22rem) {
+  .header-inner {
+    gap: 0.25rem;
+  }
+
+  .site-nav {
+    gap: 0.4rem;
   }
 }
 
