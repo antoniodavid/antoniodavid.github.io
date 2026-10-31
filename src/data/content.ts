@@ -325,7 +325,7 @@ export const content = {
         {
           index: "02",
           title: "Test the behavior",
-          copy: "ODF has 1,477 unit tests, 331 YAML tests, and 18 harness tests. This page has 11 tests.",
+          copy: "ODF has 1,477 unit tests, 331 YAML tests, and 18 harness tests. This page has 20 tests.",
           evidence: "TDD · 10 tagged releases",
           className: "method-green",
         },
@@ -734,7 +734,7 @@ export const content = {
         {
           index: "02",
           title: "Probar el comportamiento",
-          copy: "ODF tiene 1,477 tests unitarios, 331 tests YAML y 18 tests de harness. Esta página tiene 11 tests.",
+          copy: "ODF tiene 1,477 tests unitarios, 331 tests YAML y 18 tests de harness. Esta página tiene 20 tests.",
           evidence: "TDD · 10 releases",
           className: "method-green",
         },

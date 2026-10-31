@@ -153,6 +153,15 @@ const themeHref = locale === "es" ? "/es/theme/" : "/theme/";
         </nav>
         <p>{t.footer.meta}</p>
       </div>
+      <div class="statusline" aria-hidden="true">
+        <span class="status-mode">NORMAL</span>
+        <span class="status-file">~/antoniodavid.github.io</span>
+        <span class="status-branch">main</span>
+        <span class="status-fill"></span>
+        <span class="status-theme">theme <b data-status-theme>paper</b></span>
+        <span class="status-encoding">utf-8</span>
+        <span class="status-pct">100%</span>
+      </div>
     </footer>
 
     <script is:inline define:vars={{ THEME_BG: themeBackgrounds, THEME_NAMES: themeLabels }}>
@@ -161,6 +170,7 @@ const themeHref = locale === "es" ? "/es/theme/" : "/theme/";
         const media = window.matchMedia("(prefers-color-scheme: dark)");
         const meta = document.querySelector('meta[name="theme-color"]');
         const status = document.querySelector("[data-theme-status]");
+        const statusTheme = document.querySelector("[data-status-theme]");
         const template = document.body.dataset.themeApplied || "";
         const toggle = document.querySelector(".theme-toggle");
         const resolve = (choice) =>
@@ -172,6 +182,7 @@ const themeHref = locale === "es" ? "/es/theme/" : "/theme/";
           root.dataset.themeChoice = choice;
           root.style.colorScheme = theme === "paper" ? "light" : "dark";
           if (meta) meta.setAttribute("content", THEME_BG[theme] || "#fffdf7");
+          if (statusTheme) statusTheme.textContent = theme;
           document.querySelectorAll("input[data-theme-choice]").forEach((input) => {
             input.checked = input.value === choice;
           });
@@ -207,6 +218,81 @@ const themeHref = locale === "es" ? "/es/theme/" : "/theme/";
         });
 
         sync(root.dataset.themeChoice || "system");
+      })();
+    </script>
+
+    <script is:inline>
+      (() => {
+        const terminal = document.querySelector("[data-terminal]");
+        if (!terminal) return;
+        const lines = Array.from(terminal.querySelectorAll("[data-terminal-line]"));
+        if (!lines.length) return;
+
+        const nodes = lines.map((line) => line.querySelector(".terminal-text"));
+        const texts = nodes.map((node) => node?.textContent ?? "");
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+        const restore = () => {
+          terminal.classList.remove("is-typing");
+          lines.forEach((line, index) => {
+            line.classList.remove("is-typing");
+            if (nodes[index]) nodes[index].textContent = texts[index];
+          });
+        };
+
+        if (reduce.matches || !("IntersectionObserver" in window)) return;
+
+        const run = () => {
+          terminal.classList.add("is-typing");
+          nodes.forEach((node) => {
+            if (node) node.textContent = "";
+          });
+
+          let lineIndex = 0;
+          let charIndex = 0;
+
+          const tick = () => {
+            const line = lines[lineIndex];
+            const text = texts[lineIndex];
+            line.classList.add("is-typing");
+            charIndex += 1;
+            if (nodes[lineIndex]) nodes[lineIndex].textContent = text.slice(0, charIndex);
+
+            if (charIndex < text.length) {
+              window.setTimeout(tick, 9);
+              return;
+            }
+
+            line.classList.remove("is-typing");
+            lineIndex += 1;
+            charIndex = 0;
+
+            if (lineIndex < lines.length) {
+              window.setTimeout(tick, 90);
+            } else {
+              terminal.classList.remove("is-typing");
+            }
+          };
+
+          tick();
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            observer.disconnect();
+            run();
+          },
+          { threshold: 0.35 },
+        );
+
+        observer.observe(terminal);
+
+        reduce.addEventListener("change", (event) => {
+          if (!event.matches) return;
+          observer.disconnect();
+          restore();
+        });
       })();
     </script>
   </body>

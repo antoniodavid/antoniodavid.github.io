@@ -51,8 +51,29 @@ summary:focus-visible {
 }
 
 .container {
+  position: relative;
   width: min(calc(100% - 2 * var(--gutter)), var(--container));
   margin-inline: auto;
+}
+
+.line-no {
+  display: none;
+  position: absolute;
+  top: 0.2rem;
+  right: calc(100% + 1.05rem);
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (min-width: 78rem) {
+  .line-no {
+    display: block;
+  }
 }
 
 .skip-link {
@@ -357,6 +378,7 @@ section[id] {
 }
 
 .hero-copy {
+  position: relative;
   max-width: 44rem;
 }
 
@@ -892,6 +914,7 @@ p {
 
 .terminal-body {
   flex: 1;
+  min-height: 9rem;
   margin: 0;
   padding: 1rem;
   color: var(--terminal-text);
@@ -903,6 +926,45 @@ p {
 
 .terminal-body code {
   font-family: inherit;
+}
+
+.terminal-line {
+  display: block;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1.05em;
+  margin-left: 0.12em;
+  animation: terminal-blink 1.1s steps(1, end) infinite;
+  background: var(--green);
+  vertical-align: -0.18em;
+  visibility: hidden;
+}
+
+.terminal-line:last-child .terminal-cursor {
+  visibility: visible;
+}
+
+.terminal.is-typing .terminal-line:last-child .terminal-cursor {
+  visibility: hidden;
+}
+
+.terminal-line.is-typing .terminal-cursor {
+  visibility: visible;
+}
+
+@keyframes terminal-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .project-grid {
@@ -1070,10 +1132,28 @@ p {
 }
 
 .ledger-repo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   color: var(--green-deep);
   font-family: var(--font-mono);
   font-size: 0.54rem;
   text-transform: uppercase;
+}
+
+.diag {
+  flex: 0 0 auto;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+}
+
+.diag-merged {
+  background: var(--green-deep);
+}
+
+.diag-open {
+  background: var(--coral-deep);
 }
 
 .ledger-title {
@@ -1243,7 +1323,7 @@ p {
 /* Footer */
 
 .site-footer {
-  padding-block: 1.4rem;
+  padding-block: 1.4rem 0;
   border-top: var(--bw) solid var(--line);
   background: var(--bg);
 }
@@ -1272,6 +1352,59 @@ p {
 
 .footer-inner a:hover {
   color: var(--blue-text);
+}
+
+.statusline {
+  display: flex;
+  overflow: hidden;
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--soft-line);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.statusline > span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.65rem;
+  border-right: 1px solid var(--soft-line);
+}
+
+.status-mode {
+  background: var(--blue);
+  color: var(--on-blue);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.status-file {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink);
+  text-overflow: ellipsis;
+}
+
+.status-fill {
+  flex: 1;
+  border-right: 0;
+}
+
+.status-theme b {
+  margin-left: 0.28rem;
+  color: var(--blue-text);
+  font-weight: 600;
+}
+
+.status-pct {
+  border-right: 0;
+  color: var(--green-deep);
+  font-weight: 700;
 }
 
 /* Theme lab */
@@ -1724,6 +1857,19 @@ p {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .statusline > span {
+    padding-inline: 0.5rem;
+  }
+
+  .statusline > .status-branch,
+  .statusline > .status-encoding {
+    display: none;
+  }
+
+  .status-file {
+    max-width: 42vw;
+  }
 }
 
 @media (max-width: 36rem) {
@@ -1793,5 +1939,10 @@ p {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .terminal-cursor {
+    animation: none !important;
+    opacity: 1;
   }
 }

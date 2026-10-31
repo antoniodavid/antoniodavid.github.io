@@ -44,6 +44,10 @@ OWL, and OCA collaboration in the foreground.
 - S16: In dark palettes, use editor-grade chrome: tinted surfaces, visible
   hairline borders, soft shadows, and an accent-blue call to action rather than
   inverted cream slabs.
+- S17: Carry the editor metaphor into the page itself: section line numbers in
+  the wide-screen gutter, a vim-style statusline, merge-state diagnostics in the
+  OCA ledger, and a terminal that types once on scroll. The chrome must be
+  decorative and accessible, and the typing must respect reduced motion.
 
 ## Tasks
 
@@ -66,6 +70,8 @@ OWL, and OCA collaboration in the foreground.
 - [x] T17 — Replaced the single dark theme with a palette engine in `src/data/themes.ts` and inline generated tokens shared by every page.
 - [x] T18 — Added the `/theme/` and `/es/theme/` lab with four live previews, contrast chips, radio selection, and a system option.
 - [x] T19 — Replaced the toggle with a native popover theme menu, migrated legacy `light`/`dark` values, kept the system preference reactive, and updated the tests.
+- [x] T20 — Added the `01`–`06` gutter numbers at 78rem and wider, a vim-style statusline in the footer, and merged/open diagnostic dots in the OCA ledger.
+- [x] T21 — Added the typed terminal with one block cursor, `IntersectionObserver` triggering, and a static reduced-motion path; fixed the `<pre>` whitespace and reserved the terminal height.
 
 ## Progress
 
@@ -74,12 +80,13 @@ OWL, and OCA collaboration in the foreground.
 - The implementation keeps the verified record and the established English copy for the international OCA audience: 290 merged PRs, 10 OCA merges across 8 repos, 37 OCA PRs across 19 repos, 78 reviews, 53 OCA reviews, 1,477 ODF tests, and the six real projects.
 - The GitHub avatar is stored locally as `public/avatar.webp` (440×440, 27 KB), with explicit dimensions to avoid layout shift.
 - `npm ci` and `npm run build` pass and generate `/`, `/es/`, `/theme/`, and
-  `/es/theme/`; `python -m unittest discover -s tests` passes 18 tests.
-- Lighthouse on the built pages: English light and dark plus Spanish mobile 100 accessibility / 100 best practices / 100 SEO / 100 agentic browsing, 0 failures. Fonts are preloaded to avoid layout shift.
-- Verified at 390×844 and 1440×1000: no horizontal overflow, no remote assets. JavaScript is limited to the inline theme initializer and the inline theme control script.
+  `/es/theme/`; `python -m unittest discover -s tests` passes 20 tests.
+- Lighthouse on the built pages: 100 performance, accessibility, best practices, SEO, and agentic browsing for `/` in Paper and Sumi, `/theme/` in Paper and Sumi, and `/` in Sumi on mobile; 0 failures. Fonts are preloaded to avoid layout shift.
+- Verified at 390×844 and 1440×1000: no horizontal overflow, no remote assets. JavaScript is limited to three inline helpers: the theme initializer, the theme control, and the terminal typing.
 - The theme defaults to the system preference and persists in `localStorage` under `theme`; the header popover and the theme lab share one radio state, legacy `light`/`dark` values migrate to `paper`/`sumi`, and the language switcher keeps the equivalent route under `/` and `/es/`.
 - The dark palettes were measured against their own tokens: text, accent, action, badges, terminal, and contact pairs pass 4.5:1; cards and borders use separate surface tokens instead of cream hairlines.
-- The work is on `feat/theme-lab`, stacked on `feat/avatar-copy` (PR #5); neither is merged.
+- Editor chrome: the gutter numbers appear only at 78rem and wider, the footer statusline is decorative (`aria-hidden`) and keeps the live theme name, the ledger dots count 10 merged plus 1 open, and the terminal types once in view with a single block cursor. With `prefers-reduced-motion: reduce` the full text and a static cursor render immediately.
+- The work is stacked as `feat/avatar-copy` (PR #5), `feat/theme-lab` (PR #6), and `feat/editor-chrome` (PR #7); none are merged.
 
 ## Log
 
@@ -95,3 +102,4 @@ OWL, and OCA collaboration in the foreground.
 - L10: Restored the requested headline, extracted shared content, added the Spanish route and language switcher, added the persisted light/dark theme with dark tokens, and verified 13 tests plus Lighthouse in English light/dark and Spanish.
 - L11 (2026-10-30, user request): Replace the weak dark mode with an editor-grade system: three dark palettes (Sumi/Kanagawa, Tokyo Night, Gruvbox), a `/theme` lab to preview and apply them, and IDE-style chrome.
 - L12: Verified the old dark theme failed perceptually (card/background 1.11:1, 24 cream borders at ~16:1, invisible black shadows); replaced it with generated palette tokens, 1 px hairlines, tinted surfaces, soft shadows, and an accent CTA; added the theme lab, popover menu, legacy migration, and 18 tests.
+- L13 (2026-10-30, continuation of L11): Added the editor chrome — gutter line numbers, statusline, OCA diagnostics, and the typed terminal — with reduced-motion and no-JS fallbacks; raised the inline-script budget to three and the suite to 20 tests.

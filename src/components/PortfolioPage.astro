@@ -13,6 +13,7 @@ const iconClass: Record<string, string> = {
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
+        <span class="line-no" aria-hidden="true">01</span>
         <h1 id="hero-title">{t.hero.before}<mark>{t.hero.mark}</mark>{t.hero.after}</h1>
         <p class="hero-lede">{t.hero.lede}</p>
 
@@ -67,6 +68,7 @@ const iconClass: Record<string, string> = {
 
   <section class="section" id="focus" aria-labelledby="focus-title">
     <div class="container">
+      <span class="line-no" aria-hidden="true">02</span>
       <header class="section-head">
         <div class="section-heading">
           <p class="section-label">{t.focus.label}</p>
@@ -108,6 +110,7 @@ const iconClass: Record<string, string> = {
 
   <section class="section" id="work" aria-labelledby="work-title">
     <div class="container">
+      <span class="line-no" aria-hidden="true">03</span>
       <header class="section-head">
         <div class="section-heading">
           <p class="section-label">{t.projects.label}</p>
@@ -134,14 +137,14 @@ const iconClass: Record<string, string> = {
           </a>
         </div>
 
-        <div class="terminal" aria-label={t.projects.terminalLabel}>
+        <div class="terminal" data-terminal aria-label={t.projects.terminalLabel}>
           <div class="terminal-bar">
             <span class="terminal-dot" aria-hidden="true"></span>
             <span class="terminal-dot" aria-hidden="true"></span>
             <span class="terminal-dot" aria-hidden="true"></span>
             <span class="terminal-title">odf://proof-summary</span>
           </div>
-          <pre class="terminal-body"><code>{t.projects.terminal.join("\n")}</code></pre>
+          <pre class="terminal-body"><code>{t.projects.terminal.map((line) => (<span class="terminal-line" data-terminal-line><span class="terminal-text">{line}</span><span class="terminal-cursor" aria-hidden="true"></span></span>))}</code></pre>
         </div>
       </article>
 
@@ -174,6 +177,7 @@ const iconClass: Record<string, string> = {
 
   <section class="section" id="oca" aria-labelledby="oca-title">
     <div class="container">
+      <span class="line-no" aria-hidden="true">04</span>
       <header class="section-head">
         <div class="section-heading">
           <p class="section-label">{t.oca.label}</p>
@@ -192,7 +196,13 @@ const iconClass: Record<string, string> = {
         {t.oca.ledger.map((entry) => (
           <li class:list={{ "ledger-open": entry.open }}>
             <a href={entry.href}>
-              <span class="ledger-repo">{entry.repo}</span>
+              <span class="ledger-repo">
+                <span
+                  class:list={["diag", entry.open ? "diag-open" : "diag-merged"]}
+                  aria-hidden="true"
+                ></span>
+                {entry.repo}
+              </span>
               <span class="ledger-title">{entry.title}</span>
               <span class="ledger-year">{entry.year}</span>
               <span class:list={["badge", entry.open ? "badge-open" : "badge-merged"]}>
@@ -212,6 +222,7 @@ const iconClass: Record<string, string> = {
 
   <section class="section" id="method" aria-labelledby="method-title">
     <div class="container">
+      <span class="line-no" aria-hidden="true">05</span>
       <header class="section-head">
         <div class="section-heading">
           <p class="section-label">{t.approach.label}</p>
@@ -235,6 +246,7 @@ const iconClass: Record<string, string> = {
 
   <section class="section contact-section" id="contact" aria-labelledby="contact-title">
     <div class="container">
+      <span class="line-no" aria-hidden="true">06</span>
       <div class="contact-card">
         <p class="contact-badge"><span class="status-dot" aria-hidden="true"></span> {t.contact.badge}</p>
         <h2 id="contact-title">{t.contact.title}</h2>

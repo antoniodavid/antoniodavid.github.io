@@ -35,6 +35,19 @@ option follows `prefers-color-scheme` (Paper in light, Sumi in dark). Legacy
 generated from it and injected inline by `BaseLayout.astro`, so the lab's
 contrast figures and the rendered site use the same tokens.
 
+## Editor chrome
+
+The page borrows the vocabulary of an editor: section line numbers appear in the
+gutter from `78rem`, the footer ends in a vim-style statusline, the OCA ledger
+marks merged and open entries with diagnostic dots, and the proof terminal types
+once when it enters the viewport.
+
+The chrome is decorative. Gutter numbers and the statusline are hidden from
+assistive technology; the statusline theme name is the only dynamic value.
+Typing runs only with `prefers-reduced-motion: no-preference` and
+`IntersectionObserver`; otherwise the full text renders with a static block
+cursor, and without JavaScript the text is complete.
+
 ## Deploy
 
 Pushes to `main` run `.github/workflows/deploy.yml`, build the site, and publish
