@@ -1,4 +1,6 @@
 ---
+import ToolIcon from "./ToolIcon.astro";
+
 const { t } = Astro.props;
 
 const iconClass: Record<string, string> = {
@@ -246,85 +248,92 @@ const iconClass: Record<string, string> = {
     </div>
   </section>
 
-  <section class="section" id="stack" aria-labelledby="stack-title">
-    <div class="container">
-      <span class="line-no" aria-hidden="true">06</span>
-      <header class="section-head">
-        <div class="section-heading">
-          <p class="section-label">{t.stack.label}</p>
-          <h2 id="stack-title">{t.stack.title}</h2>
-        </div>
-        <p class="section-intro">{t.stack.intro}</p>
-      </header>
-
-      <article class="stack-receipt">
-        <header class="receipt-head">
-          <p class="receipt-brand">{t.stack.receipt.brand}</p>
-          <p class="receipt-subtitle">{t.stack.receipt.subtitle}</p>
-          <p class="receipt-disclaimer">{t.stack.receipt.disclaimer}</p>
+  <section class="section stack-section" id="stack" aria-labelledby="stack-title">
+    <div class="stack-band">
+      <div class="container">
+        <span class="line-no" aria-hidden="true">06</span>
+        <header class="section-head stack-head">
+          <div class="section-heading">
+            <p class="section-label">{t.stack.label}</p>
+            <h2 id="stack-title">{t.stack.title}</h2>
+          </div>
+          <div class="stack-head-side">
+            <p class="stack-sponsor">
+              <span class="stack-live" aria-hidden="true"></span>
+              {t.stack.sponsor}
+            </p>
+            <p class="section-intro">{t.stack.intro}</p>
+          </div>
         </header>
 
-        <ol class="receipt-items" aria-label={t.stack.receiptLabel}>
-          {t.stack.receipt.items.map((item, index) => (
-            <li class="receipt-item">
-              <a
-                class="receipt-row"
-                href={item.href}
-                aria-label={`${item.name} — ${item.linkLabel}`}
-              >
-                <span class="receipt-index">{String(index + 1).padStart(2, "0")}</span>
-                <span class="receipt-name">
-                  {item.name}
-                  {item.house && <sup class="receipt-house" aria-hidden="true">*</sup>}
+        <ul class="stack-grid" aria-label={t.stack.receipt.receiptLabel}>
+          {t.stack.receipt.items.map((item) => (
+            <li>
+              <a class="stack-tool" href={item.href} aria-label={`${item.name} — ${item.linkLabel}`}>
+                <span class="stack-tool-icon" aria-hidden="true">
+                  <ToolIcon name={item.name} />
                 </span>
-                <span class="receipt-dots" aria-hidden="true"></span>
-                <span class="receipt-price">{t.stack.receipt.itemPrice}</span>
+                <span class="stack-tool-copy">
+                  <span class="stack-tool-role">{item.role}</span>
+                  <strong class="stack-tool-name">
+                    {item.name}
+                    {item.house && <sup class="stack-house" aria-hidden="true">*</sup>}
+                  </strong>
+                  <span class="stack-tool-note">{item.note}</span>
+                </span>
+                <span class="stack-tool-arrow" aria-hidden="true">↗</span>
               </a>
-              <p class="receipt-note">
-                <span class="receipt-role">{item.role}</span>
-                <span>{item.note}</span>
-              </p>
             </li>
           ))}
-        </ol>
+        </ul>
+        <p class="stack-house-note">* {t.stack.receipt.houseNote}</p>
 
-        <section class="receipt-addons" aria-labelledby="stack-addons-title">
-          <h3 class="receipt-section-label" id="stack-addons-title">
-            {t.stack.receipt.addonsLabel}
-          </h3>
-          <ul>
+        <div class="stack-marquee" aria-hidden="true">
+          <div class="stack-marquee-track">
+            {[0, 1].map(() => (
+              <div class="stack-marquee-group">
+                {t.stack.receipt.items.map((item) => (
+                  <Fragment>
+                    <span>{item.name}</span>
+                    <span class="stack-marquee-mark">+</span>
+                  </Fragment>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="stack-addons">
+          <p class="stack-addons-label">{t.stack.receipt.addonsLabel}</p>
+          <ul class="stack-addons-list">
             {t.stack.receipt.addons.map((item) => (
               <li>
                 <a href={item.href} aria-label={`${item.name} — ${item.linkLabel}`}>
+                  <span class="stack-addon-plus" aria-hidden="true">+</span>
                   <strong>{item.name}</strong>
                   <span>{item.note}</span>
-                  <span class="receipt-arrow" aria-hidden="true">↗</span>
                 </a>
               </li>
             ))}
           </ul>
-        </section>
+        </div>
 
-        <dl class="receipt-totals">
-          {t.stack.receipt.totals.map((row) => (
-            <div class:list={{ "receipt-muted": row.muted }}>
-              <dt>{row.label}</dt>
-              <dd>{row.value}</dd>
-            </div>
-          ))}
-          <div class="receipt-total">
-            <dt>{t.stack.receipt.totalLabel}</dt>
-            <dd>{t.stack.receipt.totalValue}</dd>
-          </div>
-        </dl>
+        <div class="stack-total">
+          <p class="stack-total-price">
+            <span>{t.stack.receipt.totalLabel}</span>
+            <strong>{t.stack.receipt.totalValue}</strong>
+          </p>
+          <p class="stack-total-note">{t.stack.receipt.footer}</p>
+          <p class="stack-total-fine">
+            {t.stack.receipt.totals.map((row) => (
+              <span>{row.label} {row.value}</span>
+            ))}
+          </p>
+          <p class="stack-total-thanks">{t.stack.receipt.thanks} · {t.stack.disclaimer}</p>
+        </div>
 
-        <p class="receipt-footer">{t.stack.receipt.footer}</p>
-        <p class="receipt-thanks">{t.stack.receipt.thanks}</p>
-        <p class="receipt-house-note">* {t.stack.receipt.houseNote}</p>
-        <div class="receipt-barcode" aria-hidden="true"></div>
-      </article>
-
-      <p class="stack-arch">{t.stack.archNote}</p>
+        <p class="stack-arch">{t.stack.archNote}</p>
+      </div>
     </div>
   </section>
 
