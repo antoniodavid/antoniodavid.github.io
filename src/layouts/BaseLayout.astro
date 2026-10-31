@@ -132,7 +132,11 @@ const canonical =
         if (button) {
           button.addEventListener("click", () => {
             const dark = root.dataset.theme !== "dark";
-            localStorage.setItem("theme", dark ? "dark" : "light");
+            try {
+              localStorage.setItem("theme", dark ? "dark" : "light");
+            } catch (_) {
+              /* Theme still applies for this page view. */
+            }
             apply(dark);
           });
         }
