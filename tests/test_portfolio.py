@@ -215,7 +215,7 @@ class PortfolioTests(unittest.TestCase):
             with self.subTest(tool_link=href):
                 self.assertIn(href, hrefs)
 
-        self.assertEqual(self.page.count('class="stack-tool"'), 9)
+        self.assertEqual(self.page.count('class="stack-row'), 9)
         self.assertEqual(self.page.count('class="stack-tool-icon"'), 9)
 
         for claim in (
@@ -409,8 +409,8 @@ class PortfolioTests(unittest.TestCase):
             "the mobile navigation must scale its type to fit five labels",
         )
         self.assertIn(".stack-band", self.styles)
-        self.assertIn(".stack-grid", self.styles)
-        self.assertIn(".stack-tool", self.styles)
+        self.assertIn(".stack-list", self.styles)
+        self.assertIn(".stack-link", self.styles)
         self.assertNotIn(".stack-marquee", self.styles)
         self.assertNotIn("@keyframes stack-marquee", self.styles)
         self.assertNotIn("@keyframes stack-pulse", self.styles)
@@ -420,6 +420,8 @@ class PortfolioTests(unittest.TestCase):
             "the sponsor dot should be static, not animated",
         )
         self.assertIn('--font-display: "Fraunces Variable"', self.styles)
+        self.assertIn('--font-body: "IBM Plex Sans Variable"', self.styles)
+        self.assertNotIn("DM Sans", self.styles)
         self.assertIn("--radius-md: 6px", self.styles)
         self.assertNotIn("border-radius: 14px", self.styles)
         self.assertNotIn(".oca-summary", self.styles)
@@ -560,14 +562,8 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn("https://antoniodavid.github.io/es/theme/", page)
         self.assertIn("https://antoniodavid.github.io/theme/", page)
 
-    def test_editor_chrome_adds_a_gutter_statusline_and_diagnostics(self):
-        self.assertEqual(self.page.count('class="line-no"'), 6)
-        for number in ("01", "02", "03", "04", "05", "06"):
-            with self.subTest(line=number):
-                self.assertIn(
-                    f'class="line-no" aria-hidden="true">{number}</span>',
-                    self.page,
-                )
+    def test_editor_chrome_adds_a_statusline_and_diagnostics(self):
+        self.assertEqual(self.page.count('class="line-no"'), 0)
 
         self.assertEqual(self.page.count('class="diag diag-merged"'), 10)
         self.assertEqual(self.page.count('class="diag diag-open"'), 1)
@@ -575,11 +571,9 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('class="status-mode">NORMAL</span>', self.page)
         self.assertIn("data-status-theme", self.page)
 
-        for selector in (".line-no", ".statusline", ".diag-merged", ".diag-open"):
+        for selector in (".statusline", ".diag-merged", ".diag-open"):
             with self.subTest(selector=selector):
                 self.assertIn(selector, self.styles)
-
-        self.assertIn("@media (min-width: 78rem)", self.styles)
 
     def test_terminal_types_with_a_reduced_motion_fallback(self):
         self.assertEqual(self.page.count('class="terminal-line"'), 5)
