@@ -2,6 +2,7 @@
 import ToolIcon from "./ToolIcon.astro";
 
 const { t } = Astro.props;
+const [owlFeature, ...otherProjects] = t.projects.cards;
 
 const iconClass: Record<string, string> = {
   odoo: "icon-blue",
@@ -75,40 +76,42 @@ const iconClass: Record<string, string> = {
       <span class="line-no" aria-hidden="true">02</span>
       <header class="section-head">
         <div class="section-heading">
-          <p class="section-label">{t.focus.label}</p>
           <h2 id="focus-title">{t.focus.title}</h2>
         </div>
         <p class="section-intro">{t.focus.intro}</p>
       </header>
 
-      <div class="specialty-grid">
-        {t.focus.cards.map((card) => (
-          <article class="specialty-card">
-            <div class="specialty-top">
-              <span class:list={["specialty-tag", card.tagClass]}>{card.tag}</span>
-              <span class:list={["specialty-icon", iconClass[card.icon]]} aria-hidden="true">
-                {card.icon === "odoo" && (
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
-                )}
-                {card.icon === "ai" && (
-                  <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"></path><path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14z"></path></svg>
-                )}
-                {card.icon === "owl" && (
-                  <svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>
-                )}
-                {card.icon === "oca" && (
-                  <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
-                )}
-              </span>
+      <ol class="focus-list">
+        {t.focus.cards.map((card, index) => (
+          <li class="focus-item">
+            <span class="focus-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <div class="focus-body">
+              <div class="focus-head">
+                <span class:list={["specialty-icon", iconClass[card.icon]]} aria-hidden="true">
+                  {card.icon === "odoo" && (
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+                  )}
+                  {card.icon === "ai" && (
+                    <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"></path><path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14z"></path></svg>
+                  )}
+                  {card.icon === "owl" && (
+                    <svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>
+                  )}
+                  {card.icon === "oca" && (
+                    <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                  )}
+                </span>
+                <h3>{card.title}</h3>
+                <span class:list={["specialty-tag", card.tagClass]}>{card.tag}</span>
+              </div>
+              <p>{card.copy}</p>
             </div>
-            <h3>{card.title}</h3>
-            <p>{card.copy}</p>
-            <ul class="card-tags">
+            <ul class="card-tags focus-tags">
               {card.tags.map((tag) => <li>{tag}</li>)}
             </ul>
-          </article>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   </section>
 
@@ -117,7 +120,6 @@ const iconClass: Record<string, string> = {
       <span class="line-no" aria-hidden="true">03</span>
       <header class="section-head">
         <div class="section-heading">
-          <p class="section-label">{t.projects.label}</p>
           <h2 id="work-title">{t.projects.title}</h2>
         </div>
         <a class="section-link" href={t.projects.link.href}>
@@ -152,21 +154,62 @@ const iconClass: Record<string, string> = {
         </div>
       </article>
 
-      <div class="project-grid">
-        {t.projects.cards.map((card) => (
-          <article class:list={["project-card", card.className]}>
-            <p class="card-category">{card.category}</p>
-            <h3>{card.title}</h3>
-            <p>{card.copy}</p>
-            <ul class="card-tags">
-              {card.tags.map((tag) => <li>{tag}</li>)}
-            </ul>
-            <a class="card-link" href={card.href}>
-              {card.linkLabel} <span aria-hidden="true">{card.icon ? card.icon : "↗"}</span>
-            </a>
-          </article>
+      <article class:list={["owl-feature", owlFeature.className]}>
+        <div class="owl-feature-visual" aria-hidden="true">
+          <svg viewBox="0 0 640 360" fill="none">
+            <g class="owl-brackets" stroke="var(--ink)" stroke-width="4" stroke-linecap="square">
+              <path d="M70 110V70h40"></path>
+              <path d="M570 110V70h-40"></path>
+              <path d="M70 250v40h40"></path>
+              <path d="M570 250v40h-40"></path>
+            </g>
+            <g class="owl-eyes">
+              <circle cx="240" cy="170" r="82" fill="var(--card)" stroke="var(--ink)" stroke-width="6"></circle>
+              <circle cx="400" cy="170" r="82" fill="var(--card)" stroke="var(--ink)" stroke-width="6"></circle>
+              <circle cx="240" cy="170" r="48" fill="var(--coral)"></circle>
+              <circle cx="400" cy="170" r="48" fill="var(--blue)"></circle>
+              <circle cx="240" cy="170" r="18" fill="var(--ink)"></circle>
+              <circle cx="400" cy="170" r="18" fill="var(--ink)"></circle>
+              <circle cx="252" cy="158" r="6" fill="var(--card)"></circle>
+              <circle cx="412" cy="158" r="6" fill="var(--card)"></circle>
+            </g>
+            <path class="owl-beak" d="M320 200l-24 38h48z" fill="var(--yellow)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"></path>
+            <path class="owl-brow" d="M150 105c30-38 60-38 90-8M490 105c-30-38-60-38-90-8" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"></path>
+          </svg>
+          <span class="owl-feature-stamp">{owlFeature.tags.join(" · ")}</span>
+        </div>
+        <div class="owl-feature-copy">
+          <p class="card-category">{owlFeature.category}</p>
+          <h3>{owlFeature.title}</h3>
+          <p>{owlFeature.copy}</p>
+          <ul class="card-tags">
+            {owlFeature.tags.map((tag) => <li>{tag}</li>)}
+          </ul>
+          <a class="card-link" href={owlFeature.href} aria-label={`${owlFeature.title} — ${owlFeature.linkLabel}`}>
+            {owlFeature.linkLabel} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <ul class="project-index">
+        {otherProjects.map((project) => (
+          <li class:list={["project-row", project.className]}>
+            <div class="project-row-body">
+              <p class="card-category">{project.category}</p>
+              <h3>{project.title}</h3>
+              <p>{project.copy}</p>
+            </div>
+            <div class="project-row-side">
+              <ul class="card-tags">
+                {project.tags.map((tag) => <li>{tag}</li>)}
+              </ul>
+              <a class="card-link" href={project.href} aria-label={`${project.title} — ${project.linkLabel}`}>
+                {project.linkLabel} <span aria-hidden="true">{project.icon ? project.icon : "↗"}</span>
+              </a>
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
 
       <details class="more-projects">
         <summary>{t.projects.more.summary} <span>{t.projects.more.count}</span></summary>
@@ -184,17 +227,10 @@ const iconClass: Record<string, string> = {
       <span class="line-no" aria-hidden="true">04</span>
       <header class="section-head">
         <div class="section-heading">
-          <p class="section-label">{t.oca.label}</p>
           <h2 id="oca-title">{t.oca.title}</h2>
         </div>
         <p class="section-intro">{t.oca.intro}</p>
       </header>
-
-      <dl class="oca-summary">
-        {t.oca.summary.map((item) => (
-          <div><dt>{item.label}</dt><dd>{item.value}</dd></div>
-        ))}
-      </dl>
 
       <ul class="oca-ledger" aria-label={t.oca.title}>
         {t.oca.ledger.map((entry) => (
@@ -229,22 +265,12 @@ const iconClass: Record<string, string> = {
       <span class="line-no" aria-hidden="true">05</span>
       <header class="section-head">
         <div class="section-heading">
-          <p class="section-label">{t.approach.label}</p>
           <h2 id="method-title">{t.approach.title}</h2>
         </div>
         <p class="section-intro">{t.approach.intro}</p>
       </header>
 
-      <div class="approach-grid">
-        {t.approach.cards.map((card) => (
-          <article class:list={["approach-card", card.className]}>
-            <span class="approach-index">{card.index}</span>
-            <h3>{card.title}</h3>
-            <p>{card.copy}</p>
-            <p class="approach-evidence">{card.evidence}</p>
-          </article>
-        ))}
-      </div>
+      <p class="method-statement">{t.approach.statement}</p>
     </div>
   </section>
 
@@ -254,7 +280,6 @@ const iconClass: Record<string, string> = {
         <span class="line-no" aria-hidden="true">06</span>
         <header class="section-head stack-head">
           <div class="section-heading">
-            <p class="section-label">{t.stack.label}</p>
             <h2 id="stack-title">{t.stack.title}</h2>
           </div>
           <div class="stack-head-side">
@@ -287,21 +312,6 @@ const iconClass: Record<string, string> = {
           ))}
         </ul>
         <p class="stack-house-note">* {t.stack.receipt.houseNote}</p>
-
-        <div class="stack-marquee" aria-hidden="true">
-          <div class="stack-marquee-track">
-            {[0, 1].map(() => (
-              <div class="stack-marquee-group">
-                {t.stack.receipt.items.map((item) => (
-                  <Fragment>
-                    <span>{item.name}</span>
-                    <span class="stack-marquee-mark">+</span>
-                  </Fragment>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
 
         <div class="stack-addons">
           <p class="stack-addons-label">{t.stack.receipt.addonsLabel}</p>

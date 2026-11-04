@@ -411,9 +411,24 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn(".stack-band", self.styles)
         self.assertIn(".stack-grid", self.styles)
         self.assertIn(".stack-tool", self.styles)
-        self.assertIn(".stack-marquee-track", self.styles)
+        self.assertNotIn(".stack-marquee", self.styles)
+        self.assertNotIn("@keyframes stack-marquee", self.styles)
+        self.assertNotIn("@keyframes stack-pulse", self.styles)
+        self.assertRegex(
+            self.styles,
+            r"\.stack-live\s*\{[^}]*background:\s*currentColor;",
+            "the sponsor dot should be static, not animated",
+        )
+        self.assertIn('--font-display: "Fraunces Variable"', self.styles)
+        self.assertIn("--radius-md: 6px", self.styles)
+        self.assertNotIn("border-radius: 14px", self.styles)
+        self.assertNotIn(".oca-summary", self.styles)
+        self.assertNotIn(".method-steps", self.styles)
+        self.assertNotIn('class="oca-summary"', self.page)
+        self.assertNotIn('class="method-steps"', self.page)
+        self.assertNotIn('class="stack-marquee"', self.page)
+        self.assertIn('class="stack-live"', self.page)
         self.assertIn("@keyframes stack-hop", self.styles)
-        self.assertIn("@keyframes stack-marquee", self.styles)
 
     def test_dark_themes_keep_text_contrast(self):
         pairs = (

@@ -1,8 +1,8 @@
 ---
-import "@fontsource-variable/sora";
+import "@fontsource-variable/fraunces";
 import "@fontsource-variable/dm-sans";
 import "@fontsource-variable/jetbrains-mono";
-import soraFont from "@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url";
+import frauncesFont from "@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url";
 import dmSansFont from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
 import monoFont from "@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url";
 import {
@@ -54,7 +54,7 @@ const themeHref = locale === "es" ? "/es/theme/" : "/theme/";
         root.dataset.theme = choice === "system" ? (dark ? "sumi" : "paper") : choice;
       })();
     </script>
-    <link rel="preload" href={soraFont} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={frauncesFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href={dmSansFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href={monoFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="stylesheet" href="/styles.css" />

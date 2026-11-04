@@ -59,7 +59,6 @@ export const content = {
       },
     },
     focus: {
-      label: "// Focus",
       title: "What I work on",
       intro: "Four areas where I have public work: Odoo, AI delivery, OWL, and OCA review.",
       cards: [
@@ -98,7 +97,6 @@ export const content = {
       ],
     },
     projects: {
-      label: "// Projects",
       title: "Projects I ship",
       terminalLabel: "ODF proof summary",
       link: { href: "https://github.com/antoniodavid", label: "All repositories on GitHub" },
@@ -208,15 +206,8 @@ export const content = {
       },
     },
     oca: {
-      label: "// OCA",
       title: "Merged in OCA",
-      intro: "37 submitted · 19 repositories · 10 merged · 53 reviews. These are the PRs that got merged.",
-      summary: [
-        { value: "37", label: "Submitted" },
-        { value: "19", label: "Repositories" },
-        { value: "10", label: "Merged" },
-        { value: "53", label: "Reviews" },
-      ],
+      intro: "I submitted 37 PRs across 19 OCA repositories. Ten are merged, and I reviewed 53. These are the merged ones.",
       ledger: [
         {
           href: "https://github.com/OCA/delivery-carrier/pull/1079",
@@ -311,42 +302,11 @@ export const content = {
       source: "Verified from public GitHub search on 30 October 2026.",
     },
     approach: {
-      label: "// How I work",
       title: "How I work",
       intro: "The same four steps on every project. The details change; the order does not.",
-      cards: [
-        {
-          index: "01",
-          title: "Write the spec",
-          copy: "ODF starts with a route, a context manifest, and a gate. I decide what changes before I write code.",
-          evidence: "11 agents · 51 skills · policy gates",
-          className: "method-blue",
-        },
-        {
-          index: "02",
-          title: "Test the behavior",
-          copy: "ODF has 1,477 unit tests, 331 YAML tests, and 18 harness tests. This page has 20 tests.",
-          evidence: "TDD · 10 tagged releases",
-          className: "method-green",
-        },
-        {
-          index: "03",
-          title: "Review in public",
-          copy: "I reviewed 78 PRs across 34 repositories and 28 authors. 53 were in OCA, across 26 repositories.",
-          evidence: "53 OCA reviews",
-          className: "method-coral",
-        },
-        {
-          index: "04",
-          title: "Ship small",
-          copy: "Small commits, Conventional Commits, tagged releases, and docs. The next person should not need me.",
-          evidence: "MIT · changelog · docs",
-          className: "method-purple",
-        },
-      ],
+      statement: "The order never changes: write the spec, test the behavior, review in public, ship small.",
     },
     stack: {
-      label: "// Daily drivers",
       title: "The stack behind the commits",
       intro:
         "An itemized list of the tools I open every day — and the opinions I have configured around them.",
@@ -598,7 +558,6 @@ export const content = {
       },
     },
     focus: {
-      label: "// Enfoque",
       title: "En qué trabajo",
       intro: "Cuatro áreas donde tengo trabajo público: Odoo, entrega con AI, OWL y review de OCA.",
       cards: [
@@ -637,7 +596,6 @@ export const content = {
       ],
     },
     projects: {
-      label: "// Proyectos",
       title: "Proyectos que mantengo",
       terminalLabel: "Resumen de pruebas de ODF",
       link: { href: "https://github.com/antoniodavid", label: "Todos los repositorios en GitHub" },
@@ -747,15 +705,8 @@ export const content = {
       },
     },
     oca: {
-      label: "// OCA",
       title: "Mergeado en OCA",
-      intro: "37 enviados · 19 repositorios · 10 mergeados · 53 reviews. Estos son los PRs que se mergearon.",
-      summary: [
-        { value: "37", label: "Enviados" },
-        { value: "19", label: "Repositorios" },
-        { value: "10", label: "Mergeados" },
-        { value: "53", label: "Reviews" },
-      ],
+      intro: "Envié 37 PRs en 19 repositorios de OCA. Diez están mergeados y revisé 53. Estos son los mergeados.",
       ledger: [
         {
           href: "https://github.com/OCA/delivery-carrier/pull/1079",
@@ -850,42 +801,11 @@ export const content = {
       source: "Verificado en la búsqueda pública de GitHub el 30 de octubre de 2026.",
     },
     approach: {
-      label: "// Método",
       title: "Cómo trabajo",
       intro: "Los mismos cuatro pasos en cada proyecto. Los detalles cambian; el orden no.",
-      cards: [
-        {
-          index: "01",
-          title: "Escribir la spec",
-          copy: "ODF empieza con una ruta, un context manifest y un gate. Decido qué cambia antes de escribir código.",
-          evidence: "11 agentes · 51 skills · policy gates",
-          className: "method-blue",
-        },
-        {
-          index: "02",
-          title: "Probar el comportamiento",
-          copy: "ODF tiene 1,477 tests unitarios, 331 tests YAML y 18 tests de harness. Esta página tiene 20 tests.",
-          evidence: "TDD · 10 releases",
-          className: "method-green",
-        },
-        {
-          index: "03",
-          title: "Revisar en público",
-          copy: "He revisado 78 PRs en 34 repositorios y 28 autores. 53 fueron en OCA, en 26 repositorios.",
-          evidence: "53 reviews OCA",
-          className: "method-coral",
-        },
-        {
-          index: "04",
-          title: "Entregar pequeño",
-          copy: "Commits pequeños, Conventional Commits, releases etiquetados y docs. La siguiente persona no debería necesitarme.",
-          evidence: "MIT · changelog · docs",
-          className: "method-purple",
-        },
-      ],
+      statement: "El orden no cambia: escribir la spec, probar el comportamiento, revisar en público y entregar pequeño.",
     },
     stack: {
-      label: "// Herramientas",
       title: "El stack detrás de los commits",
       intro:
         "Una lista detallada de las herramientas que abro todos los días — y las opiniones que configuré alrededor.",
