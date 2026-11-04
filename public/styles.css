@@ -2,7 +2,7 @@
 
 :root {
   --font-display: "Fraunces Variable", "Fraunces", Georgia, "Times New Roman", serif;
-  --font-body: "DM Sans Variable", "DM Sans", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans Variable", "IBM Plex Sans", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", "JetBrains Mono", "SFMono-Regular", "Cascadia Code", monospace;
   --radius-xs: 2px;
   --radius-sm: 4px;
@@ -58,26 +58,6 @@ summary:focus-visible {
   position: relative;
   width: min(calc(100% - 2 * var(--gutter)), var(--container));
   margin-inline: auto;
-}
-
-.line-no {
-  display: none;
-  position: absolute;
-  top: 0.2rem;
-  right: calc(100% + 1.05rem);
-  color: var(--ink-2);
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.04em;
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-}
-
-@media (min-width: 78rem) {
-  .line-no {
-    display: block;
-  }
 }
 
 .skip-link {
@@ -1261,10 +1241,6 @@ p {
   padding-block: clamp(3rem, 5vw, 4.5rem);
 }
 
-.stack-section .line-no {
-  color: var(--contact-muted);
-}
-
 .stack-head {
   border-bottom-color: rgba(255, 255, 255, 0.22);
 }
@@ -1306,66 +1282,58 @@ p {
   background: currentColor;
 }
 
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.8rem;
+.stack-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.stack-grid > li {
-  display: flex;
+.stack-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-.stack-tool {
-  display: flex;
-  width: 100%;
-  gap: 0.8rem;
-  align-items: flex-start;
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.045);
+.stack-row:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.stack-row-house {
+  background: rgba(255, 227, 126, 0.05);
+}
+
+.stack-link {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr) auto;
+  gap: 0.35rem 1rem;
+  align-items: start;
+  padding: 0.95rem 0.35rem;
   color: var(--contact-fg);
   text-decoration: none;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
-.stack-tool:hover,
-.stack-tool:focus-visible {
-  border-color: var(--yellow);
-  background: rgba(255, 255, 255, 0.08);
+.stack-link:hover,
+.stack-link:focus-visible {
+  background: rgba(255, 255, 255, 0.05);
   color: var(--contact-fg);
-  transform: translateY(-4px);
 }
 
 .stack-tool-icon {
   display: grid;
-  width: 2.7rem;
-  height: 2.7rem;
-  flex: 0 0 auto;
+  width: 1.8rem;
+  height: 1.8rem;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.06);
   color: var(--yellow);
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.stack-tool:hover .stack-tool-icon,
-.stack-tool:focus-visible .stack-tool-icon,
-.stack-tool:active .stack-tool-icon {
-  border-color: var(--yellow);
-  background: var(--yellow);
-  color: var(--badge-ink);
+.stack-link:hover .stack-tool-icon,
+.stack-link:focus-visible .stack-tool-icon,
+.stack-link:active .stack-tool-icon {
   animation: stack-hop 0.55s ease;
 }
 
 .stack-tool-icon svg {
-  width: 1.45rem;
-  height: 1.45rem;
+  width: 1.3rem;
+  height: 1.3rem;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -1392,15 +1360,21 @@ p {
   }
 }
 
-.stack-tool-copy {
+.stack-copy {
   display: flex;
   min-width: 0;
-  flex: 1;
   flex-direction: column;
-  gap: 0.18rem;
+  gap: 0.15rem;
 }
 
-.stack-tool-role {
+.stack-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.65rem;
+}
+
+.stack-role {
   color: var(--yellow);
   font-family: var(--font-mono);
   font-size: 0.5rem;
@@ -1409,12 +1383,16 @@ p {
   text-transform: uppercase;
 }
 
-.stack-tool-name {
+.stack-name {
   font-family: var(--font-display);
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.2;
+}
+
+.stack-row-house .stack-name {
+  font-size: 1.2rem;
 }
 
 .stack-house {
@@ -1424,22 +1402,21 @@ p {
   vertical-align: super;
 }
 
-.stack-tool-note {
+.stack-note {
   color: var(--contact-muted);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   line-height: 1.45;
 }
 
-.stack-tool-arrow {
-  margin-left: auto;
+.stack-arrow {
   color: var(--contact-muted);
   font-family: var(--font-mono);
   font-size: 0.62rem;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.stack-tool:hover .stack-tool-arrow,
-.stack-tool:focus-visible .stack-tool-arrow {
+.stack-link:hover .stack-arrow,
+.stack-link:focus-visible .stack-arrow {
   color: var(--yellow);
   transform: translate(1px, -1px);
 }
@@ -2168,10 +2145,6 @@ p {
     border-bottom: 0;
   }
 
-  .stack-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .theme-grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2228,24 +2201,27 @@ p {
     font-size: clamp(1.7rem, 7.4vw, 2.4rem);
   }
 
-  .stack-grid {
-    display: flex;
-    gap: 0.7rem;
-    overflow-x: auto;
-    margin-inline: calc(-1 * var(--gutter));
-    padding: 0 var(--gutter) 0.65rem;
-    scroll-padding-inline: var(--gutter);
-    scroll-snap-type: x mandatory;
-    scrollbar-color: var(--yellow) transparent;
+  .stack-link {
+    grid-template-columns: 1.5rem minmax(0, 1fr) auto;
+    gap: 0.2rem 0.7rem;
+    padding-block: 0.85rem;
   }
 
-  .stack-grid > li {
-    flex: 0 0 min(78vw, 22rem);
-    scroll-snap-align: start;
+  .stack-tool-icon {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
-  .stack-tool {
-    padding: 0.9rem;
+  .stack-name {
+    font-size: 1rem;
+  }
+
+  .stack-row-house .stack-name {
+    font-size: 1.1rem;
+  }
+
+  .stack-note {
+    font-size: 0.72rem;
   }
 
   .stack-addons {
@@ -2312,26 +2288,12 @@ p {
     width: 100%;
   }
 
-  .stack-grid > li {
-    flex-basis: 84vw;
-  }
-
-  .stack-tool {
-    gap: 0.65rem;
-    padding: 0.85rem;
-  }
-
-  .stack-tool-icon {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-
-  .stack-tool-name {
+  .stack-name {
     font-size: 0.96rem;
   }
 
-  .stack-tool-note {
-    font-size: 0.68rem;
+  .stack-row-house .stack-name {
+    font-size: 1.04rem;
   }
 
   .stack-house-note {
@@ -2420,10 +2382,6 @@ p {
   .site-nav a {
     font-size: 0.6rem;
     letter-spacing: 0.02em;
-  }
-
-  .stack-grid > li {
-    flex-basis: 86vw;
   }
 
   .stack-sponsor {
