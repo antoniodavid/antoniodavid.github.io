@@ -10,8 +10,8 @@
     "test": "npm run build && python -m unittest discover -s tests"
   },
   "dependencies": {
-    "@fontsource-variable/dm-sans": "^5.3.0",
     "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
     "@fontsource-variable/jetbrains-mono": "^5.3.0",
     "astro": "^7.4.4"
   }

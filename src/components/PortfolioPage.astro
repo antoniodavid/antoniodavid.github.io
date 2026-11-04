@@ -16,7 +16,6 @@ const iconClass: Record<string, string> = {
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="line-no" aria-hidden="true">01</span>
         <h1 id="hero-title">{t.hero.before}<mark>{t.hero.mark}</mark>{t.hero.after}</h1>
         <p class="hero-lede">{t.hero.lede}</p>
 
@@ -73,7 +72,6 @@ const iconClass: Record<string, string> = {
 
   <section class="section" id="focus" aria-labelledby="focus-title">
     <div class="container">
-      <span class="line-no" aria-hidden="true">02</span>
       <header class="section-head">
         <div class="section-heading">
           <h2 id="focus-title">{t.focus.title}</h2>
@@ -117,7 +115,6 @@ const iconClass: Record<string, string> = {
 
   <section class="section" id="work" aria-labelledby="work-title">
     <div class="container">
-      <span class="line-no" aria-hidden="true">03</span>
       <header class="section-head">
         <div class="section-heading">
           <h2 id="work-title">{t.projects.title}</h2>
@@ -224,7 +221,6 @@ const iconClass: Record<string, string> = {
 
   <section class="section" id="oca" aria-labelledby="oca-title">
     <div class="container">
-      <span class="line-no" aria-hidden="true">04</span>
       <header class="section-head">
         <div class="section-heading">
           <h2 id="oca-title">{t.oca.title}</h2>
@@ -262,7 +258,6 @@ const iconClass: Record<string, string> = {
 
   <section class="section" id="method" aria-labelledby="method-title">
     <div class="container">
-      <span class="line-no" aria-hidden="true">05</span>
       <header class="section-head">
         <div class="section-heading">
           <h2 id="method-title">{t.approach.title}</h2>
@@ -277,7 +272,6 @@ const iconClass: Record<string, string> = {
   <section class="section stack-section" id="stack" aria-labelledby="stack-title">
     <div class="stack-band">
       <div class="container">
-        <span class="line-no" aria-hidden="true">06</span>
         <header class="section-head stack-head">
           <div class="section-heading">
             <h2 id="stack-title">{t.stack.title}</h2>
@@ -291,22 +285,24 @@ const iconClass: Record<string, string> = {
           </div>
         </header>
 
-        <ul class="stack-grid" aria-label={t.stack.receipt.receiptLabel}>
+        <ul class="stack-list" aria-label={t.stack.receipt.receiptLabel}>
           {t.stack.receipt.items.map((item) => (
-            <li>
-              <a class="stack-tool" href={item.href} aria-label={`${item.name} — ${item.linkLabel}`}>
+            <li class:list={["stack-row", { "stack-row-house": item.house }]}>
+              <a class="stack-link" href={item.href} aria-label={`${item.name} — ${item.linkLabel}`}>
                 <span class="stack-tool-icon" aria-hidden="true">
                   <ToolIcon name={item.name} />
                 </span>
-                <span class="stack-tool-copy">
-                  <span class="stack-tool-role">{item.role}</span>
-                  <strong class="stack-tool-name">
-                    {item.name}
-                    {item.house && <sup class="stack-house" aria-hidden="true">*</sup>}
-                  </strong>
-                  <span class="stack-tool-note">{item.note}</span>
+                <span class="stack-copy">
+                  <span class="stack-meta">
+                    <span class="stack-role">{item.role}</span>
+                    <strong class="stack-name">
+                      {item.name}
+                      {item.house && <sup class="stack-house" aria-hidden="true">*</sup>}
+                    </strong>
+                  </span>
+                  <span class="stack-note">{item.note}</span>
                 </span>
-                <span class="stack-tool-arrow" aria-hidden="true">↗</span>
+                <span class="stack-arrow" aria-hidden="true">↗</span>
               </a>
             </li>
           ))}
