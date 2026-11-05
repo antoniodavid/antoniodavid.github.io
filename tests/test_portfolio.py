@@ -114,7 +114,6 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn("nav", tags)
         self.assertIn("main", tags)
         self.assertIn("footer", tags)
-        self.assertIn("details", tags)
         self.assertEqual(tags.count("h1"), 1)
         self.assertIn('id="main-content"', self.page)
         self.assertIn('href="#main-content"', self.page)
@@ -226,6 +225,35 @@ class PortfolioTests(unittest.TestCase):
         ):
             with self.subTest(stack_claim=claim):
                 self.assertIn(claim.casefold(), self.lowered_text)
+
+    def test_additional_projects_are_visible_without_opening_disclosure(self):
+        projects = (
+            ("https://github.com/antoniodavid/odoodevforge", "OdooDevForge"),
+            ("https://github.com/antoniodavid/owl-app", "OWL app"),
+            ("https://github.com/antoniodavid/simple", "SIMple"),
+            ("https://github.com/antoniodavid/saldoacuba", "SaldoACuba"),
+            (
+                "https://github.com/antoniodavid/omarchy-workspaces",
+                "Omarchy Workspaces",
+            ),
+        )
+        for locale, relative in (("English", "index.html"), ("Spanish", "es/index.html")):
+            page = (DIST / relative).read_text(encoding="utf-8")
+            closed_disclosures = [
+                content
+                for attributes, content in re.findall(
+                    r"<details([^>]*)>(.*?)</details>", page, re.DOTALL
+                )
+                if " open" not in f" {attributes} "
+            ]
+            for href, label in projects:
+                with self.subTest(locale=locale, project=label):
+                    self.assertIn(href, page)
+                    self.assertIn(f">{label}</a>", page)
+                    self.assertFalse(
+                        any(href in content for content in closed_disclosures),
+                        f"{label} should not be hidden in a closed disclosure on {locale}",
+                    )
 
     def test_oca_ledger_links_every_merged_change_and_the_open_review(self):
         expected = {
