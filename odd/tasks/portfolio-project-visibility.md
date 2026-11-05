@@ -20,7 +20,7 @@ The user confirmed that the portfolio is for programmers and recruiters and exis
 
 - **Route:** delegated direct. Mapping trigger fired because understanding crossed four source files; a read-only mapper narrowed the change to the homepage project archive. Writer delegation is required because the change spans non-trivial markup and styles.
 - **TDD:** strict TDD enabled by explicit workspace instructions. Exact runner: `npm test` (Astro build followed by Python unittest discovery). Writer must observe RED before implementation, then GREEN, REFACTOR; do not fabricate RED evidence.
-- **Delivery strategy:** `ask-on-risk`; no PR requested. Expected source delta is a compact, single behavior slice below the ~400 authored-line heuristic.
+- **Delivery strategy:** PR size strategy/chain decision remains unresolved; see the current issue and PR status below.
 
 ## Acceptance Criteria
 
@@ -38,3 +38,9 @@ The user confirmed that the portfolio is for programmers and recruiters and exis
 ## Progress and Next Step
 
 The five entries previously under “More experiments” are now visible as a dense secondary archive, using existing bilingual links and copy. The user confirmed the TDD contract: both homepage locales must expose all five links without opening the disclosure. Writer and independent verifier checks passed. No metrics, CSP, unrelated sections, or project facts changed. The work unit is committed on `feature/impeccable-document` as `2173250`; this follow-up records that evidence in the task file.
+
+## Current Issue and PR Status
+
+- The user now explicitly wants the issue/PR and merge; no PR exists yet.
+- Issue #15 was created from the published `.github/ISSUE_TEMPLATE/portfolio-improvement.yml`; read-back confirmed it is `OPEN` with only `type:feature`. `status:approved` has not been applied and is pending an exact issue-number-bound user instruction.
+- The current branch, `feature/impeccable-document`, violates the branch-pr prefix requirements. Its combined diff is 1,109 total lines, approximately 413 authored excluding generated `.impeccable/design.json`; the PR size strategy/chain decision remains unresolved.

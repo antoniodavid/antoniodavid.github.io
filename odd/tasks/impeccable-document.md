@@ -20,7 +20,7 @@ The existing bilingual Astro portfolio has a coherent, multi-theme visual system
 
 - **Route:** delegated direct for the two non-trivial design artifacts; trigger evidence: broad visual-system scan spans multiple source files, and `DESIGN.md` plus `.impeccable/design.json` are coupled outputs.
 - **TDD:** enabled by the workspace instructions; source: explicit project instruction. `npm test` is the project runner, but behavior tests are not applicable to these documentation/design-token artifacts. Verify by structural readback, source-to-token consistency, and JSON parsing.
-- **Delivery strategy:** `ask-on-risk`; no PR requested. Forecast: approximately 150–250 authored lines in `DESIGN.md`; generated sidecar excluded from authored-line estimate, below the ~400-line heuristic.
+- **Delivery strategy:** PR size strategy/chain decision remains unresolved; see the current issue and PR status below. The original task forecast was approximately 150–250 authored lines in `DESIGN.md`, excluding the generated sidecar.
 
 ## Acceptance Criteria
 
@@ -39,3 +39,9 @@ The existing bilingual Astro portfolio has a coherent, multi-theme visual system
 ## Progress and Next Step
 
 DOC-01 through DOC-04 are complete. Design artifacts passed independent source/structure verification and JSON parsing. No UI source or CSP was changed. Rendered inspection was unavailable. The design work unit is committed on `feature/impeccable-document` as `a0b7f6f`; this follow-up records that evidence in the task document.
+
+## Current Issue and PR Status
+
+- The user now explicitly wants the issue/PR and merge; no PR exists yet.
+- Issue #15 was created from the published `.github/ISSUE_TEMPLATE/portfolio-improvement.yml`; read-back confirmed it is `OPEN` with only `type:feature`. `status:approved` has not been applied and is pending an exact issue-number-bound user instruction.
+- The current branch, `feature/impeccable-document`, violates the branch-pr prefix requirements. Its combined diff is 1,109 total lines, approximately 413 authored excluding generated `.impeccable/design.json`; the PR size strategy/chain decision remains unresolved.
