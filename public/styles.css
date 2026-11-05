@@ -1098,22 +1098,55 @@ p {
   background: var(--surface);
 }
 
-.more-projects summary {
-  cursor: pointer;
+.more-projects h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+  margin: 0;
   font-family: var(--font-mono);
   font-size: 0.62rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.more-projects ul {
-  margin: 0.8rem 0 0;
-  padding-left: 1.2rem;
+.more-projects h3 span {
   color: var(--ink-2);
-  font-size: 0.9rem;
+  font-size: 0.58rem;
+  font-weight: 400;
+}
+
+.more-projects ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 0 1.4rem;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.more-projects li {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+  min-width: 0;
+  padding: 0.65rem 0.15rem;
+  border-top: var(--bw) solid var(--line);
+  line-height: 1.5;
 }
 
 .more-projects a {
   color: var(--blue-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+}
+
+.more-project-copy {
+  color: var(--ink-2);
+  font-size: 0.78rem;
 }
 
 /* OCA ledger */

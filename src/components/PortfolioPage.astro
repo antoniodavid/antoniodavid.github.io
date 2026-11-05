@@ -208,14 +208,17 @@ const iconClass: Record<string, string> = {
         ))}
       </ul>
 
-      <details class="more-projects">
-        <summary>{t.projects.more.summary} <span>{t.projects.more.count}</span></summary>
+      <div class="more-projects">
+        <h3>{t.projects.more.summary} <span>{t.projects.more.count}</span></h3>
         <ul>
           {t.projects.more.items.map((item) => (
-            <li><a href={item.href}>{item.label}</a> — {item.copy}</li>
+            <li>
+              <a href={item.href}>{item.label}</a>
+              <span class="more-project-copy"> — {item.copy}</span>
+            </li>
           ))}
         </ul>
-      </details>
+      </div>
     </div>
   </section>
 

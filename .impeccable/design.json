@@ -1,0 +1,707 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-05T01:39:38Z",
+  "title": "Design System: Antonio David Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "paper-bg": {
+        "role": "neutral",
+        "displayName": "Paper Background",
+        "canonical": "#fffdf7",
+        "tonalRamp": [
+          "oklch(15% 0.004 91.5)",
+          "oklch(25% 0.006 91.5)",
+          "oklch(35% 0.007 91.5)",
+          "oklch(45% 0.008 91.5)",
+          "oklch(55% 0.008 91.5)",
+          "oklch(65% 0.008 91.5)",
+          "oklch(80% 0.006 91.5)",
+          "oklch(95% 0.004 91.5)"
+        ]
+      },
+      "paper-surface": {
+        "role": "neutral",
+        "displayName": "Paper Surface",
+        "canonical": "#fcf9f8",
+        "tonalRamp": [
+          "oklch(15% 0.002 39.5)",
+          "oklch(25% 0.002 39.5)",
+          "oklch(35% 0.003 39.5)",
+          "oklch(45% 0.003 39.5)",
+          "oklch(55% 0.003 39.5)",
+          "oklch(65% 0.003 39.5)",
+          "oklch(80% 0.003 39.5)",
+          "oklch(95% 0.002 39.5)"
+        ]
+      },
+      "paper-card": {
+        "role": "neutral",
+        "displayName": "Paper Card",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(35% 0.000 89.9)",
+          "oklch(45% 0.000 89.9)",
+          "oklch(55% 0.000 89.9)",
+          "oklch(65% 0.000 89.9)",
+          "oklch(80% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "paper-ink": {
+        "role": "neutral",
+        "displayName": "Paper Ink",
+        "canonical": "#161616",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(35% 0.000 89.9)",
+          "oklch(45% 0.000 89.9)",
+          "oklch(55% 0.000 89.9)",
+          "oklch(65% 0.000 89.9)",
+          "oklch(80% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "paper-blue": {
+        "role": "primary",
+        "displayName": "Paper Blue",
+        "canonical": "#1e4fd8",
+        "tonalRamp": [
+          "oklch(15% 0.099 264.4)",
+          "oklch(25% 0.149 264.4)",
+          "oklch(35% 0.184 264.4)",
+          "oklch(45% 0.208 264.4)",
+          "oklch(55% 0.216 264.4)",
+          "oklch(65% 0.179 264.4)",
+          "oklch(80% 0.096 264.4)",
+          "oklch(95% 0.023 264.4)"
+        ]
+      },
+      "paper-green": {
+        "role": "secondary",
+        "displayName": "Paper Green",
+        "canonical": "#00a878",
+        "tonalRamp": [
+          "oklch(15% 0.031 164.3)",
+          "oklch(25% 0.051 164.3)",
+          "oklch(35% 0.071 164.3)",
+          "oklch(45% 0.092 164.3)",
+          "oklch(55% 0.112 164.3)",
+          "oklch(65% 0.132 164.3)",
+          "oklch(80% 0.107 164.3)",
+          "oklch(95% 0.069 164.3)"
+        ]
+      },
+      "paper-yellow": {
+        "role": "secondary",
+        "displayName": "Paper Yellow",
+        "canonical": "#ffe37e",
+        "tonalRamp": [
+          "oklch(15% 0.030 94.3)",
+          "oklch(25% 0.049 94.3)",
+          "oklch(35% 0.069 94.3)",
+          "oklch(45% 0.089 94.3)",
+          "oklch(55% 0.108 94.3)",
+          "oklch(65% 0.120 94.3)",
+          "oklch(80% 0.097 94.3)",
+          "oklch(95% 0.062 94.3)"
+        ]
+      },
+      "paper-coral": {
+        "role": "tertiary",
+        "displayName": "Paper Coral",
+        "canonical": "#ff5a5f",
+        "tonalRamp": [
+          "oklch(15% 0.058 22.4)",
+          "oklch(25% 0.097 22.4)",
+          "oklch(35% 0.135 22.4)",
+          "oklch(45% 0.174 22.4)",
+          "oklch(55% 0.200 22.4)",
+          "oklch(65% 0.193 22.4)",
+          "oklch(80% 0.110 22.4)",
+          "oklch(95% 0.024 22.4)"
+        ]
+      },
+      "paper-purple": {
+        "role": "tertiary",
+        "displayName": "Paper Purple",
+        "canonical": "#7c3aed",
+        "tonalRamp": [
+          "oklch(15% 0.080 293.0)",
+          "oklch(25% 0.133 293.0)",
+          "oklch(35% 0.187 293.0)",
+          "oklch(45% 0.237 293.0)",
+          "oklch(55% 0.247 293.0)",
+          "oklch(65% 0.198 293.0)",
+          "oklch(80% 0.107 293.0)",
+          "oklch(95% 0.025 293.0)"
+        ]
+      },
+      "sumi-bg": {
+        "role": "neutral",
+        "displayName": "Sumi Background",
+        "canonical": "#1f1f28",
+        "tonalRamp": [
+          "oklch(15% 0.009 285.1)",
+          "oklch(25% 0.012 285.1)",
+          "oklch(35% 0.015 285.1)",
+          "oklch(45% 0.016 285.1)",
+          "oklch(55% 0.017 285.1)",
+          "oklch(65% 0.016 285.1)",
+          "oklch(80% 0.013 285.1)",
+          "oklch(95% 0.009 285.1)"
+        ]
+      },
+      "sumi-surface": {
+        "role": "neutral",
+        "displayName": "Sumi Surface",
+        "canonical": "#24242f",
+        "tonalRamp": [
+          "oklch(15% 0.010 284.9)",
+          "oklch(25% 0.014 284.9)",
+          "oklch(35% 0.017 284.9)",
+          "oklch(45% 0.020 284.9)",
+          "oklch(55% 0.020 284.9)",
+          "oklch(65% 0.020 284.9)",
+          "oklch(80% 0.016 284.9)",
+          "oklch(95% 0.010 284.9)"
+        ]
+      },
+      "sumi-card": {
+        "role": "neutral",
+        "displayName": "Sumi Card",
+        "canonical": "#2f2f3d",
+        "tonalRamp": [
+          "oklch(15% 0.012 284.9)",
+          "oklch(25% 0.017 284.9)",
+          "oklch(35% 0.021 284.9)",
+          "oklch(45% 0.024 284.9)",
+          "oklch(55% 0.025 284.9)",
+          "oklch(65% 0.024 284.9)",
+          "oklch(80% 0.019 284.9)",
+          "oklch(95% 0.012 284.9)"
+        ]
+      },
+      "sumi-ink": {
+        "role": "neutral",
+        "displayName": "Sumi Ink",
+        "canonical": "#dcd7ba",
+        "tonalRamp": [
+          "oklch(15% 0.020 99.1)",
+          "oklch(25% 0.027 99.1)",
+          "oklch(35% 0.033 99.1)",
+          "oklch(45% 0.038 99.1)",
+          "oklch(55% 0.039 99.1)",
+          "oklch(65% 0.038 99.1)",
+          "oklch(80% 0.030 99.1)",
+          "oklch(95% 0.020 99.1)"
+        ]
+      },
+      "sumi-blue": {
+        "role": "primary",
+        "displayName": "Sumi Blue",
+        "canonical": "#7e9cd8",
+        "tonalRamp": [
+          "oklch(15% 0.048 263.7)",
+          "oklch(25% 0.066 263.7)",
+          "oklch(35% 0.081 263.7)",
+          "oklch(45% 0.091 263.7)",
+          "oklch(55% 0.095 263.7)",
+          "oklch(65% 0.091 263.7)",
+          "oklch(80% 0.074 263.7)",
+          "oklch(95% 0.023 263.7)"
+        ]
+      },
+      "sumi-green": {
+        "role": "secondary",
+        "displayName": "Sumi Green",
+        "canonical": "#98bb6c",
+        "tonalRamp": [
+          "oklch(15% 0.038 128.4)",
+          "oklch(25% 0.063 128.4)",
+          "oklch(35% 0.088 128.4)",
+          "oklch(45% 0.108 128.4)",
+          "oklch(55% 0.112 128.4)",
+          "oklch(65% 0.108 128.4)",
+          "oklch(80% 0.087 128.4)",
+          "oklch(95% 0.056 128.4)"
+        ]
+      },
+      "sumi-yellow": {
+        "role": "secondary",
+        "displayName": "Sumi Yellow",
+        "canonical": "#e6c384",
+        "tonalRamp": [
+          "oklch(15% 0.030 81.6)",
+          "oklch(25% 0.049 81.6)",
+          "oklch(35% 0.069 81.6)",
+          "oklch(45% 0.086 81.6)",
+          "oklch(55% 0.090 81.6)",
+          "oklch(65% 0.086 81.6)",
+          "oklch(80% 0.070 81.6)",
+          "oklch(95% 0.045 81.6)"
+        ]
+      },
+      "sumi-coral": {
+        "role": "tertiary",
+        "displayName": "Sumi Coral",
+        "canonical": "#ff5d62",
+        "tonalRamp": [
+          "oklch(15% 0.058 22.1)",
+          "oklch(25% 0.097 22.1)",
+          "oklch(35% 0.135 22.1)",
+          "oklch(45% 0.174 22.1)",
+          "oklch(55% 0.197 22.1)",
+          "oklch(65% 0.190 22.1)",
+          "oklch(80% 0.110 22.1)",
+          "oklch(95% 0.024 22.1)"
+        ]
+      },
+      "sumi-purple": {
+        "role": "tertiary",
+        "displayName": "Sumi Purple",
+        "canonical": "#a98fce",
+        "tonalRamp": [
+          "oklch(15% 0.047 302.9)",
+          "oklch(25% 0.065 302.9)",
+          "oklch(35% 0.081 302.9)",
+          "oklch(45% 0.091 302.9)",
+          "oklch(55% 0.095 302.9)",
+          "oklch(65% 0.091 302.9)",
+          "oklch(80% 0.074 302.9)",
+          "oklch(95% 0.028 302.9)"
+        ]
+      },
+      "tokyo-bg": {
+        "role": "neutral",
+        "displayName": "Tokyo Night Background",
+        "canonical": "#1a1b26",
+        "tonalRamp": [
+          "oklch(15% 0.011 280.5)",
+          "oklch(25% 0.015 280.5)",
+          "oklch(35% 0.018 280.5)",
+          "oklch(45% 0.021 280.5)",
+          "oklch(55% 0.021 280.5)",
+          "oklch(65% 0.021 280.5)",
+          "oklch(80% 0.017 280.5)",
+          "oklch(95% 0.011 280.5)"
+        ]
+      },
+      "tokyo-surface": {
+        "role": "neutral",
+        "displayName": "Tokyo Night Surface",
+        "canonical": "#1f2335",
+        "tonalRamp": [
+          "oklch(15% 0.017 274.2)",
+          "oklch(25% 0.024 274.2)",
+          "oklch(35% 0.029 274.2)",
+          "oklch(45% 0.033 274.2)",
+          "oklch(55% 0.034 274.2)",
+          "oklch(65% 0.033 274.2)",
+          "oklch(80% 0.027 274.2)",
+          "oklch(95% 0.017 274.2)"
+        ]
+      },
+      "tokyo-card": {
+        "role": "neutral",
+        "displayName": "Tokyo Night Card",
+        "canonical": "#272b40",
+        "tonalRamp": [
+          "oklch(15% 0.019 275.5)",
+          "oklch(25% 0.027 275.5)",
+          "oklch(35% 0.033 275.5)",
+          "oklch(45% 0.037 275.5)",
+          "oklch(55% 0.039 275.5)",
+          "oklch(65% 0.037 275.5)",
+          "oklch(80% 0.030 275.5)",
+          "oklch(95% 0.019 275.5)"
+        ]
+      },
+      "tokyo-ink": {
+        "role": "neutral",
+        "displayName": "Tokyo Night Ink",
+        "canonical": "#c0caf5",
+        "tonalRamp": [
+          "oklch(15% 0.031 274.8)",
+          "oklch(25% 0.042 274.8)",
+          "oklch(35% 0.052 274.8)",
+          "oklch(45% 0.059 274.8)",
+          "oklch(55% 0.061 274.8)",
+          "oklch(65% 0.059 274.8)",
+          "oklch(80% 0.047 274.8)",
+          "oklch(95% 0.023 274.8)"
+        ]
+      },
+      "tokyo-blue": {
+        "role": "primary",
+        "displayName": "Tokyo Night Blue",
+        "canonical": "#7aa2f7",
+        "tonalRamp": [
+          "oklch(15% 0.066 264.2)",
+          "oklch(25% 0.091 264.2)",
+          "oklch(35% 0.113 264.2)",
+          "oklch(45% 0.127 264.2)",
+          "oklch(55% 0.132 264.2)",
+          "oklch(65% 0.127 264.2)",
+          "oklch(80% 0.096 264.2)",
+          "oklch(95% 0.023 264.2)"
+        ]
+      },
+      "tokyo-green": {
+        "role": "secondary",
+        "displayName": "Tokyo Night Green",
+        "canonical": "#9ece6a",
+        "tonalRamp": [
+          "oklch(15% 0.039 130.1)",
+          "oklch(25% 0.065 130.1)",
+          "oklch(35% 0.091 130.1)",
+          "oklch(45% 0.117 130.1)",
+          "oklch(55% 0.139 130.1)",
+          "oklch(65% 0.134 130.1)",
+          "oklch(80% 0.108 130.1)",
+          "oklch(95% 0.070 130.1)"
+        ]
+      },
+      "tokyo-yellow": {
+        "role": "secondary",
+        "displayName": "Tokyo Night Yellow",
+        "canonical": "#e0af68",
+        "tonalRamp": [
+          "oklch(15% 0.030 75.4)",
+          "oklch(25% 0.051 75.4)",
+          "oklch(35% 0.071 75.4)",
+          "oklch(45% 0.091 75.4)",
+          "oklch(55% 0.106 75.4)",
+          "oklch(65% 0.102 75.4)",
+          "oklch(80% 0.082 75.4)",
+          "oklch(95% 0.039 75.4)"
+        ]
+      },
+      "tokyo-coral": {
+        "role": "tertiary",
+        "displayName": "Tokyo Night Coral",
+        "canonical": "#f7768e",
+        "tonalRamp": [
+          "oklch(15% 0.058 10.3)",
+          "oklch(25% 0.096 10.3)",
+          "oklch(35% 0.134 10.3)",
+          "oklch(45% 0.153 10.3)",
+          "oklch(55% 0.159 10.3)",
+          "oklch(65% 0.153 10.3)",
+          "oklch(80% 0.113 10.3)",
+          "oklch(95% 0.024 10.3)"
+        ]
+      },
+      "tokyo-purple": {
+        "role": "tertiary",
+        "displayName": "Tokyo Night Purple",
+        "canonical": "#bb9af7",
+        "tonalRamp": [
+          "oklch(15% 0.067 299.5)",
+          "oklch(25% 0.093 299.5)",
+          "oklch(35% 0.115 299.5)",
+          "oklch(45% 0.129 299.5)",
+          "oklch(55% 0.134 299.5)",
+          "oklch(65% 0.129 299.5)",
+          "oklch(80% 0.105 299.5)",
+          "oklch(95% 0.027 299.5)"
+        ]
+      },
+      "gruvbox-bg": {
+        "role": "neutral",
+        "displayName": "Gruvbox Background",
+        "canonical": "#1d2021",
+        "tonalRamp": [
+          "oklch(15% 0.002 219.7)",
+          "oklch(25% 0.003 219.7)",
+          "oklch(35% 0.004 219.7)",
+          "oklch(45% 0.005 219.7)",
+          "oklch(55% 0.005 219.7)",
+          "oklch(65% 0.005 219.7)",
+          "oklch(80% 0.004 219.7)",
+          "oklch(95% 0.002 219.7)"
+        ]
+      },
+      "gruvbox-surface": {
+        "role": "neutral",
+        "displayName": "Gruvbox Surface",
+        "canonical": "#282828",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(35% 0.000 89.9)",
+          "oklch(45% 0.000 89.9)",
+          "oklch(55% 0.000 89.9)",
+          "oklch(65% 0.000 89.9)",
+          "oklch(80% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "gruvbox-card": {
+        "role": "neutral",
+        "displayName": "Gruvbox Card",
+        "canonical": "#3a3735",
+        "tonalRamp": [
+          "oklch(15% 0.003 56.2)",
+          "oklch(25% 0.004 56.2)",
+          "oklch(35% 0.005 56.2)",
+          "oklch(45% 0.005 56.2)",
+          "oklch(55% 0.005 56.2)",
+          "oklch(65% 0.005 56.2)",
+          "oklch(80% 0.004 56.2)",
+          "oklch(95% 0.003 56.2)"
+        ]
+      },
+      "gruvbox-ink": {
+        "role": "neutral",
+        "displayName": "Gruvbox Ink",
+        "canonical": "#ebdbb2",
+        "tonalRamp": [
+          "oklch(15% 0.028 89.2)",
+          "oklch(25% 0.039 89.2)",
+          "oklch(35% 0.048 89.2)",
+          "oklch(45% 0.054 89.2)",
+          "oklch(55% 0.057 89.2)",
+          "oklch(65% 0.054 89.2)",
+          "oklch(80% 0.044 89.2)",
+          "oklch(95% 0.028 89.2)"
+        ]
+      },
+      "gruvbox-blue": {
+        "role": "primary",
+        "displayName": "Gruvbox Blue",
+        "canonical": "#83a598",
+        "tonalRamp": [
+          "oklch(15% 0.021 169.8)",
+          "oklch(25% 0.029 169.8)",
+          "oklch(35% 0.036 169.8)",
+          "oklch(45% 0.040 169.8)",
+          "oklch(55% 0.042 169.8)",
+          "oklch(65% 0.040 169.8)",
+          "oklch(80% 0.033 169.8)",
+          "oklch(95% 0.021 169.8)"
+        ]
+      },
+      "gruvbox-green": {
+        "role": "secondary",
+        "displayName": "Gruvbox Green",
+        "canonical": "#b8bb26",
+        "tonalRamp": [
+          "oklch(15% 0.032 110.8)",
+          "oklch(25% 0.053 110.8)",
+          "oklch(35% 0.074 110.8)",
+          "oklch(45% 0.095 110.8)",
+          "oklch(55% 0.116 110.8)",
+          "oklch(65% 0.137 110.8)",
+          "oklch(80% 0.123 110.8)",
+          "oklch(95% 0.079 110.8)"
+        ]
+      },
+      "gruvbox-yellow": {
+        "role": "secondary",
+        "displayName": "Gruvbox Yellow",
+        "canonical": "#fabd2f",
+        "tonalRamp": [
+          "oklch(15% 0.030 83.0)",
+          "oklch(25% 0.049 83.0)",
+          "oklch(35% 0.069 83.0)",
+          "oklch(45% 0.089 83.0)",
+          "oklch(55% 0.109 83.0)",
+          "oklch(65% 0.128 83.0)",
+          "oklch(80% 0.124 83.0)",
+          "oklch(95% 0.048 83.0)"
+        ]
+      },
+      "gruvbox-coral": {
+        "role": "tertiary",
+        "displayName": "Gruvbox Coral",
+        "canonical": "#fb4934",
+        "tonalRamp": [
+          "oklch(15% 0.057 30.4)",
+          "oklch(25% 0.095 30.4)",
+          "oklch(35% 0.133 30.4)",
+          "oklch(45% 0.171 30.4)",
+          "oklch(55% 0.209 30.4)",
+          "oklch(65% 0.209 30.4)",
+          "oklch(80% 0.110 30.4)",
+          "oklch(95% 0.024 30.4)"
+        ]
+      },
+      "gruvbox-purple": {
+        "role": "tertiary",
+        "displayName": "Gruvbox Purple",
+        "canonical": "#d3869b",
+        "tonalRamp": [
+          "oklch(15% 0.049 2.2)",
+          "oklch(25% 0.067 2.2)",
+          "oklch(35% 0.083 2.2)",
+          "oklch(45% 0.094 2.2)",
+          "oklch(55% 0.098 2.2)",
+          "oklch(65% 0.094 2.2)",
+          "oklch(80% 0.076 2.2)",
+          "oklch(95% 0.025 2.2)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Editorial Display",
+        "purpose": "Main headings in the Fraunces serif."
+      },
+      "body": {
+        "displayName": "Reading Copy",
+        "purpose": "Default paragraph copy in IBM Plex Sans."
+      },
+      "label": {
+        "displayName": "Technical Labels",
+        "purpose": "Compact navigation and metadata in JetBrains Mono."
+      },
+      "mono": {
+        "displayName": "Code and Terminal",
+        "purpose": "Terminal and technical data in JetBrains Mono."
+      },
+      "theme-choice": {
+        "displayName": "Theme Selector Label",
+        "purpose": "Uppercase radio-option text in the theme lab."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "project-row-hover",
+        "value": "background 0.2s ease",
+        "purpose": "Briefly changes the project-row surface on hover."
+      },
+      {
+        "name": "terminal-cursor",
+        "value": "terminal-blink 1.1s steps(1, end) infinite",
+        "purpose": "Marks terminal output; the reduced-motion rule disables the blink."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet-layout",
+        "value": "60rem"
+      },
+      {
+        "name": "small-header",
+        "value": "48rem"
+      },
+      {
+        "name": "phone-heading",
+        "value": "36rem"
+      },
+      {
+        "name": "narrow-viewport",
+        "value": "22rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Theme-aware primary action link used for the main CTA.",
+      "html": "<a class=\"ds-button-primary\" href=\"#example\">Primary action</a>",
+      "css": ".ds-button-primary{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.8rem 1.2rem;border:var(--bw) solid var(--line);border-radius:var(--radius-sm);background:var(--btn-bg);color:var(--btn-fg);font-family:var(--font-body);font-size:.82rem;font-weight:700;text-decoration:none}.ds-button-primary:hover{border-color:var(--blue-text);color:var(--btn-fg)}.ds-button-primary:focus-visible{outline:3px solid var(--blue-text);outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet action with the active theme's card surface.",
+      "html": "<a class=\"ds-button-secondary\" href=\"#example\">Secondary action</a>",
+      "css": ".ds-button-secondary{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.8rem 1.2rem;border:var(--bw) solid var(--line);border-radius:var(--radius-sm);background:var(--card);color:var(--ink);font-family:var(--font-body);font-size:.82rem;font-weight:700;text-decoration:none}.ds-button-secondary:hover{border-color:var(--blue-text)}.ds-button-secondary:focus-visible{outline:3px solid var(--blue-text);outline-offset:3px}"
+    },
+    {
+      "name": "Blue Action",
+      "kind": "button",
+      "refersTo": "button-blue",
+      "description": "Blue/on-blue action variant from the active theme.",
+      "html": "<a class=\"ds-button-blue\" href=\"#example\">Blue action</a>",
+      "css": ".ds-button-blue{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.8rem 1.2rem;border:var(--bw) solid var(--line);border-radius:var(--radius-sm);background:var(--blue);color:var(--on-blue);font-family:var(--font-body);font-size:.82rem;font-weight:700;text-decoration:none}.ds-button-blue:hover{border-color:var(--blue-text);color:var(--on-blue)}.ds-button-blue:focus-visible{outline:3px solid var(--blue-text);outline-offset:3px}"
+    },
+    {
+      "name": "Site Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Compact uppercase navigation with theme-aware link and focus states.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#section\">Section</a><a href=\"#section-2\">Section</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem}.ds-nav a{color:var(--ink);font-family:var(--font-mono);font-size:.66rem;font-weight:600;letter-spacing:.04em;text-decoration:none;text-transform:uppercase}.ds-nav a:hover{color:var(--blue-text)}.ds-nav a:focus-visible{outline:3px solid var(--blue-text);outline-offset:3px}@media(max-width:60rem){.ds-nav{width:100%;justify-content:flex-start;gap:clamp(.9rem,3.5vw,2rem)}}@media(max-width:48rem){.ds-nav{gap:clamp(.3rem,1.5vw,.9rem)}.ds-nav a{font-size:clamp(.6rem,2.6vw,.66rem)}}"
+    },
+    {
+      "name": "Theme Selection Radio",
+      "kind": "input",
+      "refersTo": "theme-choice",
+      "description": "Native radio option used to select a palette in the theme lab.",
+      "html": "<article class=\"ds-theme-card\"><label class=\"ds-theme-choice\"><input type=\"radio\" name=\"theme-lab\" value=\"paper\" checked><span>Use</span></label></article>",
+      "css": ".ds-theme-card{display:flex;flex-direction:column;gap:.8rem;padding:1.1rem;border:var(--bw) solid var(--line);border-radius:var(--radius-md);background:var(--bg);color:var(--ink)}.ds-theme-card:has(input:checked){outline:2px solid var(--blue-text);outline-offset:3px}.ds-theme-choice{display:flex;align-items:center;gap:.45rem;padding:.5rem .6rem;border:1px solid var(--line-strong);border-radius:var(--radius-sm);cursor:pointer;font-family:var(--font-mono);font-size:.58rem;text-transform:uppercase}.ds-theme-choice:hover{background:var(--surface)}.ds-theme-choice input{accent-color:var(--blue)}.ds-theme-choice input:focus-visible{outline:auto}"
+    },
+    {
+      "name": "Featured Project Card",
+      "kind": "card",
+      "refersTo": "card-featured",
+      "description": "Ruled, theme-aware featured project surface.",
+      "html": "<article class=\"ds-card\"><span class=\"ds-card-label\">FEATURED</span><h3>Project title</h3><p>Short project summary.</p><a href=\"#project\">Open project</a></article>",
+      "css": ".ds-card{display:grid;gap:.75rem;padding:1.75rem;border:var(--bw) solid var(--line);border-radius:var(--radius-md);background:var(--card);color:var(--ink)}.ds-card h3{margin:0;color:var(--ink);font-family:var(--font-display);max-width:20ch;font-size:clamp(2rem,3.4vw,2.8rem);font-weight:600;letter-spacing:-.01em;line-height:1.2}.ds-card p{margin:0;color:var(--ink-2);font-family:var(--font-body)}.ds-card a{color:inherit;text-underline-offset:.2em}.ds-card a:hover{color:var(--blue-text)}.ds-card a:focus-visible{outline:3px solid var(--blue-text);outline-offset:3px}"
+    },
+    {
+      "name": "Terminal Panel",
+      "kind": "custom",
+      "refersTo": "terminal-panel",
+      "description": "Technical output framed by a ruled, theme-aware terminal surface.",
+      "html": "<section class=\"ds-terminal\"><header class=\"ds-terminal-bar\"><span class=\"ds-terminal-title\">terminal</span></header><pre class=\"ds-terminal-body\"><code>$ status\nready</code></pre></section>",
+      "css": ".ds-terminal{display:flex;flex-direction:column;overflow:hidden;border:var(--bw) solid var(--line);border-radius:var(--radius-md);background:var(--terminal);color:var(--terminal-text)}.ds-terminal-bar{display:flex;align-items:center;padding:.55rem .7rem;border-bottom:1px solid var(--terminal-line)}.ds-terminal-title{color:var(--terminal-muted);font-family:var(--font-mono);font-size:.55rem}.ds-terminal-body{min-height:9rem;margin:0;padding:1rem;color:var(--terminal-text);font-family:var(--font-mono);font-size:.7rem;line-height:1.8;white-space:pre-wrap}.ds-terminal-body code{font-family:inherit}"
+    },
+    {
+      "name": "Specialty Tag",
+      "kind": "chip",
+      "refersTo": "specialty-tag",
+      "description": "Theme-coded specialty label with its companion compact card tags.",
+      "html": "<div class=\"ds-tag-sample\"><span class=\"ds-specialty-tag ds-tag-blue\">Specialty</span><ul class=\"ds-card-tags ds-focus-tags\"><li>Tag</li><li>Tag</li></ul></div>",
+      "css": ".ds-specialty-tag{padding: 0.2rem 0.5rem; border: 1px solid var(--line-strong); border-radius: var(--radius-xs); font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;}.ds-tag-blue{background: var(--blue-soft); color: var(--blue-deep);}.ds-tag-purple{background: var(--purple-soft); color: var(--purple);}.ds-tag-coral{background: var(--coral-soft); color: var(--coral-deep);}.ds-tag-green{background: var(--green-soft); color: var(--green-deep);}.ds-card-tags{display: flex; flex-wrap: wrap; gap: 0.35rem; margin: auto 0 0; padding: 1.1rem 0 0; list-style: none;}.ds-focus-tags{justify-content: flex-end; align-content: flex-start; margin: 0; padding-top: 0.35rem;}.ds-card-tags li{padding: 0.15rem 0.45rem; border: 1px solid var(--soft-line); border-radius: var(--radius-xs); background: var(--surface); color: var(--ink-2); font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineering Monograph",
+    "overview": "Confirmed context: the bilingual portfolio and its selectable theme lab remain as implemented. The Engineering Monograph frame is a provisional visual recommendation—not a user-confirmed brand statement—grounded in the existing editorial typography, ruled sections, technical labels, and evidence panels.\n\nThis capture is source-derived. Rendered browser inspection was unavailable because the CUA browser host was unavailable, so no visual-verification claim is made.",
+    "keyCharacteristics": [
+      "Editorial serif display type sits beside sans-serif reading copy and monospaced technical labels.",
+      "Ruled sections, theme-colored borders, and tonal surfaces organize dense information.",
+      "Paper, Sumi, Tokyo Night, and Gruvbox retain separate color identities over shared layout and component patterns.",
+      "The precise, tactile, flat/ruled direction is a provisional recommendation, not a user-confirmed preference."
+    ],
+    "rules": [
+      {
+        "name": "The Theme-Family Rule",
+        "body": "Provisional recommendation: keep each palette's surfaces and accents together rather than mixing colors across themes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three-Register Rule",
+        "body": "Keep display, reading, and technical text in their observed type roles; do not use the mono face as paragraph copy.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ruled-Surface Rule",
+        "body": "Provisional recommendation: use borders and tonal surfaces for separation; do not add shadows to imitate the incumbent system.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the four theme identities and their runtime-selected token families intact.",
+      "Do use the existing Fraunces, IBM Plex Sans, and JetBrains Mono roles.",
+      "Do preserve the theme-aware border and tonal-surface model when extending components.",
+      "Do retain visible link focus and reduced-motion behavior."
+    ],
+    "donts": [
+      "Don't mix palette tokens across the four themes.",
+      "Don't add shadows as a substitute for the existing ruled, tonal separation.",
+      "Don't widen card corners beyond the existing modest radius scale without an explicit design decision.",
+      "Don't present the Engineering Monograph or precise/tactile language as user-confirmed."
+    ]
+  }
+}
